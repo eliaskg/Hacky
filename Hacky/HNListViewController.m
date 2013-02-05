@@ -41,6 +41,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton) name:@"didClickCopyMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyURLMenuButton) name:@"didClickCopyURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickInstapaperMenuButton) name:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickPocketMenuButton) name:@"didClickPocketMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
@@ -163,6 +164,18 @@
   
   NSURL* url = [NSURL URLWithString:ipURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (void)didClickPocketMenuButton
+{
+    NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+    NSString* baseURL = @"mailto:add@getpocket.com";
+    NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* title = [[topic valueForKey:@"title"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* pURL = [NSString stringWithFormat:@"%@?subject=%@&body=%@", baseURL, title, topicURL];
+    
+    NSURL* url = [NSURL URLWithString:pURL];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (void)didClickTweetMenuButton
