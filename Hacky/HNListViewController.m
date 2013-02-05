@@ -41,6 +41,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton) name:@"didClickCopyMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyURLMenuButton) name:@"didClickCopyURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickInstapaperMenuButton) name:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickReadabilityMenuButton) name:@"didClickReadabilityMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
@@ -163,6 +164,17 @@
   
   NSURL* url = [NSURL URLWithString:ipURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (void)didClickReadabilityMenuButton
+{
+    NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+    NSString* baseURL = @"http://www.readability.com/save?url=";
+    NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* ipURL = [NSString stringWithFormat:@"%@%@", baseURL, topicURL];
+    
+    NSURL* url = [NSURL URLWithString:ipURL];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (void)didClickTweetMenuButton
