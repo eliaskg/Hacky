@@ -114,6 +114,12 @@
     [instapaper setAction:@selector(didClickInstapaperButton:)];
     [instapaper setTarget:self];
     [contextMenu addItem:instapaper];
+        
+    NSMenuItem *readability = [[NSMenuItem alloc] init];
+    [readability setTitle:@"Send to Readability"];
+    [readability setAction:@selector(didClickReadabilityButton:)];
+    [readability setTarget:self];
+    [contextMenu addItem:readability];
     
     NSMenuItem *tweet = [[NSMenuItem alloc] init];
     [tweet setTitle:@"Tweet"];
@@ -217,6 +223,11 @@
 - (void)didClickInstapaperButton:(id)sender
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickInstapaperMenuButton" object:nil];
+}
+
+- (void)didClickReadabilityButton:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickReadabilityMenuButton" object:nil];
 }
 
 - (void)didClickTweetButton:(id)sender
