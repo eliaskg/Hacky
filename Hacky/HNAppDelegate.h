@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Reachability.h"
+#import "TFHpple.h"
 #import "INAppStoreWindow.h"
 #import "HNListViewController.h"
 #import "HNConnectionController.h"

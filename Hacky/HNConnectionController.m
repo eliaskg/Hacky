@@ -22,15 +22,28 @@
     identifier = anIdentifier;
     
     [self setRoute];
-
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    networkOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-      [[NSNotificationCenter defaultCenter] postNotificationName:notification object:JSON];
-    } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON) {
-      [[NSNotificationCenter defaultCenter] postNotificationName:notification object:error];
-      //      NSLog(@"%@", error);
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://news.ycombinator.com"]];
+    
+    networkOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+      [[NSNotificationCenter defaultCenter] postNotificationName:notification object:operation.responseString];
+      NSLog(@"Success");
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+      NSLog(@"Failure"); 
     }];
+  
     [networkOperation start];
+
+//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+//    networkOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//      [[NSNotificationCenter defaultCenter] postNotificationName:notification object:JSON];
+//    } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON) {
+//      [[NSNotificationCenter defaultCenter] postNotificationName:notification object:error];
+//      //      NSLog(@"%@", error);
+//    }];
+//    [networkOperation start];
   }
   
   return self;
@@ -41,6 +54,10 @@
   if ([identifier isEqualToString:@"topics"]) {
     url          = @"http://hn-crawler.herokuapp.com/new";
     notification = @"didLoadTopics";
+  }
+  else if ([identifier isEqualToString:@"stories"]) {
+    url          = @"http://news.ycombinator.com";
+    notification = @"didLoadStories";
   }
 }
 
