@@ -110,6 +110,10 @@
 
 - (void)didClickOpenURLMenuButton
 {
+  [self openURL];
+}
+
+- (void)openURL {
   NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
   NSURL* url = [NSURL URLWithString:[topic valueForKey:@"url"]];
   [[NSWorkspace sharedWorkspace] openURL:url];
@@ -311,6 +315,13 @@
 {
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
+}
+
+- (void)keyDown:(NSEvent *)theEvent inListView:(PXListView*)theListView
+{
+  if ([theEvent keyCode] == 36) {
+    [self openURL];
+  }
 }
 
 @end
