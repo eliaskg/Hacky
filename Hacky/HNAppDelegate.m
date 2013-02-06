@@ -299,7 +299,11 @@
       NSString* comments = [NSString stringWithFormat:@"%li", [self numberFromString:commentsText]];
       [story setValue:comments forKey:@"comments"];
       
-      NSLog([metaTd text]);
+      TFHppleElement* createdElement = [[metaTd children] objectAtIndex:3];
+      NSString* createdTextRaw = [createdElement content];
+      NSString* createdTextNoDivider = [createdTextRaw stringByReplacingOccurrencesOfString:@"|" withString:@""];
+      NSString* createdTextNoWhitespace = [self removeLeadingAndTrailingWhitespace:createdTextNoDivider];
+      [story setValue:createdTextNoWhitespace forKey:@"created_at"];
       
       // -- Add a copy of the story to the array
       NSMutableDictionary* story_ = [story copy];
@@ -308,7 +312,7 @@
     }
   }
   
-//  NSLog(@"%@", stories);
+  NSLog(@"%@", stories);
   
 //  NSArray* titles = [doc searchWithXPathQuery:@"//*[contains(@class,'title')] "];
 //  
@@ -341,6 +345,16 @@
   int number = [numberString integerValue];
   
   return number;
+}
+
+-(NSString*)removeLeadingAndTrailingWhitespace:(NSString*)string {
+  NSCharacterSet *whitespaces = [NSCharacterSet whitespaceCharacterSet];
+  NSPredicate *noEmptyStrings = [NSPredicate predicateWithFormat:@"SELF != ''"];
+  
+  NSArray *parts = [string componentsSeparatedByCharactersInSet:whitespaces];
+  NSArray *filteredArray = [parts filteredArrayUsingPredicate:noEmptyStrings];
+
+  return [filteredArray componentsJoinedByString:@" "];
 }
 
 @end
