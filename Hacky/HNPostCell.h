@@ -37,6 +37,6 @@
 @property (nonatomic, retain) NSMenuItem* markAsUnreadMenuItem;
 
 - (void)setTopic:(NSDictionary*)aTopic;
-- (void)setNumber:(NSUInteger*)aNumber;
+- (void)setNumber:(NSUInteger)aNumber;
 
 @end

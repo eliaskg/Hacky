@@ -163,10 +163,10 @@
   markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
 }
 
-- (void)setNumber:(NSUInteger*)aNumber
+- (void)setNumber:(NSUInteger)aNumber
 {
   number = aNumber;
-  numberLabel.stringValue = [NSString stringWithFormat:@"%d.", number];
+  numberLabel.stringValue = [NSString stringWithFormat:@"%lu.", number];
   [numberLabel sizeToFit];
 }
 
@@ -236,7 +236,7 @@
 
 - (void)didClickUnreadButton:(id)sender
 {
-  NSNumber *row = [NSNumber numberWithInt:number - 1];
+  NSNumber *row = [NSNumber numberWithInt:(int)number - 1];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSelectRow" object:row];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickMarkAsReadMenuButton" object:nil];
 }
