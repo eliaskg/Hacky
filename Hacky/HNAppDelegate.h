@@ -16,22 +16,22 @@
 
 @interface HNAppDelegate : NSObject <NSApplicationDelegate>
 {
-  IBOutlet INAppStoreWindow *window;
-  NSTextField *titleLabel;
-  NSProgressIndicator *spinner;
-  NSButton *reloadButton;
-  HNListViewController *listViewController;
+  IBOutlet INAppStoreWindow* window;
+  NSTextField* titleLabel;
+  NSProgressIndicator* spinner;
+  NSButton* reloadButton;
+  HNListViewController* listViewController;
   NSTimer* loadTimer;
   IBOutlet NSMenuItem* markAsReadMenuItem;
   IBOutlet NSMenuItem* markAsUnreadMenuItem;
   HNConnectionController* connectionController;
 }
 
-@property (assign) IBOutlet INAppStoreWindow *window;
-@property (nonatomic, retain) NSTextField *titleLabel;
-@property (nonatomic, retain) NSProgressIndicator *spinner;
-@property (nonatomic, retain) NSButton *reloadButton;
-@property (nonatomic, retain) HNListViewController *listViewController;
+@property (assign) IBOutlet INAppStoreWindow* window;
+@property (nonatomic, retain) NSTextField* titleLabel;
+@property (nonatomic, retain) NSProgressIndicator* spinner;
+@property (nonatomic, retain) NSButton* reloadButton;
+@property (nonatomic, retain) HNListViewController* listViewController;
 @property (nonatomic, retain) NSTimer* loadTimer;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsUnreadMenuItem;
