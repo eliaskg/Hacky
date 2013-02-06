@@ -287,7 +287,7 @@
     
     // --- Background Color
     [[NSColor colorWithCalibratedRed:246.0/255.0 green:246.0/255.0 blue:239.0/255.0 alpha:1.0] set];
-    NSBezierPath *rect = [NSBezierPath bezierPathWithRect:aRect];
+
     NSGradient* gradient = [[NSGradient alloc]
                               initWithStartingColor:[NSColor colorWithCalibratedRed:17.0/255.0 green:105.0/255.0 blue:181.0/255.0 alpha:1.0]
                               endingColor:[NSColor colorWithCalibratedRed:62.0/255.0 green:154.0/255.0 blue:232.0/255.0 alpha:1.0]];
