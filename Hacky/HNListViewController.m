@@ -64,6 +64,8 @@
   
   [listView setSelectedRow:selectedIndex];
   
+  [[listView window] makeFirstResponder:listView];
+  
   [self updateBadge];
 }
 
