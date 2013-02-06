@@ -30,6 +30,7 @@
 		7E52826616C1A7C8000BA274 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52825F16C1A7C8000BA274 /* TFHppleElement.m */; };
 		7E52826716C1A7C8000BA274 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52826116C1A7C8000BA274 /* XPathQuery.m */; };
 		7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E52826A16C1B152000BA274 /* libxml2.2.dylib */; };
+		7E68947D16C2FAB100427C5E /* HNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E68947C16C2FAB100427C5E /* HNParser.m */; };
 		7E7A3C211658FC85008B538F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C201658FC85008B538F /* CFNetwork.framework */; };
 		7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C221658FC91008B538F /* SystemConfiguration.framework */; };
 		7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C241658FC9A008B538F /* Security.framework */; };
@@ -114,6 +115,8 @@
 		7E52826116C1A7C8000BA274 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		7E52826816C1A85E000BA274 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		7E52826A16C1B152000BA274 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		7E68947B16C2FAB100427C5E /* HNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNParser.h; sourceTree = "<group>"; };
+		7E68947C16C2FAB100427C5E /* HNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNParser.m; sourceTree = "<group>"; };
 		7E7A3C201658FC85008B538F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E7A3C221658FC91008B538F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E7A3C241658FC9A008B538F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -315,6 +318,8 @@
 				7E1E92AC166FD4DC0026319B /* Hacky.entitlements */,
 				7E9A43141656B90C001AA5C9 /* HNAppDelegate.h */,
 				7E9A43151656B90C001AA5C9 /* HNAppDelegate.m */,
+				7E68947B16C2FAB100427C5E /* HNParser.h */,
+				7E68947C16C2FAB100427C5E /* HNParser.m */,
 				7E9A43171656B90C001AA5C9 /* MainMenu.xib */,
 				7E7A3C64165A448D008B538F /* HNListViewController.h */,
 				7E7A3C65165A448D008B538F /* HNListViewController.m */,
@@ -544,6 +549,7 @@
 				7E52826516C1A7C8000BA274 /* TFHpple.m in Sources */,
 				7E52826616C1A7C8000BA274 /* TFHppleElement.m in Sources */,
 				7E52826716C1A7C8000BA274 /* XPathQuery.m in Sources */,
+				7E68947D16C2FAB100427C5E /* HNParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
