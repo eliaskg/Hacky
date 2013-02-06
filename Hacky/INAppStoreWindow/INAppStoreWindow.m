@@ -143,6 +143,16 @@ static inline CGGradientRef createGradientWithColors(NSColor *startingColor, NSC
     rect.origin.y = NSHeight(window.frame)-window.titleBarHeight;
     return rect;
 }
+
+- (BOOL)isKindOfClass:(Class)aClass
+{
+  if (self.secondaryDelegate) {
+    return [self.secondaryDelegate isKindOfClass:aClass];
+  }
+  
+  return NO;
+}
+
 @end
 
 @interface INAppStoreWindow ()
