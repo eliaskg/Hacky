@@ -319,8 +319,20 @@
 
 - (void)keyDown:(NSEvent *)theEvent inListView:(PXListView*)theListView
 {
-  if ([theEvent keyCode] == 36) {
+  int keyCode = [theEvent keyCode];
+  NSLog(@"%d", keyCode);
+  
+  // --- return Key
+  if (keyCode == 36) {
     [self openURL];
+  }
+  // --- W / K Key
+  else if (keyCode == 13 || keyCode == 40) {
+    [listView moveUp:self];
+  }
+  // --- S / J Key
+  else if (keyCode == 1 || keyCode == 38) {
+    [listView moveDown:self];
   }
 }
 
