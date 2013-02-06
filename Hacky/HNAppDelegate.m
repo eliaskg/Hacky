@@ -9,6 +9,7 @@
 #import "HNAppDelegate.h"
 
 #define kHostName @"news.ycombinator.com"
+#define kSecondsPerMinute 60
 
 @implementation HNAppDelegate
 
@@ -191,7 +192,9 @@
   if (loadTimer)
     [loadTimer invalidate];
   
-  loadTimer = [NSTimer timerWithTimeInterval:3 * 60 target:self selector:@selector(load) userInfo:nil repeats:NO];
+  long refreshInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"refreshInterval"];
+  if (!refreshInterval) refreshInterval = 3;
+  loadTimer = [NSTimer timerWithTimeInterval:refreshInterval * kSecondsPerMinute target:self selector:@selector(load) userInfo:nil repeats:NO];
   [[NSRunLoop currentRunLoop] addTimer:loadTimer forMode:NSRunLoopCommonModes];
 }
 
