@@ -29,7 +29,7 @@
   [trs removeLastObject];
   [trs removeLastObject];
   
-  NSMutableDictionary* story = [NSMutableDictionary dictionaryWithCapacity:7];
+  NSMutableDictionary* story = [[NSMutableDictionary alloc] init];
   
   for (int i = 0; i < [trs count]; i++) {
     TFHppleElement* tr = trs[i];
@@ -86,7 +86,7 @@
       [story setValue:createdTextNoWhitespace forKey:@"created_at"];
       
       // -- Add a copy of the story to the array
-      NSMutableDictionary* story_ = [story copy];
+      NSMutableDictionary* story_ = [NSMutableDictionary dictionaryWithDictionary:story];
       [stories addObject:story_];
       //      j++;
     }

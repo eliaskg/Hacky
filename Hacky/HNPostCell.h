@@ -25,7 +25,7 @@
 }
 
 @property (nonatomic, assign) NSUInteger number;
-@property (nonatomic, retain) NSDictionary* topic;
+@property (nonatomic, retain) NSMutableDictionary* topic;
 @property (nonatomic, retain) NSView* contentView;
 @property (nonatomic, retain) NSTextField* numberLabel;
 @property (nonatomic, retain) NSTextField* titleLabel;
@@ -36,7 +36,7 @@
 @property (nonatomic, retain) NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) NSMenuItem* markAsUnreadMenuItem;
 
-- (void)setTopic:(NSDictionary*)aTopic;
+- (void)setTopic:(NSMutableDictionary*)aTopic;
 - (void)setNumber:(NSUInteger*)aNumber;
 
 @end

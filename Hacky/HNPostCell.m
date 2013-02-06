@@ -144,7 +144,7 @@
 	return self;
 }
 
-- (void)setTopic:(NSDictionary*)aTopic
+- (void)setTopic:(NSMutableDictionary*)aTopic
 {
   topic = aTopic;
   

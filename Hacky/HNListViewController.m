@@ -75,7 +75,7 @@
   
   for (int i = 0; i < [topics count]; i++)
   {
-    NSMutableDictionary* topic = topics[i];
+    NSMutableDictionary* topic = [topics objectAtIndex:i];
     
     if ([defaults valueForKey:[topic valueForKey:@"id"]]) {
       [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
@@ -94,7 +94,7 @@
   
   for (int i = 0; i < [topics count]; i++)
   {
-    NSDictionary* topic = topics[i];
+    NSMutableDictionary* topic = [topics objectAtIndex:i];
     [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
   }
   
@@ -217,7 +217,7 @@
   
   for (int i = 0; i < [topics count]; i++)
   {
-    NSDictionary* topic = topics[i];
+    NSMutableDictionary* topic = topics[i];
     
     if (![defaults valueForKey:[topic valueForKey:@"id"]])
       unreadTopics++;
@@ -249,7 +249,7 @@
 {
   selectedIndex = listView.selectedRow;
   
-  NSDictionary* topic = topics[selectedIndex];
+  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
   
   id appDelegate = [[NSApplication sharedApplication] delegate];
   
@@ -262,10 +262,10 @@
 
 - (void)didUseRightClick:(NSNotification*)aNotification
 {
-  NSDictionary* clickedTopic = [aNotification object];
+  NSMutableDictionary* clickedTopic = [aNotification object];
   
   for (int i = 0; i < [topics count]; i++) {
-    NSDictionary* topic = topics[i];
+    NSMutableDictionary* topic = topics[i];
     
     if ([[topic valueForKey:@"id"] isEqualToString:[clickedTopic valueForKey:@"id"]]) {
       [listView setSelectedRow:i];
