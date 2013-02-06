@@ -154,7 +154,7 @@
   titleLabel.toolTip = [url host];
   
   // Set Meta
-  NSString *metaString = [NSString stringWithFormat:@"%@ Points | %@ | %@ Comments", [topic valueForKey:@"upvotes"], [topic valueForKey:@"created_at"], [topic valueForKey:@"comments"]];
+  NSString *metaString = [NSString stringWithFormat:@"%@ Points | %@ | %@ Comments", [topic valueForKey:@"score"], [topic valueForKey:@"created_at"], [topic valueForKey:@"comments"]];
   [metaLabel setStringValue:metaString];
   [metaLabel sizeToFit];
   [metaLabel setFrameOrigin:CGPointMake(numberLabel.bounds.size.width, metaLabel.frame.origin.y)];

@@ -33,7 +33,7 @@
   listView.borderType = NSNoBorder;
   listView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadTopics:) name:@"didLoadTopics" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
@@ -46,20 +46,14 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
 }
 
-- (void)didLoadTopics:(NSNotification*)aNotification
+- (void)didLoadStories:(NSNotification*)aNotification
 {
-  NSArray* results = [aNotification object];
-  
-  if ([results isKindOfClass:[NSError class]])
+  if ([[aNotification object] isKindOfClass:[NSError class]])
     return;
   
-  topics = [[NSMutableArray alloc] init];
-  
-  for (int i = 0; i < [results count]; i++)
-  {
-    NSMutableDictionary* topic = [NSMutableDictionary dictionaryWithDictionary:results[i]];
-    [topics addObject:topic];
-  }
+  NSString* response = [aNotification object];
+  HNParser* parser = [[HNParser alloc] init];
+  topics = [parser parseStories:response];
   
   [self setReadMarks];
   
