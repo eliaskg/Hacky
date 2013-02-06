@@ -320,7 +320,6 @@
 - (void)keyDown:(NSEvent *)theEvent inListView:(PXListView*)theListView
 {
   int keyCode = [theEvent keyCode];
-  NSLog(@"%d", keyCode);
   
   // --- return Key
   if (keyCode == 36) {

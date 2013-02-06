@@ -82,11 +82,6 @@
     [self load];
   };
   
-//  reach.unreachableBlock = ^(Reachability*reach)
-//  {
-//    NSLog(@"UNREACHABLE!");
-//  };
-  
   [reach startNotifier];
 }
 
@@ -219,11 +214,6 @@
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
 {
   return YES;
-}
-
-- (void)reachabilityChanged:(NSNotification*)aNotification
-{
-  NSLog(@"Reachablity changed");
 }
 
 @end
