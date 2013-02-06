@@ -282,7 +282,7 @@
     cell = [[HNPostCell alloc] initWithReusableIdentifier:LISTVIEW_CELL_IDENTIFIER];
   }
   
-  // Set up the new cell:
+  // --- Set up the new cell:
   [cell setNumber:row + 1];
   [cell setTopic:[topics objectAtIndex:row]];
   
@@ -293,11 +293,6 @@
 {
   return 51;
 }
-
-//- (void)listViewSelectionDidChange:(NSNotification*)aNotification
-//{
-//  NSInteger row = listView.selectedRow;
-//}
 
 - (void)listView:(PXListView*)aListView rowDoubleClicked:(NSUInteger)row
 {
