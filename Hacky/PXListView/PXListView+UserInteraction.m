@@ -92,7 +92,10 @@ static PXIsDragStartResult PXIsDragStart( NSEvent *startEvent, NSTimeInterval th
 
 - (void)keyDown:(NSEvent *)theEvent
 {
-	[self interpretKeyEvents:[NSArray arrayWithObject:theEvent]];
+  if ([theEvent keyCode] == 126 || [theEvent keyCode] == 125)
+    [self interpretKeyEvents:[NSArray arrayWithObject:theEvent]];
+  else if (self.delegate && [self.delegate respondsToSelector:@selector(keyDown:inListView:)])
+    [self.delegate performSelector:@selector(keyDown:inListView:) withObject:theEvent withObject:self];
 }
 
 
