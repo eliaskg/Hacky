@@ -191,7 +191,7 @@
   if (loadTimer)
     [loadTimer invalidate];
   
-  loadTimer = [NSTimer timerWithTimeInterval:3 * 60 target:self selector:@selector(load) userInfo:nil repeats:NO];
+  loadTimer = [NSTimer timerWithTimeInterval:5 * 60 target:self selector:@selector(load) userInfo:nil repeats:NO];
   [[NSRunLoop currentRunLoop] addTimer:loadTimer forMode:NSRunLoopCommonModes];
 }
 
