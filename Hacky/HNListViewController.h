@@ -7,19 +7,25 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <INPopoverController/INPopoverController.h>
 #import "HNAppDelegate.h"
 #import "PXListView.h"
 #import "PXListDocumentView.h"
 #import "HNConnectionController.h"
 #import "HNPostCell.h"
 
-@interface HNListViewController : NSViewController <PXListViewDelegate>
+@class HNPagePreviewViewController;
+
+@interface HNListViewController : NSViewController <PXListViewDelegate, INPopoverControllerDelegate>
 {
   NSUInteger scrollIndex;
   NSUInteger selectedIndex;
   IBOutlet PXListView* listView;
   NSMutableArray* topics;
   BOOL applicationIsActive;
+  BOOL reloadingTopics;
+  HNPagePreviewViewController *pagePreviewViewController;
+  INPopoverController *popoverController;
 }
 
 @property (nonatomic, assign) NSUInteger scrollIndex;

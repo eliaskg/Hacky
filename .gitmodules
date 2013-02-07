@@ -1,0 +1,3 @@
+[submodule "Hacky/INPopoverController"]
+	path = Hacky/INPopoverController
+	url = git@github.com:indragiek/INPopoverController.git

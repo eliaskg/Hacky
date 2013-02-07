@@ -7,10 +7,20 @@
 //
 
 #import "HNListViewController.h"
+#import "HNPagePreviewViewController.h"
 
 #pragma mark Constants
 
 #define LISTVIEW_CELL_IDENTIFIER  @"MyListViewCell"
+
+
+@interface HNListViewController ()
+
+@property (nonatomic, assign) BOOL reloadingTopics;
+@property (nonatomic, readonly) HNPagePreviewViewController *pagePreviewViewController;
+@property (nonatomic, readonly) INPopoverController *popoverController;
+
+@end
 
 
 @implementation HNListViewController
@@ -20,6 +30,9 @@
 @synthesize topics;
 @synthesize listView;
 @synthesize applicationIsActive;
+@synthesize reloadingTopics;
+@synthesize pagePreviewViewController;
+@synthesize popoverController;
 
 - (void)awakeFromNib
 {
@@ -44,10 +57,30 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:self.listView.window];
+}
+
+- (void)dealloc
+{
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didLoadTopics" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"shouldSelectRow" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didUseRightClick" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickOpenURLMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickCommentsMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickCopyMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickCopyURLMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickTweetMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickMarkAsReadMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickMarkAsUnreadMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:listView.window];
+  
 }
 
 - (void)didLoadTopics:(NSNotification*)aNotification
 {
+  self.reloadingTopics = YES;
+  
   NSArray* results = [aNotification object];
   
   if ([results isKindOfClass:[NSError class]])
@@ -71,6 +104,8 @@
   [listView setSelectedRow:selectedIndex];
   
   [self updateBadge];
+  
+  self.reloadingTopics = NO;
 }
 
 - (void)setReadMarks
@@ -203,6 +238,12 @@
   [self updateBadge];
 }
 
+- (void)windowDidResignKey:(NSNotification*)notification
+{
+  // Prevent the popover from stealing key status.
+  [self.listView.window makeKeyWindow];
+}
+
 - (BOOL)writeToPasteBoard:(NSString*)stringToWrite
 {
   NSPasteboard* pasteBoard = [NSPasteboard generalPasteboard];
@@ -253,6 +294,8 @@
 
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification
 {
+  BOOL shouldDismissPopover = listView.selectedRow == selectedIndex;
+  
   selectedIndex = listView.selectedRow;
   
   NSDictionary* topic = topics[selectedIndex];
@@ -264,6 +307,39 @@
   
   markAsReadMenuItem.hidden = !![topic valueForKey:@"isRead"];
   markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
+  
+  if (!self.reloadingTopics) {
+    // If the row is not visible, when we call -rectOfRow: we'll get a value which is offscreen.
+    [self.listView scrollRowToVisible:selectedIndex];
+    
+    NSUInteger selectedRow = [self.listView selectedRow];
+    
+    NSRect rowRect = [self.listView rectOfRow:selectedRow];
+    NSRect rectInDocumentView = [self.view convertRect:rowRect fromView:self.listView.documentView];
+    
+    if (!self.popoverController.popoverIsVisible) {
+      [self.popoverController presentPopoverFromRect:rectInDocumentView
+                                         inView:self.view
+                        preferredArrowDirection:INPopoverArrowDirectionLeft
+                          anchorsToPositionView:YES];
+    } else {
+      if (shouldDismissPopover)
+        [self.popoverController closePopover:self];
+      
+      // Move the popover to its new location relative to the now-selected row.
+      NSWindow *popoverWindow = self.popoverController.popoverWindow;
+      NSPoint newOrigin = NSMakePoint(NSMaxX(rectInDocumentView),
+                                      round(NSMinY(rectInDocumentView) - NSHeight(popoverWindow.frame)/2 + NSHeight(rowRect) / 2));
+      newOrigin = [self.view convertPoint:newOrigin toView:nil];
+      newOrigin = [self.listView.window convertBaseToScreen:newOrigin];
+      [popoverWindow setFrameOrigin:newOrigin];
+      [self.popoverController recalculateAndResetArrowDirection];
+    }
+    
+    self.pagePreviewViewController.pageURL = [NSURL URLWithString:[topic valueForKey:@"url"]];
+    [self.listView.window makeKeyWindow];
+    [self.listView.window makeFirstResponder:self.listView];
+  }
 }
 
 - (void)didUseRightClick:(NSNotification*)aNotification
@@ -320,6 +396,33 @@
 {
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
+}
+
+- (INPopoverController*)popoverController
+{
+  if (!popoverController) {
+    popoverController = [[INPopoverController alloc] initWithContentViewController:self.pagePreviewViewController];
+    popoverController.delegate = self;
+    popoverController.contentSize = NSMakeSize(500, 300);
+    popoverController.closesWhenPopoverResignsKey = NO;
+  }
+  
+  return popoverController;
+}
+
+- (HNPagePreviewViewController*)pagePreviewViewController
+{
+  if (!pagePreviewViewController)
+    pagePreviewViewController = [[HNPagePreviewViewController alloc] initWithNibName:@"HNPagePreviewViewController" bundle:nil];
+  
+  return pagePreviewViewController;
+}
+
+#pragma mark - INPopoverControllerDelegate
+
+- (void)popoverWillClose:(INPopoverController*)popover
+{
+  self.pagePreviewViewController.pageURL = nil;
 }
 
 @end
