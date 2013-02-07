@@ -171,7 +171,7 @@
   NSString* baseURL = @"https://twitter.com/share?url=";
   NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
   NSString* title = [[topic valueForKey:@"title"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, topicURL, title];
+  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&text=%@", baseURL, topicURL, title];
   
   NSURL* url = [NSURL URLWithString:twitterURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
