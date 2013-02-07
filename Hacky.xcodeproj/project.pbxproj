@@ -54,6 +54,10 @@
 		7EF5C80916626FB7006DC677 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80716626FB7006DC677 /* gear.png */; };
 		7EF5C80A16626FB7006DC677 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80816626FB7006DC677 /* gear@2x.png */; };
 		D272E72416C3C91800C5D33D /* INPopoverController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272E71D16C3C89C00C5D33D /* INPopoverController.framework */; };
+		D272E72816C3CA4300C5D33D /* HNPagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D272E72616C3CA4300C5D33D /* HNPagePreviewViewController.m */; };
+		D272E72916C3CA4300C5D33D /* HNPagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D272E72716C3CA4300C5D33D /* HNPagePreviewViewController.xib */; };
+		D272E72B16C3CCB200C5D33D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272E72A16C3CCB200C5D33D /* WebKit.framework */; };
+		D272E72F16C3DDDE00C5D33D /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272E72E16C3DDDE00C5D33D /* CoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +166,11 @@
 		7EF5C80716626FB7006DC677 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Resources/gear.png; sourceTree = "<group>"; };
 		7EF5C80816626FB7006DC677 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gear@2x.png"; path = "Resources/gear@2x.png"; sourceTree = "<group>"; };
 		D272E71816C3C89B00C5D33D /* INPopoverController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = INPopoverController.xcodeproj; path = Hacky/INPopoverController/INPopoverController.xcodeproj; sourceTree = "<group>"; };
+		D272E72516C3CA4300C5D33D /* HNPagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNPagePreviewViewController.h; sourceTree = "<group>"; };
+		D272E72616C3CA4300C5D33D /* HNPagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPagePreviewViewController.m; sourceTree = "<group>"; };
+		D272E72716C3CA4300C5D33D /* HNPagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNPagePreviewViewController.xib; sourceTree = "<group>"; };
+		D272E72A16C3CCB200C5D33D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		D272E72E16C3DDDE00C5D33D /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +178,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D272E72F16C3DDDE00C5D33D /* CoreServices.framework in Frameworks */,
+				D272E72B16C3CCB200C5D33D /* WebKit.framework in Frameworks */,
 				D272E72416C3C91800C5D33D /* INPopoverController.framework in Frameworks */,
 				7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */,
 				7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */,
@@ -248,9 +259,6 @@
 		7E9A42F31656B90B001AA5C9 = {
 			isa = PBXGroup;
 			children = (
-				7E7A3C241658FC9A008B538F /* Security.framework */,
-				7E7A3C221658FC91008B538F /* SystemConfiguration.framework */,
-				7E7A3C201658FC85008B538F /* CFNetwork.framework */,
 				7E9A43081656B90C001AA5C9 /* Hacky */,
 				7E9A43251656B90C001AA5C9 /* HackyTests */,
 				7E9A43011656B90B001AA5C9 /* Frameworks */,
@@ -273,6 +281,11 @@
 		7E9A43011656B90B001AA5C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D272E72E16C3DDDE00C5D33D /* CoreServices.framework */,
+				D272E72A16C3CCB200C5D33D /* WebKit.framework */,
+				7E7A3C241658FC9A008B538F /* Security.framework */,
+				7E7A3C221658FC91008B538F /* SystemConfiguration.framework */,
+				7E7A3C201658FC85008B538F /* CFNetwork.framework */,
 				7E9A43021656B90C001AA5C9 /* Cocoa.framework */,
 				7E9A43201656B90C001AA5C9 /* SenTestingKit.framework */,
 				7E9A43041656B90C001AA5C9 /* Other Frameworks */,
@@ -300,6 +313,9 @@
 				7E7A3C64165A448D008B538F /* HNListViewController.h */,
 				7E7A3C65165A448D008B538F /* HNListViewController.m */,
 				7E7A3C66165A448D008B538F /* HNListViewController.xib */,
+				D272E72516C3CA4300C5D33D /* HNPagePreviewViewController.h */,
+				D272E72616C3CA4300C5D33D /* HNPagePreviewViewController.m */,
+				D272E72716C3CA4300C5D33D /* HNPagePreviewViewController.xib */,
 				7E7A3C2C165A35EB008B538F /* HNPostCell.h */,
 				7E7A3C2D165A35EB008B538F /* HNPostCell.m */,
 				7E1E929B166DF6D10026319B /* HNUnreadButton.h */,
@@ -489,6 +505,7 @@
 				7E8CC336166FFCED0041B5CE /* icons.iconset in Resources */,
 				7EA2E1F316AEA63800418696 /* .gitignore in Resources */,
 				7EA2E1F516AEA63800418696 /* README.md in Resources */,
+				D272E72916C3CA4300C5D33D /* HNPagePreviewViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +560,7 @@
 				7E0A4248169CB2CF00F8DA49 /* AFXMLRequestOperation.m in Sources */,
 				7E0A4249169CB2CF00F8DA49 /* UIImageView+AFNetworking.m in Sources */,
 				7EA2E1F416AEA63800418696 /* Reachability.m in Sources */,
+				D272E72816C3CA4300C5D33D /* HNPagePreviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
