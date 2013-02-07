@@ -53,6 +53,7 @@
 		7EF5C7FC16611B74006DC677 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C7FA16611B74006DC677 /* reload@2x.png */; };
 		7EF5C80916626FB7006DC677 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80716626FB7006DC677 /* gear.png */; };
 		7EF5C80A16626FB7006DC677 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80816626FB7006DC677 /* gear@2x.png */; };
+		D272E72416C3C91800C5D33D /* INPopoverController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272E71D16C3C89C00C5D33D /* INPopoverController.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +62,21 @@
 			containerPortal = 7E9A42F51656B90B001AA5C9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E9A42FD1656B90B001AA5C9;
-			remoteInfo = "Hacky";
+			remoteInfo = Hacky;
+		};
+		D272E71C16C3C89C00C5D33D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D272E71816C3C89B00C5D33D /* INPopoverController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 98BA8937143EA04A006F744E;
+			remoteInfo = INPopoverController;
+		};
+		D272E72216C3C91100C5D33D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D272E71816C3C89B00C5D33D /* INPopoverController.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 98BA8936143EA04A006F744E;
+			remoteInfo = INPopoverController;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -94,7 +109,7 @@
 		7E1E929C166DF6D10026319B /* HNUnreadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUnreadButton.m; sourceTree = "<group>"; };
 		7E1E929E166E0E5C0026319B /* unreadSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unreadSelected.png; path = Resources/unreadSelected.png; sourceTree = "<group>"; };
 		7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unreadSelected@2x.png"; path = "Resources/unreadSelected@2x.png"; sourceTree = "<group>"; };
-		7E1E92AC166FD4DC0026319B /* Hacky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hacky.entitlements"; sourceTree = "<group>"; };
+		7E1E92AC166FD4DC0026319B /* Hacky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hacky.entitlements; sourceTree = "<group>"; };
 		7E7A3C201658FC85008B538F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E7A3C221658FC91008B538F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E7A3C241658FC9A008B538F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -146,6 +161,7 @@
 		7EF5C7FA16611B74006DC677 /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reload@2x.png"; path = "Resources/reload@2x.png"; sourceTree = "<group>"; };
 		7EF5C80716626FB7006DC677 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Resources/gear.png; sourceTree = "<group>"; };
 		7EF5C80816626FB7006DC677 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gear@2x.png"; path = "Resources/gear@2x.png"; sourceTree = "<group>"; };
+		D272E71816C3C89B00C5D33D /* INPopoverController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = INPopoverController.xcodeproj; path = Hacky/INPopoverController/INPopoverController.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D272E72416C3C91800C5D33D /* INPopoverController.framework in Frameworks */,
 				7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */,
 				7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */,
 				7E7A3C211658FC85008B538F /* CFNetwork.framework in Frameworks */,
@@ -238,6 +255,7 @@
 				7E9A43251656B90C001AA5C9 /* HackyTests */,
 				7E9A43011656B90B001AA5C9 /* Frameworks */,
 				7E9A42FF1656B90B001AA5C9 /* Products */,
+				D272E71816C3C89B00C5D33D /* INPopoverController.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -293,8 +311,7 @@
 				7EC36A0D165786A000080514 /* Resources */,
 				7E9A43091656B90C001AA5C9 /* Supporting Files */,
 			);
-			name = Hacky;
-			path = "Hacky";
+			path = Hacky;
 			sourceTree = "<group>";
 		};
 		7E9A43091656B90C001AA5C9 /* Supporting Files */ = {
@@ -316,8 +333,7 @@
 				7E9A432C1656B90C001AA5C9 /* HackyTests.m */,
 				7E9A43261656B90C001AA5C9 /* Supporting Files */,
 			);
-			name = HackyTests;
-			path = "HackyTests";
+			path = HackyTests;
 			sourceTree = "<group>";
 		};
 		7E9A43261656B90C001AA5C9 /* Supporting Files */ = {
@@ -356,6 +372,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		D272E71916C3C89B00C5D33D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D272E71D16C3C89C00C5D33D /* INPopoverController.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -370,9 +394,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				D272E72316C3C91100C5D33D /* PBXTargetDependency */,
 			);
 			name = Hacky;
-			productName = "Hacky";
+			productName = Hacky;
 			productReference = 7E9A42FE1656B90B001AA5C9 /* Hacky.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -391,7 +416,7 @@
 				7E9A43241656B90C001AA5C9 /* PBXTargetDependency */,
 			);
 			name = HackyTests;
-			productName = "HackyTests";
+			productName = HackyTests;
 			productReference = 7E9A431F1656B90C001AA5C9 /* HackyTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -416,6 +441,12 @@
 			mainGroup = 7E9A42F31656B90B001AA5C9;
 			productRefGroup = 7E9A42FF1656B90B001AA5C9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D272E71916C3C89B00C5D33D /* Products */;
+					ProjectRef = D272E71816C3C89B00C5D33D /* INPopoverController.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7E9A42FD1656B90B001AA5C9 /* Hacky */,
@@ -423,6 +454,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D272E71D16C3C89C00C5D33D /* INPopoverController.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = INPopoverController.framework;
+			remoteRef = D272E71C16C3C89C00C5D33D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7E9A42FC1656B90B001AA5C9 /* Resources */ = {
@@ -520,6 +561,11 @@
 			target = 7E9A42FD1656B90B001AA5C9 /* Hacky */;
 			targetProxy = 7E9A43231656B90C001AA5C9 /* PBXContainerItemProxy */;
 		};
+		D272E72316C3C91100C5D33D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = INPopoverController;
+			targetProxy = D272E72216C3C91100C5D33D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -614,8 +660,7 @@
 		7E9A43311656B90C001AA5C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Hacky/Hacky.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
@@ -629,8 +674,7 @@
 		7E9A43321656B90C001AA5C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Hacky/Hacky.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
