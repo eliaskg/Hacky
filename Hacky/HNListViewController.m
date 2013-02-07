@@ -62,7 +62,19 @@
 
 - (void)dealloc
 {
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didLoadTopics" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"shouldSelectRow" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didUseRightClick" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickOpenURLMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickCommentsMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickCopyMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickCopyURLMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickTweetMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickMarkAsReadMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickMarkAsUnreadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:listView.window];
+  
 }
 
 - (void)didLoadTopics:(NSNotification*)aNotification
