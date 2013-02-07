@@ -43,6 +43,9 @@
 		7E7A3C57165A37A1008B538F /* PXListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C50165A37A1008B538F /* PXListViewCell.m */; };
 		7E7A3C67165A448D008B538F /* HNListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C65165A448D008B538F /* HNListViewController.m */; };
 		7E7A3C68165A448D008B538F /* HNListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A3C66165A448D008B538F /* HNListViewController.xib */; };
+		7E8144B416C4175C00EB2697 /* EQSTRClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8144B116C4175C00EB2697 /* EQSTRClipView.m */; };
+		7E8144B516C4175C00EB2697 /* EQSTRScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8144B316C4175C00EB2697 /* EQSTRScrollView.m */; };
+		7E8144B716C41CDD00EB2697 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8144B616C41CDD00EB2697 /* QuartzCore.framework */; };
 		7E8CC336166FFCED0041B5CE /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 7E8CC335166FFCED0041B5CE /* icons.iconset */; };
 		7E9A43031656B90C001AA5C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9A43021656B90C001AA5C9 /* Cocoa.framework */; };
 		7E9A430D1656B90C001AA5C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A430B1656B90C001AA5C9 /* InfoPlist.strings */; };
@@ -139,6 +142,11 @@
 		7E7A3C64165A448D008B538F /* HNListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNListViewController.h; sourceTree = "<group>"; };
 		7E7A3C65165A448D008B538F /* HNListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNListViewController.m; sourceTree = "<group>"; };
 		7E7A3C66165A448D008B538F /* HNListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNListViewController.xib; sourceTree = "<group>"; };
+		7E8144B016C4175C00EB2697 /* EQSTRClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSTRClipView.h; sourceTree = "<group>"; };
+		7E8144B116C4175C00EB2697 /* EQSTRClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSTRClipView.m; sourceTree = "<group>"; };
+		7E8144B216C4175C00EB2697 /* EQSTRScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSTRScrollView.h; sourceTree = "<group>"; };
+		7E8144B316C4175C00EB2697 /* EQSTRScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSTRScrollView.m; sourceTree = "<group>"; };
+		7E8144B616C41CDD00EB2697 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7E8CC335166FFCED0041B5CE /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icons.iconset; path = Resources/icons.iconset; sourceTree = "<group>"; };
 		7E9A42FE1656B90B001AA5C9 /* Hacky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hacky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9A43021656B90C001AA5C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -174,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8144B716C41CDD00EB2697 /* QuartzCore.framework in Frameworks */,
 				7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */,
 				7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */,
 				7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */,
@@ -267,9 +276,21 @@
 			path = PXListView;
 			sourceTree = "<group>";
 		};
+		7E8144AF16C4175C00EB2697 /* PullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				7E8144B016C4175C00EB2697 /* EQSTRClipView.h */,
+				7E8144B116C4175C00EB2697 /* EQSTRClipView.m */,
+				7E8144B216C4175C00EB2697 /* EQSTRScrollView.h */,
+				7E8144B316C4175C00EB2697 /* EQSTRScrollView.m */,
+			);
+			path = PullToRefresh;
+			sourceTree = "<group>";
+		};
 		7E9A42F31656B90B001AA5C9 = {
 			isa = PBXGroup;
 			children = (
+				7E8144B616C41CDD00EB2697 /* QuartzCore.framework */,
 				7E52826A16C1B152000BA274 /* libxml2.2.dylib */,
 				7E7A3C241658FC9A008B538F /* Security.framework */,
 				7E7A3C221658FC91008B538F /* SystemConfiguration.framework */,
@@ -328,6 +349,7 @@
 				7E1E929C166DF6D10026319B /* HNUnreadButton.m */,
 				7E7A3C261658FE10008B538F /* HNConnectionController.h */,
 				7E7A3C271658FE11008B538F /* HNConnectionController.m */,
+				7E8144AF16C4175C00EB2697 /* PullToRefresh */,
 				7E52825716C1A7C8000BA274 /* hpple */,
 				7EA2E1EE16AEA63800418696 /* Reachability */,
 				7E0A422D169CB2CF00F8DA49 /* AFNetworking */,
@@ -548,6 +570,8 @@
 				7E52826616C1A7C8000BA274 /* TFHppleElement.m in Sources */,
 				7E52826716C1A7C8000BA274 /* XPathQuery.m in Sources */,
 				7E68947D16C2FAB100427C5E /* HNParser.m in Sources */,
+				7E8144B416C4175C00EB2697 /* EQSTRClipView.m in Sources */,
+				7E8144B516C4175C00EB2697 /* EQSTRScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
