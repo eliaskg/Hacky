@@ -57,6 +57,12 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:self.listView.window];
+}
+
+- (void)dealloc
+{
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignKeyNotification object:listView.window];
 }
 
 - (void)didLoadTopics:(NSNotification*)aNotification
@@ -218,6 +224,12 @@
   [listView setSelectedRow:selectedIndex];
   
   [self updateBadge];
+}
+
+- (void)windowDidResignKey:(NSNotification*)notification
+{
+  // Prevent the popover from stealing key status.
+  [self.listView.window makeKeyWindow];
 }
 
 - (BOOL)writeToPasteBoard:(NSString*)stringToWrite
