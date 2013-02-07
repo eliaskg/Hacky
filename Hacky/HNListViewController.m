@@ -1,5 +1,5 @@
 //
-//  HNListView.m
+//  HNListViewController.m
 //  Hacky
 //
 //  Created by Elias Klughammer on 16.11.12.
@@ -32,6 +32,9 @@
   listView.delegate = self;
   listView.borderType = NSNoBorder;
   listView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  listView.refreshBlock = ^(EQSTRScrollView *scrollView) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
+  };
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
@@ -54,6 +57,8 @@
   NSString* response = [aNotification object];
   HNParser* parser = [[HNParser alloc] init];
   topics = [parser parseStories:response];
+  
+  [listView stopLoading];
   
   [self setReadMarks];
   

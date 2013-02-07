@@ -63,6 +63,7 @@
   [listView setFrame:CGRectMake(0, 30, contentView.frame.size.width, contentView.frame.size.height - 30)];
   [contentView addSubview:listView];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSetTitleBadge:) name:@"shouldSetTitleBadge" object:nil];
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
@@ -171,6 +172,11 @@
 }
 
 - (void)workspaceDidWake:(NSNotification*)aNotification
+{
+  [self load];
+}
+
+- (void)shouldLoadStories:(NSNotification*)aNotification
 {
   [self load];
 }

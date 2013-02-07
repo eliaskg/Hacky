@@ -26,7 +26,7 @@
 #import "EQSTRClipView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define REFRESH_HEADER_HEIGHT 60.0f
+#define REFRESH_HEADER_HEIGHT 34.0f
 
 // code modeled from https://github.com/leah/PullToRefresh/blob/master/Classes/PullRefreshTableViewController.m
 
