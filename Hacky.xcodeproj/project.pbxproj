@@ -257,7 +257,9 @@
 				7E9A42FF1656B90B001AA5C9 /* Products */,
 				D272E71816C3C89B00C5D33D /* INPopoverController.xcodeproj */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		7E9A42FF1656B90B001AA5C9 /* Products */ = {
 			isa = PBXGroup;
