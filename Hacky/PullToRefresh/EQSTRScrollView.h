@@ -23,13 +23,12 @@
 // THE SOFTWARE.
 
 #import <AppKit/AppKit.h>
+#import "HNPullToRefreshHeader.h"
 
 @interface EQSTRScrollView : NSScrollView
 @property (readonly) BOOL isRefreshing;
 
-@property (readonly) NSView *refreshHeader;
-@property (readonly) NSProgressIndicator *refreshSpinner;
-@property (readonly) NSView *refreshArrow;
+@property (readonly) HNPullToRefreshHeader *refreshHeader;
 
 @property (nonatomic, copy) void (^refreshBlock)(EQSTRScrollView *scrollView);
 

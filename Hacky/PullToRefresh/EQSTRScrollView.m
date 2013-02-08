@@ -51,9 +51,7 @@
 #pragma mark - Public Properties
 
 @synthesize isRefreshing   = _isRefreshing;
-@synthesize refreshHeader  = _refreshHeader; 
-@synthesize refreshSpinner = _refreshSpinner;
-@synthesize refreshArrow   = _refreshArrow;
+@synthesize refreshHeader  = _refreshHeader;
 @synthesize refreshBlock   = _refreshBlock;
 
 #pragma mark - Create Header View
@@ -103,55 +101,13 @@
 	
 	// add header view to clipview
 	NSRect contentRect = [self.contentView.documentView frame];
-	_refreshHeader = [[NSView alloc] initWithFrame:NSMakeRect(0, 
+	_refreshHeader = [[HNPullToRefreshHeader alloc] initWithFrame:NSMakeRect(0,
 															  0 - REFRESH_HEADER_HEIGHT,
 															  contentRect.size.width, 
 															  REFRESH_HEADER_HEIGHT)];
 	
-	// Create Arrow
-	NSImage *arrowImage = [NSImage imageNamed:@"arrow"];
-	_refreshArrow       = [[NSView alloc] initWithFrame:NSMakeRect(floor(NSMidX(self.refreshHeader.bounds) - arrowImage.size.width / 2), 
-																   floor(NSMidY(self.refreshHeader.bounds) - arrowImage.size.height / 2), 
-																   arrowImage.size.width,
-																   arrowImage.size.height)];
-	self.refreshArrow.wantsLayer = YES;
-	
-	self._arrowLayer = [CALayer layer];
-	self._arrowLayer.contents = (id)[arrowImage CGImageForProposedRect:NULL
-															   context:nil
-																 hints:nil];
-	
-	self._arrowLayer.frame    = NSRectToCGRect(_refreshArrow.bounds);
-	_refreshArrow.layer.frame = NSRectToCGRect(_refreshArrow.bounds);
-	
-	[self.refreshArrow.layer addSublayer:self._arrowLayer];
-	
-	// Create spinner
-	_refreshSpinner = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(floor(NSMidX(self.refreshHeader.bounds) - 30),
-																			floor(NSMidY(self.refreshHeader.bounds) - 20), 
-																			60.0f, 
-																			40.0f)];
-	self.refreshSpinner.style                 = NSProgressIndicatorSpinningStyle;
-	self.refreshSpinner.displayedWhenStopped  = NO;
-	self.refreshSpinner.usesThreadedAnimation = YES;
-	self.refreshSpinner.indeterminate         = YES;
-	self.refreshSpinner.bezeled               = NO;
-	[self.refreshSpinner sizeToFit];
-	
-	// Center the spinner in the header
-	[self.refreshSpinner setFrame:NSMakeRect(floor(NSMidX(self.refreshHeader.bounds) - self.refreshSpinner.frame.size.width / 2),
-											 floor(NSMidY(self.refreshHeader.bounds) - self.refreshSpinner.frame.size.height / 2), 
-											 self.refreshSpinner.frame.size.width, 
-											 self.refreshSpinner.frame.size.height)];
-	
 	// set autoresizing masks
-	self.refreshSpinner.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin; // center
-	self.refreshArrow.autoresizingMask   = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin; // center
 	self.refreshHeader.autoresizingMask  = NSViewWidthSizable | NSViewMinXMargin | NSViewMaxXMargin; // stretch/center
-	
-	// Put everything in place
-	[self.refreshHeader addSubview:self.refreshArrow];
-	[self.refreshHeader addSubview:self.refreshSpinner];
 	
 	[self.contentView addSubview:self.refreshHeader];
 	
@@ -175,32 +131,30 @@
 - (void)viewBoundsChanged:(NSNotification *)note {
 	if (self.isRefreshing)
 		return;
+  
+  self._overRefreshView = !![self overRefreshView];
 	
-	BOOL start = [self overRefreshView];
-	if (start) {
-		
-		// point arrow up
-		self._arrowLayer.transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
-		self._overRefreshView = YES;
-		
-	} else {
-		
-		// point arrow down
-		self._arrowLayer.transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
-		self._overRefreshView = NO;
-		
-	}
-	
+  [_refreshHeader setProgress:[self scrollProgress]];
 }
 
-- (BOOL)overRefreshView {
+- (float)scrollProgress {
 	NSClipView *clipView  = self.contentView;
 	NSRect bounds         = clipView.bounds;
 	
 	CGFloat scrollValue   = bounds.origin.y;
 	CGFloat minimumScroll = self.minimumScroll;
-	
-	return (scrollValue <= minimumScroll);
+  
+  return MAX(MIN(scrollValue / minimumScroll, 1.0), 0.0);
+}
+
+- (BOOL)overRefreshView {
+  NSClipView *clipView  = self.contentView;
+  NSRect bounds         = clipView.bounds;
+    
+  CGFloat scrollValue   = bounds.origin.y;
+  CGFloat minimumScroll = self.minimumScroll;
+  
+  return (scrollValue <= minimumScroll);
 }
 
 - (CGFloat)minimumScroll {
@@ -210,26 +164,21 @@
 #pragma mark - Refresh
 
 - (void)startLoading {
+  [_refreshHeader startLoading];
+  
 	[self willChangeValueForKey:@"isRefreshing"];
 	_isRefreshing            = YES;
 	[self didChangeValueForKey:@"isRefreshing"];
-	
-	self.refreshArrow.hidden = YES;
-	[self.refreshSpinner startAnimation:self];
 	
 	if (self.refreshBlock) {
 		self.refreshBlock(self);
 	}
 }
 
-- (void)stopLoading {	
-	self.refreshArrow.hidden            = NO;	
-	
-	[self.refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
-	[self.refreshSpinner stopAnimation:self];
-	
+- (void)stopLoading {
+  [_refreshHeader stopLoading];
+  
 	// now fake an event of scrolling for a natural look
-	
 	[self willChangeValueForKey:@"isRefreshing"];
 	_isRefreshing = NO;
 	[self didChangeValueForKey:@"isRefreshing"];
@@ -243,6 +192,15 @@
 	NSEvent *scrollEvent = [NSEvent eventWithCGEvent:cgEvent];
 	[self scrollWheel:scrollEvent];
 	CFRelease(cgEvent);
+}
+
+- (void)drawRect:(NSRect)aRect
+{
+  aRect = [self bounds];
+  
+  [[NSColor whiteColor] set];
+  NSBezierPath *background = [NSBezierPath bezierPathWithRect:aRect];
+  [background fill];
 }
 
 @end
