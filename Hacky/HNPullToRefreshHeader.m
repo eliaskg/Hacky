@@ -137,6 +137,7 @@
 - (void)stopLoading
 {
   animationImage.hidden = YES;
+  animationImage.image = nil;
   [animationTimer invalidate];
   animationStep = 1;
 }
