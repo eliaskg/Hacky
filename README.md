@@ -41,6 +41,8 @@ Hacky makes use of the folling open source libraries. Give a round of applause!
 + [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 + [INAppStoreWindow](https://github.com/indragiek/INAppStoreWindow)
 + [PXListView](https://github.com/Perspx/PXListView)
++ [ScrollToRefresh](https://github.com/alexzielenski/ScrollToRefresh)
++ [TFHpple](https://github.com/topfunky/hpple)
 
 ## License
 
