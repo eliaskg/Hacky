@@ -8,6 +8,7 @@
 
 #import "HNParser.h"
 #import "TFHpple.h"
+#import "HTMLParser.h"
 
 @implementation HNParser
 
@@ -93,6 +94,56 @@
   }
   
   return stories;
+}
+
+- (NSMutableArray*)parseComments:(NSString*)response
+{
+  NSMutableArray* comments = [[NSMutableArray alloc] init];
+  
+  NSError *error = nil;
+  HTMLParser *parser = [[HTMLParser alloc] initWithString:response error:&error];
+  
+  HTMLNode *bodyNode = [parser body];
+  
+  NSArray* commentContainers = [bodyNode findChildrenOfClass:@"comment"];
+  
+  for (int i = 0; i < [commentContainers count]; i++) {
+    NSMutableDictionary *comment = [[NSMutableDictionary alloc] init];
+    
+    HTMLNode* commentContainer = [commentContainers objectAtIndex:i];
+    [comment setValue:[commentContainer rawContents] forKey:@"content"];
+    
+    HTMLNode* parentContainer = [commentContainer parent];
+    HTMLNode* metaContainer = [parentContainer findChildOfClass:@"comhead"];
+    
+    NSArray* metaLinks = [metaContainer findChildTags:@"a"];
+    HTMLNode* userLink = [metaLinks objectAtIndex:0];
+    HTMLNode* idLink = [metaLinks objectAtIndex:1];
+    
+    NSString* userName = [userLink contents];
+    [comment setValue:userName forKey:@"user"];
+    
+    NSString* idHref = [idLink getAttributeNamed:@"href"];
+    NSArray* linkParts = [idHref componentsSeparatedByString:@"="];
+    NSString* commentsId = [linkParts objectAtIndex:1];
+    [comment setValue:commentsId forKey:@"id"];
+    
+    NSString* metaContent = [metaContainer allContents];
+    NSArray* metaParts = [metaContent componentsSeparatedByString:userName];
+    NSString* createdRaw = metaParts[1];
+    NSArray* createdRawParts = [createdRaw componentsSeparatedByString:@"|"];
+    NSString* createdWhitespace = createdRawParts[0];
+    NSString* created = [self removeLeadingAndTrailingWhitespace:createdWhitespace];
+    [comment setValue:created forKey:@"created"];
+    
+    HTMLNode* marginImage = [[parentContainer parent] findChildTag:@"img"];
+    NSString* marginString = [marginImage getAttributeNamed:@"width"];
+    [comment setValue:marginString forKey:@"margin"];
+    
+    [comments addObject:comment];
+  }
+  
+  return comments;
 }
 
 - (NSInteger)numberFromString:(NSString*)string

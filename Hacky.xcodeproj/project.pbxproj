@@ -57,6 +57,9 @@
 		7EA2E1F316AEA63800418696 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7EA2E1EF16AEA63800418696 /* .gitignore */; };
 		7EA2E1F416AEA63800418696 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA2E1F116AEA63800418696 /* Reachability.m */; };
 		7EA2E1F516AEA63800418696 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7EA2E1F216AEA63800418696 /* README.md */; };
+		7EF1D89016C6DFE1009ECC16 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1D88C16C6DFE1009ECC16 /* HTMLNode.m */; };
+		7EF1D89116C6DFE1009ECC16 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1D88E16C6DFE1009ECC16 /* HTMLParser.m */; };
+		7EF1D89216C6DFE1009ECC16 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7EF1D88F16C6DFE1009ECC16 /* README.md */; };
 		7EF5C7FB16611B74006DC677 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C7F916611B74006DC677 /* reload.png */; };
 		7EF5C7FC16611B74006DC677 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C7FA16611B74006DC677 /* reload@2x.png */; };
 		7EF5C80916626FB7006DC677 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80716626FB7006DC677 /* gear.png */; };
@@ -163,6 +166,11 @@
 		7EA2E1F016AEA63800418696 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		7EA2E1F116AEA63800418696 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		7EA2E1F216AEA63800418696 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		7EF1D88B16C6DFE1009ECC16 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		7EF1D88C16C6DFE1009ECC16 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		7EF1D88D16C6DFE1009ECC16 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		7EF1D88E16C6DFE1009ECC16 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		7EF1D88F16C6DFE1009ECC16 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7EF5C7F916611B74006DC677 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reload.png; path = Resources/reload.png; sourceTree = "<group>"; };
 		7EF5C7FA16611B74006DC677 /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reload@2x.png"; path = "Resources/reload@2x.png"; sourceTree = "<group>"; };
 		7EF5C80716626FB7006DC677 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Resources/gear.png; sourceTree = "<group>"; };
@@ -328,6 +336,7 @@
 				7E1E929C166DF6D10026319B /* HNUnreadButton.m */,
 				7E7A3C261658FE10008B538F /* HNConnectionController.h */,
 				7E7A3C271658FE11008B538F /* HNConnectionController.m */,
+				7EF1D88A16C6DFE1009ECC16 /* HTMLParser */,
 				7E52825716C1A7C8000BA274 /* hpple */,
 				7EA2E1EE16AEA63800418696 /* Reachability */,
 				7E0A422D169CB2CF00F8DA49 /* AFNetworking */,
@@ -395,6 +404,18 @@
 				7EF5C80816626FB7006DC677 /* gear@2x.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		7EF1D88A16C6DFE1009ECC16 /* HTMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				7EF1D88B16C6DFE1009ECC16 /* HTMLNode.h */,
+				7EF1D88C16C6DFE1009ECC16 /* HTMLNode.m */,
+				7EF1D88D16C6DFE1009ECC16 /* HTMLParser.h */,
+				7EF1D88E16C6DFE1009ECC16 /* HTMLParser.m */,
+				7EF1D88F16C6DFE1009ECC16 /* README.md */,
+			);
+			path = HTMLParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,6 +511,7 @@
 				7E52826216C1A7C8000BA274 /* .gitattributes in Resources */,
 				7E52826316C1A7C8000BA274 /* .gitignore in Resources */,
 				7E52826416C1A7C8000BA274 /* LICENSE.txt in Resources */,
+				7EF1D89216C6DFE1009ECC16 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +570,8 @@
 				7E52826616C1A7C8000BA274 /* TFHppleElement.m in Sources */,
 				7E52826716C1A7C8000BA274 /* XPathQuery.m in Sources */,
 				7E68947D16C2FAB100427C5E /* HNParser.m in Sources */,
+				7EF1D89016C6DFE1009ECC16 /* HTMLNode.m in Sources */,
+				7EF1D89116C6DFE1009ECC16 /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

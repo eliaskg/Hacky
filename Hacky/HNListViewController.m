@@ -34,6 +34,8 @@
   listView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
+  // --- Test code
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
@@ -46,6 +48,19 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
 }
 
+// --- Test code
+- (void)didLoadComments:(NSNotification*)aNotification
+{
+  if ([[aNotification object] isKindOfClass:[NSError class]])
+    return;
+  
+  NSString* response = [aNotification object];
+  
+  HNParser* parser = [[HNParser alloc] init];
+  NSMutableArray* comments = [parser parseComments:response];
+//  NSLog(@"%@", comments);
+}
+
 - (void)didLoadStories:(NSNotification*)aNotification
 {
   if ([[aNotification object] isKindOfClass:[NSError class]])
@@ -54,6 +69,11 @@
   NSString* response = [aNotification object];
   HNParser* parser = [[HNParser alloc] init];
   topics = [parser parseStories:response];
+  
+  // --- Test code
+  NSMutableDictionary* firstStory = [topics objectAtIndex:0];
+  NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[firstStory objectForKey:@"id"], @"id", nil];
+  HNConnectionController *commentsConnectionController = [HNConnectionController connectionWithIdentifier:@"comments" params:params];
   
   [self setReadMarks];
   

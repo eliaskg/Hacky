@@ -11,5 +11,6 @@
 @interface HNParser : NSObject
 
 - (NSMutableArray*)parseStories:(NSString*)response;
+- (NSMutableArray*)parseComments:(NSString*)response;
 
 @end
