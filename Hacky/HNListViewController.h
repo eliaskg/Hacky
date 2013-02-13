@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "HNAppDelegate.h"
+#import "HNParser.h"
 #import "PXListView.h"
 #import "PXListDocumentView.h"
 #import "HNConnectionController.h"

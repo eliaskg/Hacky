@@ -23,6 +23,14 @@
 		7E1E929D166DF6D10026319B /* HNUnreadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E929C166DF6D10026319B /* HNUnreadButton.m */; };
 		7E1E92A0166E0E5C0026319B /* unreadSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929E166E0E5C0026319B /* unreadSelected.png */; };
 		7E1E92A1166E0E5C0026319B /* unreadSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */; };
+		7E52826216C1A7C8000BA274 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 7E52825816C1A7C8000BA274 /* .gitattributes */; };
+		7E52826316C1A7C8000BA274 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E52825916C1A7C8000BA274 /* .gitignore */; };
+		7E52826416C1A7C8000BA274 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E52825B16C1A7C8000BA274 /* LICENSE.txt */; };
+		7E52826516C1A7C8000BA274 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52825D16C1A7C8000BA274 /* TFHpple.m */; };
+		7E52826616C1A7C8000BA274 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52825F16C1A7C8000BA274 /* TFHppleElement.m */; };
+		7E52826716C1A7C8000BA274 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52826116C1A7C8000BA274 /* XPathQuery.m */; };
+		7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E52826A16C1B152000BA274 /* libxml2.2.dylib */; };
+		7E68947D16C2FAB100427C5E /* HNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E68947C16C2FAB100427C5E /* HNParser.m */; };
 		7E7A3C211658FC85008B538F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C201658FC85008B538F /* CFNetwork.framework */; };
 		7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C221658FC91008B538F /* SystemConfiguration.framework */; };
 		7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C241658FC9A008B538F /* Security.framework */; };
@@ -61,7 +69,7 @@
 			containerPortal = 7E9A42F51656B90B001AA5C9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E9A42FD1656B90B001AA5C9;
-			remoteInfo = "Hacky";
+			remoteInfo = Hacky;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -94,7 +102,20 @@
 		7E1E929C166DF6D10026319B /* HNUnreadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUnreadButton.m; sourceTree = "<group>"; };
 		7E1E929E166E0E5C0026319B /* unreadSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unreadSelected.png; path = Resources/unreadSelected.png; sourceTree = "<group>"; };
 		7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unreadSelected@2x.png"; path = "Resources/unreadSelected@2x.png"; sourceTree = "<group>"; };
-		7E1E92AC166FD4DC0026319B /* Hacky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hacky.entitlements"; sourceTree = "<group>"; };
+		7E1E92AC166FD4DC0026319B /* Hacky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hacky.entitlements; sourceTree = "<group>"; };
+		7E52825816C1A7C8000BA274 /* .gitattributes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		7E52825916C1A7C8000BA274 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7E52825A16C1A7C8000BA274 /* Hpple_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hpple_Prefix.pch; sourceTree = "<group>"; };
+		7E52825B16C1A7C8000BA274 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		7E52825C16C1A7C8000BA274 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		7E52825D16C1A7C8000BA274 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		7E52825E16C1A7C8000BA274 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		7E52825F16C1A7C8000BA274 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		7E52826016C1A7C8000BA274 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		7E52826116C1A7C8000BA274 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		7E52826A16C1B152000BA274 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		7E68947B16C2FAB100427C5E /* HNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNParser.h; sourceTree = "<group>"; };
+		7E68947C16C2FAB100427C5E /* HNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNParser.m; sourceTree = "<group>"; };
 		7E7A3C201658FC85008B538F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7E7A3C221658FC91008B538F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7E7A3C241658FC9A008B538F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -153,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */,
 				7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */,
 				7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */,
 				7E7A3C211658FC85008B538F /* CFNetwork.framework in Frameworks */,
@@ -208,6 +230,23 @@
 			path = INAppStoreWindow;
 			sourceTree = "<group>";
 		};
+		7E52825716C1A7C8000BA274 /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				7E52825816C1A7C8000BA274 /* .gitattributes */,
+				7E52825916C1A7C8000BA274 /* .gitignore */,
+				7E52825A16C1A7C8000BA274 /* Hpple_Prefix.pch */,
+				7E52825B16C1A7C8000BA274 /* LICENSE.txt */,
+				7E52825C16C1A7C8000BA274 /* TFHpple.h */,
+				7E52825D16C1A7C8000BA274 /* TFHpple.m */,
+				7E52825E16C1A7C8000BA274 /* TFHppleElement.h */,
+				7E52825F16C1A7C8000BA274 /* TFHppleElement.m */,
+				7E52826016C1A7C8000BA274 /* XPathQuery.h */,
+				7E52826116C1A7C8000BA274 /* XPathQuery.m */,
+			);
+			path = hpple;
+			sourceTree = "<group>";
+		};
 		7E7A3C45165A37A1008B538F /* PXListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +270,7 @@
 		7E9A42F31656B90B001AA5C9 = {
 			isa = PBXGroup;
 			children = (
+				7E52826A16C1B152000BA274 /* libxml2.2.dylib */,
 				7E7A3C241658FC9A008B538F /* Security.framework */,
 				7E7A3C221658FC91008B538F /* SystemConfiguration.framework */,
 				7E7A3C201658FC85008B538F /* CFNetwork.framework */,
@@ -276,6 +316,8 @@
 				7E1E92AC166FD4DC0026319B /* Hacky.entitlements */,
 				7E9A43141656B90C001AA5C9 /* HNAppDelegate.h */,
 				7E9A43151656B90C001AA5C9 /* HNAppDelegate.m */,
+				7E68947B16C2FAB100427C5E /* HNParser.h */,
+				7E68947C16C2FAB100427C5E /* HNParser.m */,
 				7E9A43171656B90C001AA5C9 /* MainMenu.xib */,
 				7E7A3C64165A448D008B538F /* HNListViewController.h */,
 				7E7A3C65165A448D008B538F /* HNListViewController.m */,
@@ -286,6 +328,7 @@
 				7E1E929C166DF6D10026319B /* HNUnreadButton.m */,
 				7E7A3C261658FE10008B538F /* HNConnectionController.h */,
 				7E7A3C271658FE11008B538F /* HNConnectionController.m */,
+				7E52825716C1A7C8000BA274 /* hpple */,
 				7EA2E1EE16AEA63800418696 /* Reachability */,
 				7E0A422D169CB2CF00F8DA49 /* AFNetworking */,
 				7E14733E165A550E00515E6D /* INAppStoreWindow */,
@@ -293,8 +336,7 @@
 				7EC36A0D165786A000080514 /* Resources */,
 				7E9A43091656B90C001AA5C9 /* Supporting Files */,
 			);
-			name = Hacky;
-			path = "Hacky";
+			path = Hacky;
 			sourceTree = "<group>";
 		};
 		7E9A43091656B90C001AA5C9 /* Supporting Files */ = {
@@ -316,8 +358,7 @@
 				7E9A432C1656B90C001AA5C9 /* HackyTests.m */,
 				7E9A43261656B90C001AA5C9 /* Supporting Files */,
 			);
-			name = HackyTests;
-			path = "HackyTests";
+			path = HackyTests;
 			sourceTree = "<group>";
 		};
 		7E9A43261656B90C001AA5C9 /* Supporting Files */ = {
@@ -372,7 +413,7 @@
 			dependencies = (
 			);
 			name = Hacky;
-			productName = "Hacky";
+			productName = Hacky;
 			productReference = 7E9A42FE1656B90B001AA5C9 /* Hacky.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -391,7 +432,7 @@
 				7E9A43241656B90C001AA5C9 /* PBXTargetDependency */,
 			);
 			name = HackyTests;
-			productName = "HackyTests";
+			productName = HackyTests;
 			productReference = 7E9A431F1656B90C001AA5C9 /* HackyTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -446,6 +487,9 @@
 				7E8CC336166FFCED0041B5CE /* icons.iconset in Resources */,
 				7EA2E1F316AEA63800418696 /* .gitignore in Resources */,
 				7EA2E1F516AEA63800418696 /* README.md in Resources */,
+				7E52826216C1A7C8000BA274 /* .gitattributes in Resources */,
+				7E52826316C1A7C8000BA274 /* .gitignore in Resources */,
+				7E52826416C1A7C8000BA274 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +544,10 @@
 				7E0A4248169CB2CF00F8DA49 /* AFXMLRequestOperation.m in Sources */,
 				7E0A4249169CB2CF00F8DA49 /* UIImageView+AFNetworking.m in Sources */,
 				7EA2E1F416AEA63800418696 /* Reachability.m in Sources */,
+				7E52826516C1A7C8000BA274 /* TFHpple.m in Sources */,
+				7E52826616C1A7C8000BA274 /* TFHppleElement.m in Sources */,
+				7E52826716C1A7C8000BA274 /* XPathQuery.m in Sources */,
+				7E68947D16C2FAB100427C5E /* HNParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,13 +662,15 @@
 		7E9A43311656B90C001AA5C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Hacky/Hacky.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Hacky/Hacky-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = Hacky;
 				WRAPPER_EXTENSION = app;
 			};
@@ -629,13 +679,15 @@
 		7E9A43321656B90C001AA5C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Hacky/Hacky.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Hacky/Hacky-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = Hacky;
 				WRAPPER_EXTENSION = app;
 			};

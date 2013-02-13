@@ -63,7 +63,7 @@
   [listView setFrame:CGRectMake(0, 30, contentView.frame.size.width, contentView.frame.size.height - 30)];
   [contentView addSubview:listView];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadTopics:) name:@"didLoadTopics" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSetTitleBadge:) name:@"shouldSetTitleBadge" object:nil];
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
   
@@ -81,11 +81,6 @@
   {
     [self load];
   };
-  
-//  reach.unreachableBlock = ^(Reachability*reach)
-//  {
-//    NSLog(@"UNREACHABLE!");
-//  };
   
   [reach startNotifier];
 }
@@ -186,16 +181,16 @@
   [spinner setHidden:NO];
   [spinner startAnimation:self];
   
-  connectionController = [HNConnectionController connectionWithIdentifier:@"topics"];
+  connectionController = [HNConnectionController connectionWithIdentifier:@"stories"];
   
   if (loadTimer)
     [loadTimer invalidate];
   
-  loadTimer = [NSTimer timerWithTimeInterval:3 * 60 target:self selector:@selector(load) userInfo:nil repeats:NO];
+  loadTimer = [NSTimer timerWithTimeInterval:5 * 60 target:self selector:@selector(load) userInfo:nil repeats:NO];
   [[NSRunLoop currentRunLoop] addTimer:loadTimer forMode:NSRunLoopCommonModes];
 }
 
-- (void)didLoadTopics:(NSNotification*)aNotification
+- (void)didLoadStories:(NSNotification*)aNotification
 {
   [reloadButton setHidden:NO];
   [spinner setHidden:YES];
@@ -219,11 +214,6 @@
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
 {
   return YES;
-}
-
-- (void)reachabilityChanged:(NSNotification*)aNotification
-{
-  NSLog(@"Reachablity changed");
 }
 
 @end

@@ -33,7 +33,7 @@
   listView.borderType = NSNoBorder;
   listView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadTopics:) name:@"didLoadTopics" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
@@ -46,20 +46,14 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
 }
 
-- (void)didLoadTopics:(NSNotification*)aNotification
+- (void)didLoadStories:(NSNotification*)aNotification
 {
-  NSArray* results = [aNotification object];
-  
-  if ([results isKindOfClass:[NSError class]])
+  if ([[aNotification object] isKindOfClass:[NSError class]])
     return;
   
-  topics = [[NSMutableArray alloc] init];
-  
-  for (int i = 0; i < [results count]; i++)
-  {
-    NSMutableDictionary* topic = [NSMutableDictionary dictionaryWithDictionary:results[i]];
-    [topics addObject:topic];
-  }
+  NSString* response = [aNotification object];
+  HNParser* parser = [[HNParser alloc] init];
+  topics = [parser parseStories:response];
   
   [self setReadMarks];
   
@@ -69,6 +63,8 @@
     [listView scrollRowToVisible:scrollIndex];
   
   [listView setSelectedRow:selectedIndex];
+  
+  [[listView window] makeFirstResponder:listView];
   
   [self updateBadge];
 }
@@ -81,7 +77,7 @@
   
   for (int i = 0; i < [topics count]; i++)
   {
-    NSMutableDictionary* topic = topics[i];
+    NSMutableDictionary* topic = [topics objectAtIndex:i];
     
     if ([defaults valueForKey:[topic valueForKey:@"id"]]) {
       [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
@@ -100,7 +96,7 @@
   
   for (int i = 0; i < [topics count]; i++)
   {
-    NSDictionary* topic = topics[i];
+    NSMutableDictionary* topic = [topics objectAtIndex:i];
     [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
   }
   
@@ -114,6 +110,10 @@
 
 - (void)didClickOpenURLMenuButton
 {
+  [self openURL];
+}
+
+- (void)openURL {
   NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
   NSURL* url = [NSURL URLWithString:[topic valueForKey:@"url"]];
   [[NSWorkspace sharedWorkspace] openURL:url];
@@ -171,7 +171,7 @@
   NSString* baseURL = @"https://twitter.com/share?url=";
   NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
   NSString* title = [[topic valueForKey:@"title"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, topicURL, title];
+  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&text=%@", baseURL, topicURL, title];
   
   NSURL* url = [NSURL URLWithString:twitterURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
@@ -223,7 +223,7 @@
   
   for (int i = 0; i < [topics count]; i++)
   {
-    NSDictionary* topic = topics[i];
+    NSMutableDictionary* topic = topics[i];
     
     if (![defaults valueForKey:[topic valueForKey:@"id"]])
       unreadTopics++;
@@ -255,7 +255,7 @@
 {
   selectedIndex = listView.selectedRow;
   
-  NSDictionary* topic = topics[selectedIndex];
+  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
   
   id appDelegate = [[NSApplication sharedApplication] delegate];
   
@@ -268,10 +268,10 @@
 
 - (void)didUseRightClick:(NSNotification*)aNotification
 {
-  NSDictionary* clickedTopic = [aNotification object];
+  NSMutableDictionary* clickedTopic = [aNotification object];
   
   for (int i = 0; i < [topics count]; i++) {
-    NSDictionary* topic = topics[i];
+    NSMutableDictionary* topic = topics[i];
     
     if ([[topic valueForKey:@"id"] isEqualToString:[clickedTopic valueForKey:@"id"]]) {
       [listView setSelectedRow:i];
@@ -288,7 +288,7 @@
     cell = [[HNPostCell alloc] initWithReusableIdentifier:LISTVIEW_CELL_IDENTIFIER];
   }
   
-  // Set up the new cell:
+  // --- Set up the new cell:
   [cell setNumber:row + 1];
   [cell setTopic:[topics objectAtIndex:row]];
   
@@ -299,11 +299,6 @@
 {
   return 51;
 }
-
-//- (void)listViewSelectionDidChange:(NSNotification*)aNotification
-//{
-//  NSInteger row = listView.selectedRow;
-//}
 
 - (void)listView:(PXListView*)aListView rowDoubleClicked:(NSUInteger)row
 {
@@ -320,6 +315,24 @@
 {
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
+}
+
+- (void)keyDown:(NSEvent *)theEvent inListView:(PXListView*)theListView
+{
+  int keyCode = [theEvent keyCode];
+  
+  // --- return Key
+  if (keyCode == 36) {
+    [self openURL];
+  }
+  // --- W / K Key
+  else if (keyCode == 13 || keyCode == 40) {
+    [listView moveUp:self];
+  }
+  // --- S / J Key
+  else if (keyCode == 1 || keyCode == 38) {
+    [listView moveDown:self];
+  }
 }
 
 @end

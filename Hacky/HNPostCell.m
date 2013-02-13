@@ -144,7 +144,7 @@
 	return self;
 }
 
-- (void)setTopic:(NSDictionary*)aTopic
+- (void)setTopic:(NSMutableDictionary*)aTopic
 {
   topic = aTopic;
   
@@ -154,7 +154,7 @@
   titleLabel.toolTip = [url host];
   
   // Set Meta
-  NSString *metaString = [NSString stringWithFormat:@"%@ Points | %@ | %@ Comments", [topic valueForKey:@"upvotes"], [topic valueForKey:@"created_at"], [topic valueForKey:@"comments"]];
+  NSString *metaString = [NSString stringWithFormat:@"%@ Points | %@ | %@ Comments", [topic valueForKey:@"score"], [topic valueForKey:@"created_at"], [topic valueForKey:@"comments"]];
   [metaLabel setStringValue:metaString];
   [metaLabel sizeToFit];
   [metaLabel setFrameOrigin:CGPointMake(numberLabel.bounds.size.width, metaLabel.frame.origin.y)];
@@ -163,10 +163,10 @@
   markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
 }
 
-- (void)setNumber:(NSUInteger*)aNumber
+- (void)setNumber:(NSUInteger)aNumber
 {
   number = aNumber;
-  numberLabel.stringValue = [NSString stringWithFormat:@"%d.", number];
+  numberLabel.stringValue = [NSString stringWithFormat:@"%lu.", number];
   [numberLabel sizeToFit];
 }
 
@@ -236,7 +236,7 @@
 
 - (void)didClickUnreadButton:(id)sender
 {
-  NSNumber *row = [NSNumber numberWithInt:number - 1];
+  NSNumber *row = [NSNumber numberWithInt:(int)number - 1];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSelectRow" object:row];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickMarkAsReadMenuButton" object:nil];
 }
@@ -287,7 +287,7 @@
     
     // --- Background Color
     [[NSColor colorWithCalibratedRed:246.0/255.0 green:246.0/255.0 blue:239.0/255.0 alpha:1.0] set];
-    NSBezierPath *rect = [NSBezierPath bezierPathWithRect:aRect];
+
     NSGradient* gradient = [[NSGradient alloc]
                               initWithStartingColor:[NSColor colorWithCalibratedRed:17.0/255.0 green:105.0/255.0 blue:181.0/255.0 alpha:1.0]
                               endingColor:[NSColor colorWithCalibratedRed:62.0/255.0 green:154.0/255.0 blue:232.0/255.0 alpha:1.0]];

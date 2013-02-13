@@ -14,13 +14,13 @@
   NSString *identifier;
   NSString *url;
   NSString *notification;
-  AFJSONRequestOperation *networkOperation;
+  AFHTTPRequestOperation *networkOperation;
 }
 
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *notification;
-@property (nonatomic, retain) AFJSONRequestOperation *networkOperation;
+@property (nonatomic, retain) AFHTTPRequestOperation *networkOperation;
 
 + (id)connectionWithIdentifier:(NSString*)anIdentifier;
 - (void)cancel;
