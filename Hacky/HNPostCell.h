@@ -12,7 +12,7 @@
 
 @interface HNPostCell : PXListViewCell
 {
-  NSUInteger number;
+  int number;
 	HNUnreadButton* unreadButton;
   NSView* contentView;
   NSTextField* numberLabel;
@@ -24,7 +24,7 @@
   NSMenuItem* markAsUnreadMenuItem;
 }
 
-@property (nonatomic, assign) NSUInteger number;
+@property (nonatomic, assign) int number;
 @property (nonatomic, retain) NSMutableDictionary* topic;
 @property (nonatomic, retain) NSView* contentView;
 @property (nonatomic, retain) NSTextField* numberLabel;
@@ -37,6 +37,6 @@
 @property (nonatomic, retain) NSMenuItem* markAsUnreadMenuItem;
 
 - (void)setTopic:(NSMutableDictionary*)aTopic;
-- (void)setNumber:(NSUInteger*)aNumber;
+- (void)setNumber:(int)aNumber;
 
 @end

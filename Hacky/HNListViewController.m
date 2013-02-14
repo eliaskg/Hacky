@@ -71,9 +71,9 @@
   topics = [parser parseStories:response];
   
   // --- Test code
-  NSMutableDictionary* firstStory = [topics objectAtIndex:0];
-  NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[firstStory objectForKey:@"id"], @"id", nil];
-  HNConnectionController *commentsConnectionController = [HNConnectionController connectionWithIdentifier:@"comments" params:params];
+//  NSMutableDictionary* firstStory = [topics objectAtIndex:0];
+//  NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[firstStory objectForKey:@"id"], @"id", nil];
+//  HNConnectionController *commentsConnectionController = [HNConnectionController connectionWithIdentifier:@"comments" params:params];
   
   [self setReadMarks];
   
@@ -309,7 +309,7 @@
   }
   
   // --- Set up the new cell:
-  [cell setNumber:row + 1];
+  [cell setNumber:row + 1.0];
   [cell setTopic:[topics objectAtIndex:row]];
   
   return cell;

@@ -22,6 +22,22 @@
   self = [super init];
   if (self) {
     identifier = anIdentifier;
+    
+    [self setRoute];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://news.ycombinator.com"]];
+    
+    networkOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    __block HNConnectionController* _self = self;
+    
+    [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+      [[NSNotificationCenter defaultCenter] postNotificationName:_self.notification object:operation.responseString];
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+      NSLog(@"Failure"); 
+    }];
+  
+    [networkOperation start];
   }
   
   return self;

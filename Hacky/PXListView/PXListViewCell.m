@@ -96,6 +96,11 @@
 	[self setNeedsDisplay:YES];
 }
 
+- (PXListViewDropHighlight)dropHighlight
+{
+  return _dropHighlight;
+}
+
 
 - (void)drawRect:(NSRect)dirtyRect
 {

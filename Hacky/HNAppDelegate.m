@@ -12,6 +12,7 @@
 
 @implementation HNAppDelegate
 
+@synthesize window = _window;
 @synthesize listViewController;
 @synthesize titleLabel;
 @synthesize spinner;
@@ -19,6 +20,7 @@
 @synthesize loadTimer;
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
+@synthesize connectionController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {

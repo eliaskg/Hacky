@@ -16,7 +16,6 @@
 		7E0A4248169CB2CF00F8DA49 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A423E169CB2CF00F8DA49 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		7E0A4249169CB2CF00F8DA49 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A4240169CB2CF00F8DA49 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		7E0A424C169CB97800F8DA49 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A424B169CB97800F8DA49 /* AFHTTPClient.m */; };
-		7E147342165A550E00515E6D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E14733F165A550E00515E6D /* .gitignore */; };
 		7E147343165A550E00515E6D /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E147341165A550E00515E6D /* INAppStoreWindow.m */; };
 		7E147346165AB56500515E6D /* unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E147344165AB56500515E6D /* unread.png */; };
 		7E147347165AB56500515E6D /* unread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E147345165AB56500515E6D /* unread@2x.png */; };
@@ -24,19 +23,18 @@
 		7E1E92A0166E0E5C0026319B /* unreadSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929E166E0E5C0026319B /* unreadSelected.png */; };
 		7E1E92A1166E0E5C0026319B /* unreadSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */; };
 		7E52826216C1A7C8000BA274 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 7E52825816C1A7C8000BA274 /* .gitattributes */; };
-		7E52826316C1A7C8000BA274 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E52825916C1A7C8000BA274 /* .gitignore */; };
 		7E52826416C1A7C8000BA274 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E52825B16C1A7C8000BA274 /* LICENSE.txt */; };
 		7E52826516C1A7C8000BA274 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52825D16C1A7C8000BA274 /* TFHpple.m */; };
 		7E52826616C1A7C8000BA274 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52825F16C1A7C8000BA274 /* TFHppleElement.m */; };
 		7E52826716C1A7C8000BA274 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E52826116C1A7C8000BA274 /* XPathQuery.m */; };
 		7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E52826A16C1B152000BA274 /* libxml2.2.dylib */; };
+		7E590C1816CCF587009783A9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E590C1716CCF587009783A9 /* CoreServices.framework */; };
 		7E68947D16C2FAB100427C5E /* HNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E68947C16C2FAB100427C5E /* HNParser.m */; };
 		7E7A3C211658FC85008B538F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C201658FC85008B538F /* CFNetwork.framework */; };
 		7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C221658FC91008B538F /* SystemConfiguration.framework */; };
 		7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7A3C241658FC9A008B538F /* Security.framework */; };
 		7E7A3C281658FE11008B538F /* HNConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C271658FE11008B538F /* HNConnectionController.m */; };
 		7E7A3C2E165A35EC008B538F /* HNPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C2D165A35EB008B538F /* HNPostCell.m */; };
-		7E7A3C53165A37A1008B538F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A3C46165A37A1008B538F /* .gitignore */; };
 		7E7A3C54165A37A1008B538F /* PXListDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C48165A37A1008B538F /* PXListDocumentView.m */; };
 		7E7A3C55165A37A1008B538F /* PXListView+UserInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C4B165A37A1008B538F /* PXListView+UserInteraction.m */; };
 		7E7A3C56165A37A1008B538F /* PXListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C4D165A37A1008B538F /* PXListView.m */; };
@@ -54,7 +52,6 @@
 		7E9A43221656B90C001AA5C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9A43021656B90C001AA5C9 /* Cocoa.framework */; };
 		7E9A432A1656B90C001AA5C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A43281656B90C001AA5C9 /* InfoPlist.strings */; };
 		7E9A432D1656B90C001AA5C9 /* HackyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A432C1656B90C001AA5C9 /* HackyTests.m */; };
-		7EA2E1F316AEA63800418696 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7EA2E1EF16AEA63800418696 /* .gitignore */; };
 		7EA2E1F416AEA63800418696 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA2E1F116AEA63800418696 /* Reachability.m */; };
 		7EA2E1F516AEA63800418696 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7EA2E1F216AEA63800418696 /* README.md */; };
 		7EF1D89016C6DFE1009ECC16 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1D88C16C6DFE1009ECC16 /* HTMLNode.m */; };
@@ -117,6 +114,7 @@
 		7E52826016C1A7C8000BA274 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		7E52826116C1A7C8000BA274 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		7E52826A16C1B152000BA274 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		7E590C1716CCF587009783A9 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		7E68947B16C2FAB100427C5E /* HNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNParser.h; sourceTree = "<group>"; };
 		7E68947C16C2FAB100427C5E /* HNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNParser.m; sourceTree = "<group>"; };
 		7E7A3C201658FC85008B538F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -182,9 +180,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E590C1816CCF587009783A9 /* CoreServices.framework in Frameworks */,
+				7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */,
 				7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */,
 				7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */,
-				7E7A3C231658FC91008B538F /* SystemConfiguration.framework in Frameworks */,
 				7E7A3C211658FC85008B538F /* CFNetwork.framework in Frameworks */,
 				7E9A43031656B90C001AA5C9 /* Cocoa.framework in Frameworks */,
 			);
@@ -278,6 +277,7 @@
 		7E9A42F31656B90B001AA5C9 = {
 			isa = PBXGroup;
 			children = (
+				7E590C1716CCF587009783A9 /* CoreServices.framework */,
 				7E52826A16C1B152000BA274 /* libxml2.2.dylib */,
 				7E7A3C241658FC9A008B538F /* Security.framework */,
 				7E7A3C221658FC91008B538F /* SystemConfiguration.framework */,
@@ -494,9 +494,7 @@
 				7E9A430D1656B90C001AA5C9 /* InfoPlist.strings in Resources */,
 				7E9A43131656B90C001AA5C9 /* Credits.rtf in Resources */,
 				7E9A43191656B90C001AA5C9 /* MainMenu.xib in Resources */,
-				7E7A3C53165A37A1008B538F /* .gitignore in Resources */,
 				7E7A3C68165A448D008B538F /* HNListViewController.xib in Resources */,
-				7E147342165A550E00515E6D /* .gitignore in Resources */,
 				7E147346165AB56500515E6D /* unread.png in Resources */,
 				7E147347165AB56500515E6D /* unread@2x.png in Resources */,
 				7EF5C7FB16611B74006DC677 /* reload.png in Resources */,
@@ -506,10 +504,8 @@
 				7E1E92A0166E0E5C0026319B /* unreadSelected.png in Resources */,
 				7E1E92A1166E0E5C0026319B /* unreadSelected@2x.png in Resources */,
 				7E8CC336166FFCED0041B5CE /* icons.iconset in Resources */,
-				7EA2E1F316AEA63800418696 /* .gitignore in Resources */,
 				7EA2E1F516AEA63800418696 /* README.md in Resources */,
 				7E52826216C1A7C8000BA274 /* .gitattributes in Resources */,
-				7E52826316C1A7C8000BA274 /* .gitignore in Resources */,
 				7E52826416C1A7C8000BA274 /* LICENSE.txt in Resources */,
 				7EF1D89216C6DFE1009ECC16 /* README.md in Resources */,
 			);
