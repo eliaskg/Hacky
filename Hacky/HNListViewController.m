@@ -289,7 +289,7 @@
   }
   
   // --- Set up the new cell:
-  [cell setNumber:row + 1];
+  [cell setNumber:row + 1.0];
   [cell setTopic:[topics objectAtIndex:row]];
   
   return cell;
