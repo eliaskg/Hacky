@@ -74,8 +74,10 @@
   
   networkOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
   
+  __block HNConnectionController* myself = self;
+  
   [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:notification object:operation.responseString];
+    [[NSNotificationCenter defaultCenter] postNotificationName:myself.notification object:operation.responseString];
   } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
     NSLog(@"Failure");
   }];
@@ -90,7 +92,6 @@
 
 - (void)parseParams
 {
-  NSString* urlStringBegin = @"?";
   int i = 0;
   
   for (id key in params) {
