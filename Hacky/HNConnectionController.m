@@ -27,8 +27,10 @@
     
     networkOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
+    __block HNConnectionController* _self = self;
+    
     [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-      [[NSNotificationCenter defaultCenter] postNotificationName:notification object:operation.responseString];
+      [[NSNotificationCenter defaultCenter] postNotificationName:_self.notification object:operation.responseString];
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
       NSLog(@"Failure"); 
     }];
