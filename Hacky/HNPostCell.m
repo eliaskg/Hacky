@@ -163,10 +163,10 @@
   markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
 }
 
-- (void)setNumber:(NSUInteger)aNumber
+- (void)setNumber:(int)aNumber
 {
   number = aNumber;
-  numberLabel.stringValue = [NSString stringWithFormat:@"%lu.", number];
+  numberLabel.stringValue = [NSString stringWithFormat:@"%d.", number];
   [numberLabel sizeToFit];
 }
 
