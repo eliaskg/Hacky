@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "EQSTRScrollView.h"
+
 #import "PXListViewDelegate.h"
 #import "PXListViewCell.h"
 
@@ -17,7 +19,7 @@
 #endif
 
 
-@interface PXListView : NSScrollView
+@interface PXListView : EQSTRScrollView
 {
 	id <PXListViewDelegate> _delegate;
 	
@@ -73,5 +75,6 @@
 - (void)selectRowIndexes:(NSIndexSet*)rows byExtendingSelection:(BOOL)doExtend;
 
 - (void)scrollRowToVisible:(NSUInteger)row;
+- (void)scrollToHeight:(NSInteger)height animate:(BOOL)animate;
 
 @end

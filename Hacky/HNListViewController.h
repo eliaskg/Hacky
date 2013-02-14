@@ -11,6 +11,7 @@
 #import "HNParser.h"
 #import "PXListView.h"
 #import "PXListDocumentView.h"
+#import "EQSTRScrollView.h"
 #import "HNConnectionController.h"
 #import "HNPostCell.h"
 

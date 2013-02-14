@@ -1,5 +1,5 @@
 //
-//  HNListView.m
+//  HNListViewController.m
 //  Hacky
 //
 //  Created by Elias Klughammer on 16.11.12.
@@ -32,6 +32,9 @@
   listView.delegate = self;
   listView.borderType = NSNoBorder;
   listView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  listView.refreshBlock = ^(EQSTRScrollView *scrollView) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
+  };
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   // --- Test code
@@ -70,10 +73,7 @@
   HNParser* parser = [[HNParser alloc] init];
   topics = [parser parseStories:response];
   
-  // --- Test code
-//  NSMutableDictionary* firstStory = [topics objectAtIndex:0];
-//  NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:[firstStory objectForKey:@"id"], @"id", nil];
-//  HNConnectionController *commentsConnectionController = [HNConnectionController connectionWithIdentifier:@"comments" params:params];
+  [listView stopLoading];
   
   [self setReadMarks];
   
@@ -168,6 +168,9 @@
 
 - (void)didClickCopyURLMenuButton
 {
+  [listView.contentView scrollToPoint:NSMakePoint(0, -34)];
+  [listView startLoading];
+  return;
   NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
   NSString* stringToCopy = [topic valueForKey:@"url"];
   [self writeToPasteBoard:stringToCopy];
