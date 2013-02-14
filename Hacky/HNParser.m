@@ -7,7 +7,6 @@
 //
 
 #import "HNParser.h"
-#import "TFHpple.h"
 #import "HTMLParser.h"
 
 @implementation HNParser
@@ -16,14 +15,16 @@
 {
   NSMutableArray *stories = [[NSMutableArray alloc] init];
   
-  NSData* data = [response dataUsingEncoding:NSUTF8StringEncoding];
-  TFHpple* doc = [[TFHpple alloc] initWithHTMLData:data];
+  NSError *error = nil;
+  HTMLParser *parser = [[HTMLParser alloc] initWithString:response error:&error];
   
-  NSArray* tables = [doc searchWithXPathQuery:@"//table[not(@width)]"];
+  HTMLNode *bodyNode = [parser body];
   
-  TFHppleElement* mainTable = tables[0];
+  NSArray* tables = [bodyNode findChildTags:@"table"];
   
-  NSArray* trs_ = [mainTable childrenWithTagName:@"tr"];
+  HTMLNode* mainTable = tables[2];
+  
+  NSArray* trs_ = [mainTable findChildTags:@"tr"];
   NSMutableArray* trs = [NSMutableArray arrayWithArray:trs_];
   
   // --- Remove the "more" button
@@ -33,55 +34,55 @@
   NSMutableDictionary* story = [[NSMutableDictionary alloc] init];
   
   for (int i = 0; i < [trs count]; i++) {
-    TFHppleElement* tr = trs[i];
+    HTMLNode* tr = trs[i];
     
     // --- First row of story (title)
     if (i % 3 == 0) {
       // --- Get title and URL
-      NSArray *titleTds = [tr childrenWithClassName:@"title"];
-      TFHppleElement *titleTd = [titleTds objectAtIndex:1];
-      TFHppleElement *titleA = [titleTd firstChildWithTagName:@"a"];
-      [story setValue:[titleA text] forKey:@"title"];
-      [story setValue:[titleA objectForKey:@"href"] forKey:@"url"];
+      NSArray *titleTds = [tr findChildrenOfClass:@"title"];
+      HTMLNode *titleTd = [titleTds objectAtIndex:1];
+      HTMLNode *titleA = [titleTd findChildTag:@"a"];
+      [story setValue:[titleA contents] forKey:@"title"];
+      [story setValue:[titleA getAttributeNamed:@"href"] forKey:@"url"];
       
       // --- Get id
-      NSArray* tds = [tr childrenWithTagName:@"td"];
-      TFHppleElement* upvoteTd = [tds objectAtIndex:1];
-      TFHppleElement* upvoteCenter = [upvoteTd firstChildWithTagName:@"center"];
-      TFHppleElement* upvoteA = [upvoteCenter firstChildWithTagName:@"a"];
-      NSString* upvoteId = [upvoteA objectForKey:@"id"];
+      NSArray* tds = [tr findChildTags:@"td"];
+      HTMLNode* upvoteTd = [tds objectAtIndex:1];
+      HTMLNode* upvoteCenter = [upvoteTd findChildTag:@"center"];
+      HTMLNode* upvoteA = [upvoteCenter findChildTag:@"a"];
+      NSString* upvoteId = [upvoteA getAttributeNamed:@"id"];
       NSString* storyId = [[upvoteId componentsSeparatedByString:@"_"] objectAtIndex:1];
       [story setValue:storyId forKey:@"id"];
     }
     // --- Second row of story (comment count, timestamp, etc)
     else if (i % 3 == 1) {
-      NSArray* metaTds = [tr childrenWithClassName:@"subtext"];
-      TFHppleElement* metaTd = [metaTds objectAtIndex:0];
+      NSArray* metaTds = [tr findChildrenOfClass:@"subtext"];
+      HTMLNode* metaTd = [metaTds objectAtIndex:0];
       
-      NSArray* metaAs = [metaTd childrenWithTagName:@"a"];
+      NSArray* metaAs = [metaTd findChildTags:@"a"];
       
       // --- Ignore sponsored stories
       if (![metaAs count])
         continue;
       
       // --- Get score
-      TFHppleElement* scoreSpan = [metaTd firstChildWithTagName:@"span"];
-      NSString* scoreText = [scoreSpan text];
+      HTMLNode* scoreSpan = [metaTd findChildTag:@"span"];
+      NSString* scoreText = [scoreSpan contents];
       NSString* score = [NSString stringWithFormat:@"%li", [self numberFromString:scoreText]];
       [story setValue:score forKey:@"score"];
       
       // --- Get username
-      TFHppleElement* userA = [metaAs objectAtIndex:0];
-      [story setValue:[userA text] forKey:@"user"];
+      HTMLNode* userA = [metaAs objectAtIndex:0];
+      [story setValue:[userA contents] forKey:@"user"];
       
       // --- Get comments count
-      TFHppleElement* commentsA = [metaAs lastObject];
-      NSString* commentsText = [commentsA text];
+      HTMLNode* commentsA = [metaAs lastObject];
+      NSString* commentsText = [commentsA contents];
       NSString* comments = [NSString stringWithFormat:@"%li", [self numberFromString:commentsText]];
       [story setValue:comments forKey:@"comments"];
       
-      TFHppleElement* createdElement = [[metaTd children] objectAtIndex:3];
-      NSString* createdTextRaw = [createdElement content];
+      HTMLNode* createdElement = [[metaTd children] objectAtIndex:3];
+      NSString* createdTextRaw = [createdElement allContents];
       NSString* createdTextNoDivider = [createdTextRaw stringByReplacingOccurrencesOfString:@"|" withString:@""];
       NSString* createdTextNoWhitespace = [self removeLeadingAndTrailingWhitespace:createdTextNoDivider];
       [story setValue:createdTextNoWhitespace forKey:@"created_at"];
