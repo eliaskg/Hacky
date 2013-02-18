@@ -10,6 +10,7 @@
 #import "Reachability.h"
 #import "INAppStoreWindow.h"
 #import "HNListViewController.h"
+#import "HNCommentsViewController.h"
 #import "HNConnectionController.h"
 
 @class HNListViewController;
@@ -25,6 +26,8 @@
   IBOutlet NSMenuItem* markAsReadMenuItem;
   IBOutlet NSMenuItem* markAsUnreadMenuItem;
   HNConnectionController* connectionController;
+  NSSplitView* splitView;
+  HNCommentsViewController* commentsViewController;
 }
 
 @property (assign) IBOutlet INAppStoreWindow* window;
@@ -36,6 +39,8 @@
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsUnreadMenuItem;
 @property (nonatomic, retain) HNConnectionController* connectionController;
+@property (nonatomic, retain) NSSplitView* splitView;
+@property (nonatomic, retain) HNCommentsViewController* commentsViewController;
 
 - (IBAction)didClickReloadMenuItem:(id)sender;
 - (IBAction)didClickMarkAllAsReadButton:(id)sender;

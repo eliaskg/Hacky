@@ -129,14 +129,14 @@
     NSString* commentsId = [linkParts objectAtIndex:1];
     [comment setValue:commentsId forKey:@"id"];
     
-    NSString* metaContent = [metaContainer allContents];
-    NSArray* metaParts = [metaContent componentsSeparatedByString:userName];
-    NSString* createdRaw = metaParts[1];
-    NSArray* createdRawParts = [createdRaw componentsSeparatedByString:@"|"];
-    NSString* createdWhitespace = createdRawParts[0];
-    NSString* created = [self removeLeadingAndTrailingWhitespace:createdWhitespace];
-    [comment setValue:created forKey:@"created"];
-    
+//    NSString* metaContent = [metaContainer allContents];
+//    NSArray* metaParts = [metaContent componentsSeparatedByString:userName];
+//    NSString* createdRaw = metaParts[1];
+//    NSArray* createdRawParts = [createdRaw componentsSeparatedByString:@"|"];
+//    NSString* createdWhitespace = createdRawParts[0];
+//    NSString* created = [self removeLeadingAndTrailingWhitespace:createdWhitespace];
+//    [comment setValue:created forKey:@"created"];
+  
     HTMLNode* marginImage = [[parentContainer parent] findChildTag:@"img"];
     NSString* marginString = [marginImage getAttributeNamed:@"width"];
     [comment setValue:marginString forKey:@"margin"];

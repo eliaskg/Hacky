@@ -1,0 +1,73 @@
+body {
+  text-rendering: optimizelegibility;
+  font-family: "Lucida Grande";
+  font-size: 12px;
+}
+
+.commentContainer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 12px 12px;
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 1.5em;
+  cursor: default;
+}
+
+.username {
+  display: inline-block;
+  width: 60%;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.createdAt {
+  display: inline-block;
+  width: 40%;
+  text-align: right;
+  color: #a9a9a9;
+}
+
+.margin-0 {
+
+}
+
+.margin-40 {
+  padding-left: 24px;
+}
+
+.margin-80 {
+  padding-left: 36px;
+}
+
+.margin-120 {
+  padding-left: 48px;
+}
+
+.margin-160 {
+  padding-left: 60px;
+}
+
+.margin-200 {
+  padding-left: 72px;
+}
+
+.margin-240 {
+  padding-left: 84px;
+}
+
+.margin-280 {
+  padding-left: 96px;
+}
+
+.margin-320 {
+  padding-left: 108px;
+}
+
+.margin-360 {
+  padding-left: 120px;
+}
+
+.margin-400 {
+  padding-left: 132px;
+}

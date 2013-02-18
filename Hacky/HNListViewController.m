@@ -37,8 +37,6 @@
   };
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
-  // --- Test code
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
@@ -49,19 +47,6 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
-}
-
-// --- Test code
-- (void)didLoadComments:(NSNotification*)aNotification
-{
-  if ([[aNotification object] isKindOfClass:[NSError class]])
-    return;
-  
-  NSString* response = [aNotification object];
-  
-  HNParser* parser = [[HNParser alloc] init];
-  NSMutableArray* comments = [parser parseComments:response];
-//  NSLog(@"%@", comments);
 }
 
 - (void)didLoadStories:(NSNotification*)aNotification
@@ -287,6 +272,8 @@
   
   markAsReadMenuItem.hidden = !![topic valueForKey:@"isRead"];
   markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectStory" object:topic];
 }
 
 - (void)didUseRightClick:(NSNotification*)aNotification

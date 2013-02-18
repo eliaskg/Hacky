@@ -21,6 +21,8 @@
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
 @synthesize connectionController;
+@synthesize splitView;
+@synthesize commentsViewController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -57,13 +59,23 @@
   [reloadButton setAction:@selector(didClickReloadButton:)];
   [titleBarView addSubview:reloadButton];
   
-  listViewController = [[HNListViewController alloc] init];
-  
   NSView* contentView = [_window contentView];
   
+  splitView = [[NSSplitView alloc] initWithFrame:NSMakeRect(0, 30, contentView.frame.size.width, contentView.frame.size.height- 30)];
+  splitView.dividerStyle = NSSplitViewDividerStyleThin;
+  [splitView setVertical:YES];
+  splitView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  [contentView addSubview:splitView];
+  
+  listViewController = [[HNListViewController alloc] init];
   NSView *listView = listViewController.view;
-  [listView setFrame:CGRectMake(0, 30, contentView.frame.size.width, contentView.frame.size.height - 30)];
-  [contentView addSubview:listView];
+//  [listView setFrame:CGRectMake(0, 60, splitView.frame.size.width / 2, splitView.frame.size.height)];
+  [splitView addSubview:listView];
+
+  commentsViewController = [[HNCommentsViewController alloc] init];
+  NSView *commentsView = commentsViewController.view;
+//  [commentsView setFrame:CGRectMake(0, 0, splitView.frame.size.width / 2, splitView.frame.size.height)];
+  [splitView addSubview:commentsView];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
