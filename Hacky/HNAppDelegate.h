@@ -15,7 +15,7 @@
 
 @class HNListViewController;
 
-@interface HNAppDelegate : NSObject <NSApplicationDelegate>
+@interface HNAppDelegate : NSObject <NSApplicationDelegate, NSSplitViewDelegate>
 {
   IBOutlet INAppStoreWindow* window;
   NSTextField* titleLabel;

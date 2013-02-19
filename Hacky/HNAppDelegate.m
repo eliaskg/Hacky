@@ -28,6 +28,8 @@
 {
   [NSApp setDelegate:self];
   
+  [self checkDefaults];
+  
   _window.titleBarHeight = 50.0;
   _window.trafficLightButtonsLeftMargin = 18;
   
@@ -65,16 +67,18 @@
   splitView.dividerStyle = NSSplitViewDividerStyleThin;
   [splitView setVertical:YES];
   splitView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  splitView.delegate = self;
   [contentView addSubview:splitView];
   
   listViewController = [[HNListViewController alloc] init];
-  NSView *listView = listViewController.view;
-//  [listView setFrame:CGRectMake(0, 60, splitView.frame.size.width / 2, splitView.frame.size.height)];
+  NSView* listView = listViewController.view;
+  int listWidth = [[[NSUserDefaults standardUserDefaults] valueForKey:@"listWidth"] intValue];
+  [listView setFrame:CGRectMake(0, 60, listWidth, splitView.frame.size.height)];
   [splitView addSubview:listView];
 
   commentsViewController = [[HNCommentsViewController alloc] init];
   NSView *commentsView = commentsViewController.view;
-//  [commentsView setFrame:CGRectMake(0, 0, splitView.frame.size.width / 2, splitView.frame.size.height)];
+
   [splitView addSubview:commentsView];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
@@ -85,6 +89,14 @@
   [self shouldSetTitleBadge:nil];
   
   [self observeReachability];
+}
+
+- (void)checkDefaults
+{
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  
+  if (![defaults valueForKey:@"listWidth"])
+    [defaults setValue:[NSNumber numberWithInt:400] forKey:@"listWidth"];
 }
 
 - (void)observeReachability
@@ -235,5 +247,11 @@
 {
   return YES;
 }
+
+//- (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(double)proposedMin ofSubviewAt:(NSInteger)offset
+//{
+//  NSLog(@"%d", offset);
+//  return proposedMin + 60.0;
+//}
 
 @end
