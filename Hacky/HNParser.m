@@ -118,10 +118,23 @@
     HTMLNode* metaContainer = [parentContainer findChildOfClass:@"comhead"];
     
     NSArray* metaLinks = [metaContainer findChildTags:@"a"];
+    
+    // --- If it was a deleted comment, ignore it
+    if ([metaLinks count] == 0)
+      continue;
+    
     HTMLNode* userLink = [metaLinks objectAtIndex:0];
     HTMLNode* idLink = [metaLinks objectAtIndex:1];
     
-    NSString* userName = [userLink contents];
+    // --- New users are inside od a <font> tag
+    HTMLNode* newUser = [userLink findChildTag:@"font"];
+    NSString* userName;
+    
+    if (newUser)
+      userName = [newUser contents];
+    else
+      userName = [userLink contents];
+
     [comment setValue:userName forKey:@"user"];
     
     NSString* idHref = [idLink getAttributeNamed:@"href"];
@@ -129,13 +142,13 @@
     NSString* commentsId = [linkParts objectAtIndex:1];
     [comment setValue:commentsId forKey:@"id"];
     
-//    NSString* metaContent = [metaContainer allContents];
-//    NSArray* metaParts = [metaContent componentsSeparatedByString:userName];
-//    NSString* createdRaw = metaParts[1];
-//    NSArray* createdRawParts = [createdRaw componentsSeparatedByString:@"|"];
-//    NSString* createdWhitespace = createdRawParts[0];
-//    NSString* created = [self removeLeadingAndTrailingWhitespace:createdWhitespace];
-//    [comment setValue:created forKey:@"created"];
+    NSString* metaContent = [metaContainer allContents];
+    NSArray* metaParts = [metaContent componentsSeparatedByString:userName];
+    NSString* createdRaw = metaParts[1];
+    NSArray* createdRawParts = [createdRaw componentsSeparatedByString:@"|"];
+    NSString* createdWhitespace = createdRawParts[0];
+    NSString* created = [self removeLeadingAndTrailingWhitespace:createdWhitespace];
+    [comment setValue:created forKey:@"created"];
   
     HTMLNode* marginImage = [[parentContainer parent] findChildTag:@"img"];
     NSString* marginString = [marginImage getAttributeNamed:@"width"];

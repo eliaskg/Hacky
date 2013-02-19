@@ -4,14 +4,25 @@ body {
   font-size: 12px;
 }
 
+#pullToRefresh {
+  position: absolute;
+  background: gray;
+  height: 34px;
+  top: -34px;
+}
+
 .commentContainer {
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
-  padding: 12px 12px;
+  padding: 7px 19px;
   border-bottom: 1px solid #d8d8d8;
   line-height: 1.5em;
   cursor: default;
+}
+
+.meta {
+  margin-bottom: 7px;
 }
 
 .username {
