@@ -84,7 +84,10 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSetTitleBadge:) name:@"shouldSetTitleBadge" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:_window];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:_window];
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
+  
   
   [self shouldSetTitleBadge:nil];
   
@@ -214,12 +217,17 @@
   [spinner startAnimation:self];
   
   connectionController = [HNConnectionController connectionWithIdentifier:@"stories"];
-  
-  if (loadTimer)
+}
+
+- (void)setLoadTimerIsActive:(BOOL)isActive
+{
+  if (isActive) {
+    loadTimer = [NSTimer timerWithTimeInterval:5 * 60 target:self selector:@selector(load) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:loadTimer forMode:NSRunLoopCommonModes];
+  }
+  else if (!isActive && loadTimer) {
     [loadTimer invalidate];
-  
-  loadTimer = [NSTimer timerWithTimeInterval:5 * 60 target:self selector:@selector(load) userInfo:nil repeats:NO];
-  [[NSRunLoop currentRunLoop] addTimer:loadTimer forMode:NSRunLoopCommonModes];
+  }
 }
 
 - (void)didLoadStories:(NSNotification*)aNotification
@@ -231,6 +239,16 @@
 
 - (IBAction)didClickMarkAllAsReadButton:(id)sender {
   [listViewController markAllAsRead];
+}
+
+- (void)windowDidResignKey:(NSNotification*)aNotification
+{
+  [self setLoadTimerIsActive:YES];
+}
+
+- (void)windowDidBecomeKey:(NSNotification*)aNotification
+{
+  [self setLoadTimerIsActive:NO];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification*)aNotification
