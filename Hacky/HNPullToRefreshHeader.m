@@ -124,18 +124,18 @@
 }
 
 - (void)startLoading
-{
-//  if (animationTimer)
-//    [loadTimer invalidate];
+{  
+  animationTimer = [NSTimer timerWithTimeInterval:0.05 target:self selector:@selector(animationTimerDidFire) userInfo:nil repeats:YES];
+  [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSRunLoopCommonModes];
   
   animationImage.hidden = NO;
   
-  animationTimer = [NSTimer timerWithTimeInterval:0.05 target:self selector:@selector(animationTimerDidFire) userInfo:nil repeats:YES];
-  [[NSRunLoop currentRunLoop] addTimer:animationTimer forMode:NSRunLoopCommonModes];
+  [updatedLabel setStringValue:@"Loading"];
+  [updatedLabel sizeToFit];
 }
 
 - (void)stopLoading
-{
+{  
   animationImage.hidden = YES;
   animationImage.image = nil;
   [animationTimer invalidate];
