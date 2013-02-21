@@ -39,10 +39,12 @@ __A:__ Personally I like getting my apps via Mac App Store. It means easy updati
 Hacky makes use of the folling open source libraries. Give a round of applause!
 
 + [AFNetworking](https://github.com/AFNetworking/AFNetworking)
-+ [INAppStoreWindow](https://github.com/indragiek/INAppStoreWindow)
-+ [PXListView](https://github.com/Perspx/PXListView)
-+ [ScrollToRefresh](https://github.com/alexzielenski/ScrollToRefresh)
-+ [TFHpple](https://github.com/topfunky/hpple)
++ [HTMLParser](https://github.com/zootreeves/Objective-C-HMTL-Parser) by Ben Reeves
++ [INAppStoreWindow](https://github.com/indragiek/INAppStoreWindow) by Indragie Karunaratne
++ [Normalize.css](http://necolas.github.com/normalize.css) by Nicolas Gallagher
++ [PXListView](https://github.com/Perspx/PXListView) by Alex Rozanski
++ [ScrollToRefresh](https://github.com/alexzielenski/ScrollToRefresh) by Alex Zielenski
++ [Zepto.js](http://zeptojs.com) by Thomas Fuchs
 
 ## License
 
