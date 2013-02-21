@@ -73,12 +73,13 @@
     NSLog(@"Got an error: %@", error);
   } else {
     NSString* jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
     NSString* jsonStringCleaned1 = [jsonString stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
     NSString* jsonStringCleaned2 = [jsonStringCleaned1 stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\\\\\""];
     NSString* jsonStringCleaned3 = [jsonStringCleaned2 stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
-    NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonStringCleaned3];
+    NSString* jsonStringCleaned4 = [jsonStringCleaned3 stringByReplacingOccurrencesOfString:@"\\t" withString:@"  "];
+    NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonStringCleaned4];
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
-//    NSLog(jsFunction);
   }
 }
 
