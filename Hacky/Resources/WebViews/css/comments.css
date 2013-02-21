@@ -39,46 +39,48 @@ body {
   color: #a9a9a9;
 }
 
-.margin-0 {
+/* 12px steps */
 
+.margin-0 {
+  padding-left: 19px;
 }
 
 .margin-40 {
-  padding-left: 24px;
+  padding-left: 31px;
 }
 
 .margin-80 {
-  padding-left: 36px;
+  padding-left: 43px;
 }
 
 .margin-120 {
-  padding-left: 48px;
+  padding-left: 55px;
 }
 
 .margin-160 {
-  padding-left: 60px;
+  padding-left: 67px;
 }
 
 .margin-200 {
-  padding-left: 72px;
+  padding-left: 79px;
 }
 
 .margin-240 {
-  padding-left: 84px;
+  padding-left: 91px;
 }
 
 .margin-280 {
-  padding-left: 96px;
+  padding-left: 103px;
 }
 
 .margin-320 {
-  padding-left: 108px;
+  padding-left: 115px;
 }
 
 .margin-360 {
-  padding-left: 120px;
+  padding-left: 127px;
 }
 
 .margin-400 {
-  padding-left: 132px;
+  padding-left: 139px;
 }
