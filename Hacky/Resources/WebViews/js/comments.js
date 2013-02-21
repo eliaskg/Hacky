@@ -1,7 +1,3 @@
-$(document).ready(function() {
-  observeScroll();
-});
-
 function parseComments(jsonString) {
   var comments  = JSON.parse(jsonString);
   var container = $('#comments');
@@ -25,10 +21,4 @@ function parseComments(jsonString) {
     
     container.append(element);
   }
-}
-
-function observeScroll() {
-  $(document).on('scroll', function(event) {
-    console.log(document.body.scrollTop); // you *really* don't want to alert in a scroll
-  });
 }
