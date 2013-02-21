@@ -13,6 +13,8 @@
 @synthesize webView;
 @synthesize story;
 @synthesize connectionController;
+@synthesize spinner;
+@synthesize isLoading;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -21,6 +23,7 @@
     self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     
     webView = [[WebView alloc] initWithFrame:self.view.bounds];
+    webView.hidden = YES;
     webView.policyDelegate = self;
     webView.autoresizingMask = self.view.autoresizingMask;
     [self.view addSubview:webView];
@@ -33,11 +36,38 @@
     NSURLRequest* request = [NSURLRequest requestWithURL:fileURL];
     [[webView mainFrame] loadRequest:request];
     
+    spinner = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(self.view.bounds.size.width / 2 - 18 / 2,
+                                                                    self.view.bounds.size.height / 2 - 18 / 2,
+                                                                    18,
+                                                                    18)];
+    spinner.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin;
+    [spinner setStyle:NSProgressIndicatorSpinningStyle];
+    spinner.hidden = YES;
+    [self.view addSubview:spinner];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectStory:) name:@"didSelectStory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
   }
     
   return self;
+}
+
+- (void)setIsLoading:(BOOL)loading
+{
+  if (loading == isLoading)
+    return;
+  
+  isLoading = loading;
+  
+  if (isLoading) {
+    [spinner startAnimation:self];
+  }
+  else {
+    [spinner stopAnimation:self];
+  }
+  
+  spinner.hidden = !isLoading;
+  webView.hidden = isLoading;
 }
 
 - (void)didSelectStory:(NSNotification*)aNotification
@@ -46,6 +76,8 @@
   
   if ([[story valueForKey:@"id"] isEqualToString:[theStory valueForKey:@"id"]])
     return;
+  
+  [self setIsLoading:YES];
   
   story = theStory;
   
@@ -81,6 +113,8 @@
     NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonStringCleaned4];
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
   }
+  
+  [self setIsLoading:NO];
 }
 
 - (void)webView:(WebView *)webView

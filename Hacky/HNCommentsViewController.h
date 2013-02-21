@@ -16,10 +16,14 @@
   WebView* webView;
   NSMutableDictionary* story;
   HNConnectionController* connectionController;
+  NSProgressIndicator* spinner;
+  BOOL isLoading;
 }
 
 @property (nonatomic, retain) WebView* webView;
 @property (nonatomic, retain) NSMutableDictionary* story;
 @property (nonatomic, retain) HNConnectionController* connectionController;
+@property (nonatomic, retain) NSProgressIndicator* spinner;
+@property (nonatomic, assign) BOOL isLoading;
 
 @end
