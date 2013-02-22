@@ -139,8 +139,8 @@
     
     NSString* idHref = [idLink getAttributeNamed:@"href"];
     NSArray* linkParts = [idHref componentsSeparatedByString:@"="];
-    NSString* commentsId = [linkParts objectAtIndex:1];
-    [comment setValue:commentsId forKey:@"id"];
+    NSString* commentId = [linkParts objectAtIndex:1];
+    [comment setValue:commentId forKey:@"id"];
     
     NSString* metaContent = [metaContainer allContents];
     NSArray* metaParts = [metaContent componentsSeparatedByString:userName];
