@@ -19,28 +19,28 @@
 {
   IBOutlet INAppStoreWindow* window;
   NSTextField* titleLabel;
-  NSProgressIndicator* spinner;
-  NSButton* reloadButton;
   HNListViewController* listViewController;
+  NSProgressIndicator* spinner;
   NSTimer* loadTimer;
   IBOutlet NSMenuItem* markAsReadMenuItem;
   IBOutlet NSMenuItem* markAsUnreadMenuItem;
   HNConnectionController* connectionController;
   NSSplitView* splitView;
   HNCommentsViewController* commentsViewController;
+  BOOL didLoadStories;
 }
 
 @property (assign) IBOutlet INAppStoreWindow* window;
 @property (nonatomic, retain) NSTextField* titleLabel;
-@property (nonatomic, retain) NSProgressIndicator* spinner;
-@property (nonatomic, retain) NSButton* reloadButton;
 @property (nonatomic, retain) HNListViewController* listViewController;
+@property (nonatomic, retain) NSProgressIndicator* spinner;
 @property (nonatomic, retain) NSTimer* loadTimer;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsUnreadMenuItem;
 @property (nonatomic, retain) HNConnectionController* connectionController;
 @property (nonatomic, retain) NSSplitView* splitView;
 @property (nonatomic, retain) HNCommentsViewController* commentsViewController;
+@property (nonatomic, assign) BOOL didLoadStories;
 
 - (IBAction)didClickReloadMenuItem:(id)sender;
 - (IBAction)didClickMarkAllAsReadButton:(id)sender;

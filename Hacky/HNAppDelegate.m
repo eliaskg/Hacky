@@ -16,13 +16,13 @@
 @synthesize listViewController;
 @synthesize titleLabel;
 @synthesize spinner;
-@synthesize reloadButton;
 @synthesize loadTimer;
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
 @synthesize connectionController;
 @synthesize splitView;
 @synthesize commentsViewController;
+@synthesize didLoadStories;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -30,8 +30,10 @@
   
   [self checkDefaults];
   
-  _window.titleBarHeight = 50.0;
+  _window.titleBarHeight = 34.0;
   _window.trafficLightButtonsLeftMargin = 18;
+  _window.fullScreenButtonRightMargin = -100;
+  _window.centerFullScreenButton = YES;
   
   NSView *titleBarView = _window.titleBarView;
   titleLabel = [[NSTextField alloc] initWithFrame:CGRectZero];
@@ -44,22 +46,12 @@
   [titleLabel setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
   [titleBarView addSubview:titleLabel];
   
-  spinner = [[NSProgressIndicator alloc] initWithFrame:CGRectMake(titleBarView.frame.size.width - 14 - 19, 16, 15, 15)];
+  spinner = [[NSProgressIndicator alloc] initWithFrame:CGRectMake(titleBarView.frame.size.width - 14 - 19, 11, 15, 15)];
   spinner.autoresizingMask = NSViewMinXMargin;
   [spinner setStyle:NSProgressIndicatorSpinningStyle];
   [spinner setUsesThreadedAnimation:YES];
-  [spinner setHidden:YES];
+  [spinner startAnimation:self];
   [titleBarView addSubview:spinner];
-  
-  reloadButton = [[NSButton alloc] initWithFrame:CGRectMake(titleBarView.frame.size.width - 16 - 19, 14, 20, 20)];
-  reloadButton.autoresizingMask = NSViewMinXMargin;
-  [reloadButton setBordered:NO];
-  [reloadButton setButtonType:NSMomentaryChangeButton];
-  [reloadButton setImagePosition:NSImageOnly];
-  [reloadButton setImage:[NSImage imageNamed:@"reload"]];
-  [reloadButton setTarget:self];
-  [reloadButton setAction:@selector(didClickReloadButton:)];
-  [titleBarView addSubview:reloadButton];
   
   NSView* contentView = [_window contentView];
   
@@ -113,11 +105,6 @@
   };
   
   [reach startNotifier];
-}
-
-- (void)didClickReloadButton:(id)sender
-{
-  [self load];
 }
 
 - (IBAction)didClickReloadMenuItem:(id)sender;
@@ -212,10 +199,6 @@
 
 - (void)load
 {
-  [reloadButton setHidden:YES];
-  [spinner setHidden:NO];
-  [spinner startAnimation:self];
-  
   connectionController = [HNConnectionController connectionWithIdentifier:@"stories"];
 }
 
@@ -232,9 +215,14 @@
 
 - (void)didLoadStories:(NSNotification*)aNotification
 {
-  [reloadButton setHidden:NO];
-  [spinner setHidden:YES];
+  if (didLoadStories)
+    return;
+  
   [spinner stopAnimation:self];
+  spinner.hidden = YES;
+  _window.fullScreenButtonRightMargin = 18;
+  
+  didLoadStories = YES;
 }
 
 - (IBAction)didClickMarkAllAsReadButton:(id)sender {
