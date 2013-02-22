@@ -39,6 +39,10 @@ body {
   color: #a9a9a9;
 }
 
+a, a:active, a:visited {
+  color: #00a2ff;
+}
+
 /* 12px steps */
 
 .margin-0 {
