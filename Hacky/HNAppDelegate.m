@@ -55,7 +55,7 @@
   
   NSView* contentView = [_window contentView];
   
-  splitView = [[NSSplitView alloc] initWithFrame:NSMakeRect(0, 30, contentView.frame.size.width, contentView.frame.size.height- 30)];
+  splitView = [[HNSplitView alloc] initWithFrame:NSMakeRect(0, 30, contentView.frame.size.width, contentView.frame.size.height- 30)];
   splitView.dividerStyle = NSSplitViewDividerStyleThin;
   [splitView setVertical:YES];
   splitView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;

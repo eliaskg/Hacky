@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HNSplitView.h"
 #import "Reachability.h"
 #import "INAppStoreWindow.h"
 #import "HNListViewController.h"
