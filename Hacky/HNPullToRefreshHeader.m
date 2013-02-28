@@ -48,7 +48,7 @@
       
       updatedLabel = [[NSTextField alloc] initWithFrame:CGRectMake(78, 9, 200, 80)];
       updatedLabel.font = [NSFont fontWithName:@"LucidaGrande-Bold" size:10];
-      [updatedLabel setTextColor:[NSColor colorWithCalibratedRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1.0]];
+      [updatedLabel setTextColor:HN_GRAY];
       [updatedLabel setEditable:NO];
       [updatedLabel setBezeled:NO];
       [updatedLabel setBordered:NO];
@@ -105,7 +105,7 @@
 {
   aRect = [self bounds];
   
-  [[NSColor colorWithCalibratedRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] set];
+  [HN_GRAY_LIGHTER set];
   
   // Draw divider
   NSBezierPath *divider = [NSBezierPath bezierPathWithRect:CGRectMake(0, 0, aRect.size.width, 1)];

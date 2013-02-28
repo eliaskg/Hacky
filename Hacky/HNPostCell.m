@@ -43,7 +43,7 @@
     
     numberLabel = [[NSTextField alloc] initWithFrame:CGRectMake(0, 27, 0, 20)];
     numberLabel.font = [NSFont fontWithName:@"LucidaGrande" size:12];
-    [numberLabel setTextColor:[NSColor colorWithCalibratedRed:180.0/255.0 green:180.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [numberLabel setTextColor:HN_GRAY_LIGHT];
     [numberLabel setEditable:NO];
     [numberLabel setBezeled:NO];
     [numberLabel setBordered:NO];
@@ -62,7 +62,7 @@
     
     metaLabel = [[NSTextField alloc] initWithFrame:CGRectMake(0, 8, 0, 40)];
     metaLabel.font = [NSFont fontWithName:@"LucidaGrande-Bold" size:10];
-    [metaLabel setTextColor:[NSColor colorWithCalibratedRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1.0]];
+    [metaLabel setTextColor:HN_GRAY];
     [metaLabel setEditable:NO];
     [metaLabel setBezeled:NO];
     [metaLabel setBordered:NO];
@@ -301,13 +301,13 @@
   else {
     // --- Text Color
     [titleLabel setTextColor:[NSColor blackColor]];
-    [metaLabel setTextColor:[NSColor colorWithCalibratedRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1.0]];
-    [numberLabel setTextColor:[NSColor colorWithCalibratedRed:180.0/255.0 green:180.0/255.0 blue:180.0/255.0 alpha:1.0]];
+    [metaLabel setTextColor:HN_GRAY];
+    [numberLabel setTextColor:HN_GRAY_LIGHT];
     
     [titleLabel setStringValue:[topic valueForKey:@"title"]];
     
     // --- Background Color
-    [[NSColor colorWithCalibratedRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] set];
+    [HN_GRAY_LIGHTER set];
   }
   
   gearButton.hidden = ![self isSelected];

@@ -28,7 +28,7 @@
 }
 
 - (void)drawDividerInRect:(NSRect)aRect {
-  [[NSColor colorWithCalibratedRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] set];
+  [HN_GRAY_LIGHTER set];
   NSRectFill(aRect);
 }
 

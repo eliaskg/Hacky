@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HNConstants.h"
 
 @interface HNPullToRefreshHeader : NSView
 {
