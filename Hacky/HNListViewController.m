@@ -153,9 +153,6 @@
 
 - (void)didClickCopyURLMenuButton
 {
-  [listView.contentView scrollToPoint:NSMakePoint(0, -34)];
-  [listView startLoading];
-  return;
   NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
   NSString* stringToCopy = [topic valueForKey:@"url"];
   [self writeToPasteBoard:stringToCopy];
