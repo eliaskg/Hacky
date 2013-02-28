@@ -8,8 +8,6 @@
 
 #import "HNAppDelegate.h"
 
-#define kHostName @"news.ycombinator.com"
-
 @implementation HNAppDelegate
 
 @synthesize window = _window;
@@ -285,10 +283,14 @@
   [[[sender subviews] objectAtIndex:1] setFrame:rightRect];
 }
 
-//- (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(double)proposedMin ofSubviewAt:(NSInteger)offset
-//{
-//  NSLog(@"%d", offset);
-//  return proposedMin + 60.0;
-//}
+- (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(double)proposedMin ofSubviewAt:(NSInteger)offset
+{
+  return proposedMin + HN_MIN_MENU_WIDTH;
+}
+
+- (CGFloat)splitView:(NSSplitView *)sender constrainMaxCoordinate:(double)proposedMax ofSubviewAt:(NSInteger)offset
+{
+  return proposedMax - HN_MIN_MENU_WIDTH;
+}
 
 @end

@@ -31,7 +31,7 @@
   
   listView.delegate = self;
   listView.borderType = NSNoBorder;
-  listView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  listView.autoresizingMask = self.view.autoresizingMask;
   listView.refreshBlock = ^(EQSTRScrollView *scrollView) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
   };
