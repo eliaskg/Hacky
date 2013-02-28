@@ -31,8 +31,8 @@
   
   [self checkDefaults];
   
-  _window.titleBarHeight = 34.0;
-  _window.trafficLightButtonsLeftMargin = 10;
+  _window.titleBarHeight = HN_ROW_HEIGHT;
+  _window.trafficLightButtonsLeftMargin = HN_LEFT_MARGIN;
   _window.fullScreenButtonRightMargin = -100;
   _window.centerFullScreenButton = YES;
   
@@ -233,7 +233,7 @@
   
   [spinner stopAnimation:self];
   spinner.hidden = YES;
-  _window.fullScreenButtonRightMargin = 10;
+  _window.fullScreenButtonRightMargin = HN_LEFT_MARGIN;
   
   didLoadStories = YES;
 }
@@ -265,6 +265,23 @@
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
 {
   return YES;
+}
+
+- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize
+{
+  CGFloat dividerThickness = [sender dividerThickness];
+  NSRect leftRect  = [[[sender subviews] objectAtIndex:0] frame];
+  NSRect rightRect = [[[sender subviews] objectAtIndex:1] frame];
+  NSRect newFrame  = [sender frame];
+  
+  leftRect.size.height = newFrame.size.height;
+  leftRect.origin = NSMakePoint(0, 0);
+  rightRect.size.width = newFrame.size.width - leftRect.size.width - dividerThickness;
+  rightRect.size.height = newFrame.size.height;
+  rightRect.origin.x = leftRect.size.width + dividerThickness;
+  
+  [[[sender subviews] objectAtIndex:0] setFrame:leftRect];
+  [[[sender subviews] objectAtIndex:1] setFrame:rightRect];
 }
 
 //- (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(double)proposedMin ofSubviewAt:(NSInteger)offset

@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HNConstants.h"
 #import "HNSplitView.h"
 #import "Reachability.h"
 #import "INAppStoreWindow.h"

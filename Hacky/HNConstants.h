@@ -1,0 +1,3 @@
+#define HN_ROW_HEIGHT 34.0
+#define HN_LEFT_MARGIN 10.0
+#define HN_MIN_MENU_WIDTH 400.0

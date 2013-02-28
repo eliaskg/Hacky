@@ -248,6 +248,7 @@
 		7EC5AB4316DCE07700D44056 /* HNSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNSplitView.m; sourceTree = "<group>"; };
 		7EC5AB4616DFB5E300D44056 /* NSWindow+FullScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWindow+FullScreen.h"; path = "Categories/NSWindow+FullScreen.h"; sourceTree = "<group>"; };
 		7EC5AB4716DFB5E300D44056 /* NSWindow+FullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+FullScreen.m"; path = "Categories/NSWindow+FullScreen.m"; sourceTree = "<group>"; };
+		7EC5AB4916DFBF0800D44056 /* HNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNConstants.h; sourceTree = "<group>"; };
 		7EE9054816CE90870010FD71 /* HNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewController.h; sourceTree = "<group>"; };
 		7EE9054916CE90870010FD71 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		7EE9054B16CFF3300010FD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -408,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				7E1E92AC166FD4DC0026319B /* Hacky.entitlements */,
+				7EC5AB4916DFBF0800D44056 /* HNConstants.h */,
 				7E9A43141656B90C001AA5C9 /* HNAppDelegate.h */,
 				7E9A43151656B90C001AA5C9 /* HNAppDelegate.m */,
 				7EC5AB4216DCE07700D44056 /* HNSplitView.h */,
