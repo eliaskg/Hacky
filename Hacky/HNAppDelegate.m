@@ -19,6 +19,7 @@
 @synthesize loadTimer;
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
+@synthesize fullScreenMenuItem;
 @synthesize connectionController;
 @synthesize splitView;
 @synthesize commentsViewController;
@@ -185,6 +186,18 @@
 - (IBAction)didClickMarkAsUnreadButton:(id)sender
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickMarkAsUnreadMenuButton" object:nil];
+}
+
+- (IBAction)didClickFullScreenButton:(id)sender
+{
+  [_window toggleFullScreen:self];
+  
+  NSMenuItem* menuItem = sender;
+  
+  if ([_window isFullScreen])
+    menuItem.title = @"Exit Full Screen";
+  else
+    menuItem.title = @"Enter Full Screen";
 }
 
 - (void)workspaceDidWake:(NSNotification*)aNotification

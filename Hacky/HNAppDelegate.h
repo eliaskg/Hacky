@@ -13,6 +13,7 @@
 #import "HNListViewController.h"
 #import "HNCommentsViewController.h"
 #import "HNConnectionController.h"
+#import "NSWindow+FullScreen.h"
 
 @class HNListViewController;
 
@@ -25,6 +26,7 @@
   NSTimer* loadTimer;
   IBOutlet NSMenuItem* markAsReadMenuItem;
   IBOutlet NSMenuItem* markAsUnreadMenuItem;
+  IBOutlet NSMenuItem* fullScreenMenuItem;
   HNConnectionController* connectionController;
   NSSplitView* splitView;
   HNCommentsViewController* commentsViewController;
@@ -38,6 +40,7 @@
 @property (nonatomic, retain) NSTimer* loadTimer;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsUnreadMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem* fullScreenMenuItem;
 @property (nonatomic, retain) HNConnectionController* connectionController;
 @property (nonatomic, retain) NSSplitView* splitView;
 @property (nonatomic, retain) HNCommentsViewController* commentsViewController;
@@ -53,5 +56,6 @@
 - (IBAction)didClickTweetButton:(id)sender;
 - (IBAction)didClickMarkAsReadButton:(id)sender;
 - (IBAction)didClickMarkAsUnreadButton:(id)sender;
+- (IBAction)didClickFullScreenButton:(id)sender;
 
 @end
