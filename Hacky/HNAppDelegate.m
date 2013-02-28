@@ -31,7 +31,7 @@
   [self checkDefaults];
   
   _window.titleBarHeight = 34.0;
-  _window.trafficLightButtonsLeftMargin = 18;
+  _window.trafficLightButtonsLeftMargin = 10;
   _window.fullScreenButtonRightMargin = -100;
   _window.centerFullScreenButton = YES;
   
@@ -55,7 +55,7 @@
   
   NSView* contentView = [_window contentView];
   
-  splitView = [[HNSplitView alloc] initWithFrame:NSMakeRect(0, 30, contentView.frame.size.width, contentView.frame.size.height- 30)];
+  splitView = [[HNSplitView alloc] initWithFrame:NSMakeRect(0, 34, contentView.frame.size.width, contentView.frame.size.height- 34)];
   splitView.dividerStyle = NSSplitViewDividerStyleThin;
   [splitView setVertical:YES];
   splitView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
@@ -220,7 +220,7 @@
   
   [spinner stopAnimation:self];
   spinner.hidden = YES;
-  _window.fullScreenButtonRightMargin = 18;
+  _window.fullScreenButtonRightMargin = 10;
   
   didLoadStories = YES;
 }

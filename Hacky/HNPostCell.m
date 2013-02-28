@@ -32,7 +32,7 @@
 {
 	if((self = [super initWithReusableIdentifier:identifier]))
 	{
-    unreadButton = [[HNUnreadButton alloc] initWithFrame:CGRectMake(19, 30, 11, 11)];
+    unreadButton = [[HNUnreadButton alloc] initWithFrame:CGRectMake(11, 30, 11, 11)];
     [unreadButton setTarget:self];
     [unreadButton setAction:@selector(didClickUnreadButton:)];
     [self addSubview:unreadButton];
@@ -69,7 +69,7 @@
     [metaLabel setBackgroundColor:[NSColor clearColor]];
     [contentView addSubview:metaLabel];
     
-    gearButton = [[NSButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 35, 16, 19, 19)];
+    gearButton = [[NSButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 27, 16, 19, 19)];
     [gearButton setBordered:NO];
     [gearButton setButtonType:NSMomentaryChangeButton];
     [gearButton setImagePosition:NSImageOnly];
@@ -256,13 +256,13 @@
 {
   if ([topic valueForKey:@"isRead"]) {
     titleLabel.alphaValue = 0.5;
-    [contentView setFrame:CGRectMake(16, 1, self.frame.size.width - 32, 50)];
+    [contentView setFrame:CGRectMake(8, 1, self.frame.size.width - 16, 50)];
     [unreadButton setHidden:YES];
   }
   else {
     titleLabel.alphaValue = 1.0;
     [titleLabel setTextColor:[NSColor blackColor]];
-    [contentView setFrame:CGRectMake(38, 1, self.frame.size.width - 38 - 18, 50)];
+    [contentView setFrame:CGRectMake(30, 1, self.frame.size.width - 30 - 10, 50)];
     [unreadButton setHidden:NO];
   }
   
