@@ -23,7 +23,7 @@
   int animationStep;
 }
 
-@property (readwrite) float progress;
+@property (nonatomic, readwrite) float progress;
 @property (nonatomic, retain) NSImageView* loadingContainer;
 @property (nonatomic, retain) NSImageView* refreshBarLeftImage;
 @property (nonatomic, retain) NSImageView* refreshBarMiddleImage;
