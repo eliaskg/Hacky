@@ -29,24 +29,24 @@
       
       self.autoresizingMask = NSViewWidthSizable;
       
-      loadingContainer = [[NSImageView alloc] initWithFrame:NSMakeRect(19, 11, 52, 11)];
+      loadingContainer = [[NSImageView alloc] initWithFrame:NSMakeRect(HN_LEFT_MARGIN + 1, 11, 52, 11)];
       loadingContainer.image = [NSImage imageNamed:@"refreshContainer"];
       [self addSubview:loadingContainer];
       
-      refreshBarLeftImage = [[NSImageView alloc] initWithFrame:NSMakeRect(19, 11, 5, 11)];
+      refreshBarLeftImage = [[NSImageView alloc] initWithFrame:NSMakeRect(HN_LEFT_MARGIN + 1, 11, 5, 11)];
       refreshBarLeftImage.image = [NSImage imageNamed:@"refreshBarLeft"];
       [self addSubview:refreshBarLeftImage];
       
-      refreshBarMiddleImage = [[NSImageView alloc] initWithFrame:NSMakeRect(24, 11, 1, 11)];
+      refreshBarMiddleImage = [[NSImageView alloc] initWithFrame:NSMakeRect(HN_LEFT_MARGIN + 1 + 5, 11, 1, 11)];
       refreshBarMiddleImage.imageScaling = NSScaleNone;
       refreshBarMiddleImage.image = [NSImage imageNamed:@"refreshBarMiddle"];
       [self addSubview:refreshBarMiddleImage];
       
-      refreshBarRightImage = [[NSImageView alloc] initWithFrame:NSMakeRect(25, 11, 5, 11)];
+      refreshBarRightImage = [[NSImageView alloc] initWithFrame:NSMakeRect(HN_LEFT_MARGIN + 1 + 5 + 1, 11, 5, 11)];
       refreshBarRightImage.image = [NSImage imageNamed:@"refreshBarRight"];
       [self addSubview:refreshBarRightImage];
       
-      updatedLabel = [[NSTextField alloc] initWithFrame:CGRectMake(78, 9, 200, 80)];
+      updatedLabel = [[NSTextField alloc] initWithFrame:CGRectMake(HN_LEFT_MARGIN + 60, 9, 200, 80)];
       updatedLabel.font = [NSFont fontWithName:@"LucidaGrande-Bold" size:10];
       [updatedLabel setTextColor:HN_GRAY];
       [updatedLabel setEditable:NO];
