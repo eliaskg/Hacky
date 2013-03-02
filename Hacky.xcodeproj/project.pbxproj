@@ -96,6 +96,10 @@
 		7EC5AB4416DCE07700D44056 /* HNSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4316DCE07700D44056 /* HNSplitView.m */; };
 		7EC5AB4816DFB5E300D44056 /* NSWindow+FullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4716DFB5E300D44056 /* NSWindow+FullScreen.m */; };
 		7EC5AB4C16E28F7A00D44056 /* HNCategorySelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4B16E28F7A00D44056 /* HNCategorySelector.m */; };
+		7EC5AB5116E2975F00D44056 /* categorySelectorActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4D16E2975F00D44056 /* categorySelectorActive.png */; };
+		7EC5AB5216E2975F00D44056 /* categorySelectorActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4E16E2975F00D44056 /* categorySelectorActive@2x.png */; };
+		7EC5AB5316E2975F00D44056 /* categorySelectorNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4F16E2975F00D44056 /* categorySelectorNormal.png */; };
+		7EC5AB5416E2975F00D44056 /* categorySelectorNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5AB5016E2975F00D44056 /* categorySelectorNormal@2x.png */; };
 		7EE9054A16CE90870010FD71 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9054916CE90870010FD71 /* HNCommentsViewController.m */; };
 		7EE9054C16CFF3300010FD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE9054B16CFF3300010FD71 /* WebKit.framework */; };
 		7EE9055816D00DB40010FD71 /* WebViews in Resources */ = {isa = PBXBuildFile; fileRef = 7EE9055716D00DB40010FD71 /* WebViews */; };
@@ -252,6 +256,10 @@
 		7EC5AB4916DFBF0800D44056 /* HNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNConstants.h; sourceTree = "<group>"; };
 		7EC5AB4A16E28F7A00D44056 /* HNCategorySelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCategorySelector.h; sourceTree = "<group>"; };
 		7EC5AB4B16E28F7A00D44056 /* HNCategorySelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCategorySelector.m; sourceTree = "<group>"; };
+		7EC5AB4D16E2975F00D44056 /* categorySelectorActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = categorySelectorActive.png; path = Resources/categorySelectorActive.png; sourceTree = "<group>"; };
+		7EC5AB4E16E2975F00D44056 /* categorySelectorActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "categorySelectorActive@2x.png"; path = "Resources/categorySelectorActive@2x.png"; sourceTree = "<group>"; };
+		7EC5AB4F16E2975F00D44056 /* categorySelectorNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = categorySelectorNormal.png; path = Resources/categorySelectorNormal.png; sourceTree = "<group>"; };
+		7EC5AB5016E2975F00D44056 /* categorySelectorNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "categorySelectorNormal@2x.png"; path = "Resources/categorySelectorNormal@2x.png"; sourceTree = "<group>"; };
 		7EE9054816CE90870010FD71 /* HNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewController.h; sourceTree = "<group>"; };
 		7EE9054916CE90870010FD71 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		7EE9054B16CFF3300010FD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -495,6 +503,10 @@
 			children = (
 				7EE9055716D00DB40010FD71 /* WebViews */,
 				7E8CC335166FFCED0041B5CE /* icons.iconset */,
+				7EC5AB4D16E2975F00D44056 /* categorySelectorActive.png */,
+				7EC5AB4E16E2975F00D44056 /* categorySelectorActive@2x.png */,
+				7EC5AB4F16E2975F00D44056 /* categorySelectorNormal.png */,
+				7EC5AB5016E2975F00D44056 /* categorySelectorNormal@2x.png */,
 				7E147344165AB56500515E6D /* unread.png */,
 				7E147345165AB56500515E6D /* unread@2x.png */,
 				7E1E929E166E0E5C0026319B /* unreadSelected.png */,
@@ -695,6 +707,10 @@
 				7E590C7116CD2398009783A9 /* refreshContainer.png in Resources */,
 				7E590C7216CD2398009783A9 /* refreshContainer@2x.png in Resources */,
 				7EE9055816D00DB40010FD71 /* WebViews in Resources */,
+				7EC5AB5116E2975F00D44056 /* categorySelectorActive.png in Resources */,
+				7EC5AB5216E2975F00D44056 /* categorySelectorActive@2x.png in Resources */,
+				7EC5AB5316E2975F00D44056 /* categorySelectorNormal.png in Resources */,
+				7EC5AB5416E2975F00D44056 /* categorySelectorNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
