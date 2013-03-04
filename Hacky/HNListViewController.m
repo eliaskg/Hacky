@@ -78,13 +78,20 @@
 {
   scrollIndex = -1;
   
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
   
   for (int i = 0; i < [topics count]; i++)
   {
     NSMutableDictionary* topic = [topics objectAtIndex:i];
     
-    if ([defaults valueForKey:[topic valueForKey:@"id"]]) {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", [topic valueForKey:@"id"], [NSNumber numberWithInt:1]];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
+    
+    if ([results count] > 0) {
       [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
     }
     else {
@@ -95,17 +102,61 @@
   }
 }
 
+- (void)setTopicIsRead:(NSMutableDictionary*)theTopic
+{
+  NSString* topicId = [theTopic valueForKey:@"id"];
+  
+  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+  NSManagedObject *cdTopic = [NSEntityDescription insertNewObjectForEntityForName:@"Story" inManagedObjectContext:context];
+  [cdTopic setValue:topicId forKey:@"id"];
+  [cdTopic setValue:[NSNumber numberWithBool:YES] forKey:@"isRead"];
+  NSError *error;
+  if(![context save:&error]){
+    NSLog(@"%@", error);
+  }
+}
+
+- (void)setTopicIsUnread:(NSMutableDictionary*)theTopic
+{
+  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", [theTopic valueForKey:@"id"], [NSNumber numberWithInt:1]];
+  [request setEntity:entity];
+  [request setPredicate:predicate];
+  NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
+  
+  for (NSManagedObject *managedObject in results) {
+    [context deleteObject:managedObject];
+  }
+  
+  NSError *error;
+  if(![context save:&error]){
+    NSLog(@"%@", error);
+  }
+}
+
+- (BOOL)topicIsRead:(NSMutableDictionary*)theTopic
+{
+  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", [theTopic valueForKey:@"id"], [NSNumber numberWithInt:1]];
+  [request setEntity:entity];
+  [request setPredicate:predicate];
+  NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
+  
+  return [results count] > 0;
+}
+
 - (void)markAllAsRead
 {
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  
   for (int i = 0; i < [topics count]; i++)
   {
     NSMutableDictionary* topic = [topics objectAtIndex:i];
-    [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
+    [self setTopicIsRead:topic];
   }
   
-  [defaults synchronize];
   [self setReadMarks];
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
@@ -125,9 +176,7 @@
   
   [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
   
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
-  [defaults synchronize];
+  [self setTopicIsRead:topic];
   
   [self shouldReloadData];
   [listView setSelectedRow:selectedIndex];
@@ -185,9 +234,9 @@
 - (void)didClickMarkAsReadMenuButton
 {
   NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
-  [defaults synchronize];
+  
+  [self setTopicIsRead:topic];
+
   [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
@@ -198,9 +247,9 @@
 - (void)didClickMarkAsUnreadMenuButton
 {
   NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults removeObjectForKey:[topic valueForKey:@"id"]];
-  [defaults synchronize];
+  
+  [self setTopicIsUnread:topic];
+  
   [topic removeObjectForKey:@"isRead"];
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
@@ -223,14 +272,13 @@
 
 - (void)updateBadge
 {
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   int unreadTopics = 0;
   
   for (int i = 0; i < [topics count]; i++)
   {
     NSMutableDictionary* topic = topics[i];
     
-    if (![defaults valueForKey:[topic valueForKey:@"id"]])
+    if (![self topicIsRead:topic])
       unreadTopics++;
   }
   

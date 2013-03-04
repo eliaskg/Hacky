@@ -32,6 +32,10 @@
   NSSplitView* splitView;
   HNCommentsViewController* commentsViewController;
   BOOL didLoadStories;
+  
+  NSManagedObjectModel *managedObjectModel;
+	NSManagedObjectContext *managedObjectContext;
+	NSPersistentStoreCoordinator *persistentStoreCoordinator;
 }
 
 @property (assign) IBOutlet INAppStoreWindow* window;
@@ -47,6 +51,10 @@
 @property (nonatomic, retain) HNCommentsViewController* commentsViewController;
 @property (nonatomic, assign) BOOL didLoadStories;
 
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 - (IBAction)didClickReloadMenuItem:(id)sender;
 - (IBAction)didClickMarkAllAsReadButton:(id)sender;
 - (IBAction)didClickOpenURLButton:(id)sender;
@@ -58,5 +66,7 @@
 - (IBAction)didClickMarkAsReadButton:(id)sender;
 - (IBAction)didClickMarkAsUnreadButton:(id)sender;
 - (IBAction)didClickFullScreenButton:(id)sender;
+
++ (HNAppDelegate*)sharedAppDelegate;
 
 @end
