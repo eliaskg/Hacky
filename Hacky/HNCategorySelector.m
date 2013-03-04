@@ -93,6 +93,12 @@
   [titleLabel setAttributedStringValue:s];
   
   [titleLabel sizeToFit];
+  
+  [self fitAndCenter];
+}
+
+- (void)fitAndCenter
+{
   [self setFrameSize:NSMakeSize(titleLabel.bounds.size.width + 2 + 7, titleLabel.bounds.size.height)];
   [self setFrameOrigin:NSMakePoint(self.superview.bounds.size.width / 2 - self.bounds.size.width / 2,
                                    self.superview.bounds.size.height / 2 - self.bounds.size.height / 2)];
