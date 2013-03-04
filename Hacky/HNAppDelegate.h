@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "HNConstants.h"
+#import "HNCategorySelector.h"
 #import "HNSplitView.h"
 #import "Reachability.h"
 #import "INAppStoreWindow.h"
@@ -21,7 +22,7 @@
 @interface HNAppDelegate : NSObject <NSApplicationDelegate, NSSplitViewDelegate>
 {
   IBOutlet INAppStoreWindow* window;
-  NSTextField* titleLabel;
+  HNCategorySelector* categorySelector;
   HNListViewController* listViewController;
   NSProgressIndicator* spinner;
   NSTimer* loadTimer;
@@ -39,7 +40,7 @@
 }
 
 @property (assign) IBOutlet INAppStoreWindow* window;
-@property (nonatomic, retain) NSTextField* titleLabel;
+@property (nonatomic, retain) HNCategorySelector* categorySelector;
 @property (nonatomic, retain) HNListViewController* listViewController;
 @property (nonatomic, retain) NSProgressIndicator* spinner;
 @property (nonatomic, retain) NSTimer* loadTimer;

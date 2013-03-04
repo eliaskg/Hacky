@@ -12,7 +12,7 @@
 
 @synthesize window = _window;
 @synthesize listViewController;
-@synthesize titleLabel;
+@synthesize categorySelector;
 @synthesize spinner;
 @synthesize loadTimer;
 @synthesize markAsReadMenuItem;
@@ -37,15 +37,10 @@
   [_window setMinSize:NSMakeSize(2 * HN_MIN_MENU_WIDTH, HN_MIN_WINDOW_HEIGHT)];
   
   NSView *titleBarView = _window.titleBarView;
-  titleLabel = [[NSTextField alloc] initWithFrame:CGRectZero];
-  [titleLabel setEditable:NO];
-  [titleLabel setBezeled:NO];
-  [titleLabel setBordered:NO];
-  [titleLabel setBackgroundColor:[NSColor clearColor]];
-  [titleLabel setFrameOrigin:NSMakePoint((NSWidth([titleBarView bounds]) - NSWidth([titleLabel frame])) / 2,
-                                         (NSHeight([titleBarView bounds]) - NSHeight([titleLabel frame])) / 2)];
-  [titleLabel setAutoresizingMask:NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin];
-  [titleBarView addSubview:titleLabel];
+
+  categorySelector = [[HNCategorySelector alloc] init];
+  [titleBarView addSubview:categorySelector];
+  [categorySelector setTitle:@"Top"];
   
   spinner = [[NSProgressIndicator alloc] initWithFrame:CGRectMake(titleBarView.frame.size.width - 14 - 19, 11, 15, 15)];
   spinner.autoresizingMask = NSViewMinXMargin;
@@ -128,24 +123,6 @@
     titleString = @"Hacky";
   else
     titleString = [NSString stringWithFormat:@"Hacky (%@)", number];
-  
-  NSView *titleBarView = _window.titleBarView;
-  NSShadow *shadow = [[NSShadow alloc] init];
-  [shadow setShadowColor:[NSColor colorWithDeviceWhite:1.0 alpha:0.3]];
-  [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
-  // Create the attributes dictionary, you can change the font size
-  // to whatever is useful to you
-  NSMutableDictionary *sAttribs = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                   [NSFont fontWithName:@"LucidaGrande" size:13],NSFontAttributeName,
-                                   shadow, NSShadowAttributeName,
-                                   nil];
-  // Create a new attributed string with your attributes dictionary attached
-  NSAttributedString *s = [[NSAttributedString alloc] initWithString:titleString attributes:sAttribs];
-  // Set your text value
-  [titleLabel setAttributedStringValue:s];
-  [titleLabel sizeToFit];
-  [titleLabel setFrameOrigin:NSMakePoint((NSWidth([titleBarView bounds]) - NSWidth([titleLabel frame])) / 2,
-                                         (NSHeight([titleBarView bounds]) - NSHeight([titleLabel frame])) / 2)];
 }
 
 - (IBAction)didClickOpenURLButton:(id)sender
