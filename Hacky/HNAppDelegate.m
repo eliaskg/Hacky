@@ -66,7 +66,7 @@
   listViewController = [[HNListViewController alloc] init];
   NSView* listView = listViewController.view;
   int listWidth = [[[NSUserDefaults standardUserDefaults] valueForKey:@"listWidth"] intValue];
-  [listView setFrame:CGRectMake(0, 60, listWidth, splitView.frame.size.height)];
+  [listView setFrame:CGRectMake(0, 60, listWidth, 0)];
   [splitView addSubview:listView];
 
   commentsViewController = [[HNCommentsViewController alloc] init];
