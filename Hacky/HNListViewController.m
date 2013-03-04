@@ -104,6 +104,9 @@
 
 - (void)setTopicIsRead:(NSMutableDictionary*)theTopic
 {
+  if ([theTopic valueForKey:@"isRead"] == [NSNumber numberWithInt:1])
+    return;
+  
   NSString* topicId = [theTopic valueForKey:@"id"];
   
   NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
