@@ -131,7 +131,22 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-  [NSMenu popUpContextMenu:menu withEvent:theEvent forView:self];
+//  [NSMenu popUpContextMenu:menu withEvent:theEvent forView:self];
+  NSRect frame = [dropDownImageView frame];
+  NSPoint menuOrigin = [self convertPoint:NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height / 3.4) toView:nil];
+  
+  NSEvent *event =  [NSEvent mouseEventWithType:NSLeftMouseDown
+                                       location:menuOrigin
+                                  modifierFlags:NSLeftMouseDownMask
+                                      timestamp:1
+                                   windowNumber:[[self window] windowNumber]
+                                        context:[[self window] graphicsContext]
+                                    eventNumber:0
+                                     clickCount:1
+                                       pressure:1];
+  
+  
+  [NSMenu popUpContextMenu:menu withEvent:event forView:dropDownImageView];
 }
 
 - (void)didClickMenuButton:(NSMenuItem*)sender
