@@ -23,6 +23,8 @@
 @synthesize commentsViewController;
 @synthesize didLoadStories;
 @synthesize managedObjectContext;
+@synthesize persistentStoreCoordinator;
+@synthesize managedObjectModel;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
