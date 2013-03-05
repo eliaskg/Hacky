@@ -22,6 +22,7 @@
 @interface HNAppDelegate : NSObject <NSApplicationDelegate, NSSplitViewDelegate>
 {
   IBOutlet INAppStoreWindow* window;
+  NSString* category;
   HNCategorySelector* categorySelector;
   HNListViewController* listViewController;
   NSTimer* loadTimer;
@@ -39,6 +40,7 @@
 }
 
 @property (assign) IBOutlet INAppStoreWindow* window;
+@property (nonatomic, retain) NSString* category;
 @property (nonatomic, retain) HNCategorySelector* categorySelector;
 @property (nonatomic, retain) HNListViewController* listViewController;
 @property (nonatomic, retain) NSTimer* loadTimer;

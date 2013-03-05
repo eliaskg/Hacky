@@ -27,4 +27,6 @@
 @property (nonatomic, retain) NSTrackingArea* trackingArea;
 @property (nonatomic, retain) NSMenu* menu;
 
+- (void)setCategory:(NSString*)theCategory;
+
 @end

@@ -11,6 +11,7 @@
 @implementation HNAppDelegate
 
 @synthesize window = _window;
+@synthesize category;
 @synthesize listViewController;
 @synthesize categorySelector;
 @synthesize loadTimer;
@@ -41,7 +42,7 @@
 
   categorySelector = [[HNCategorySelector alloc] init];
   [titleBarView addSubview:categorySelector];
-  [categorySelector setTitle:@"Top"];
+  [categorySelector setCategory:[[NSUserDefaults standardUserDefaults] valueForKey:@"selectedCategory"]];
   
   NSView* contentView = [_window contentView];
   
@@ -82,6 +83,9 @@
   
   if (![defaults valueForKey:@"listWidth"])
     [defaults setValue:[NSNumber numberWithInt:400] forKey:@"listWidth"];
+  
+  if (![defaults valueForKey:@"selectedCategory"])
+    [defaults setValue:@"Top" forKey:@"selectedCategory"];
 }
 
 - (void)observeReachability

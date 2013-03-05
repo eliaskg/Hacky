@@ -149,18 +149,29 @@
   [NSMenu popUpContextMenu:menu withEvent:event forView:dropDownImageView];
 }
 
-- (void)didClickMenuButton:(NSMenuItem*)sender
+- (void)setCategory:(NSString*)theCategory
 {
-  [self setTitle:sender.title];
+  if ([theCategory isEqualToString:title])
+    return;
+  
+  [self setTitle:theCategory];
   
   NSArray* menuItems = menu.itemArray;
   
-  // --- Uncheck all menu items first
+  // --- Set check mark
   for (int i = 0; i < [menuItems count]; i++) {
-    [menuItems[i] setState:NSOffState];
+    NSMenuItem* menuItem = menuItems[i];
+    
+    if ([menuItem.title isEqualToString:theCategory])
+      menuItem.state = NSOnState;
+    else
+      menuItem.state = NSOffState;
   }
-  
-  [sender setState:NSOnState];
+}
+
+- (void)didClickMenuButton:(NSMenuItem*)sender
+{
+  [self setCategory:sender.title];
 }
 
 @end
