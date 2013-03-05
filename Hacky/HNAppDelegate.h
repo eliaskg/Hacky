@@ -24,7 +24,6 @@
   IBOutlet INAppStoreWindow* window;
   HNCategorySelector* categorySelector;
   HNListViewController* listViewController;
-  NSProgressIndicator* spinner;
   NSTimer* loadTimer;
   IBOutlet NSMenuItem* markAsReadMenuItem;
   IBOutlet NSMenuItem* markAsUnreadMenuItem;
@@ -42,7 +41,6 @@
 @property (assign) IBOutlet INAppStoreWindow* window;
 @property (nonatomic, retain) HNCategorySelector* categorySelector;
 @property (nonatomic, retain) HNListViewController* listViewController;
-@property (nonatomic, retain) NSProgressIndicator* spinner;
 @property (nonatomic, retain) NSTimer* loadTimer;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsUnreadMenuItem;

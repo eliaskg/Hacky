@@ -13,7 +13,6 @@
 @synthesize window = _window;
 @synthesize listViewController;
 @synthesize categorySelector;
-@synthesize spinner;
 @synthesize loadTimer;
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
@@ -34,7 +33,7 @@
   
   _window.titleBarHeight = HN_ROW_HEIGHT;
   _window.trafficLightButtonsLeftMargin = HN_LEFT_MARGIN;
-  _window.fullScreenButtonRightMargin = -100;
+  _window.fullScreenButtonRightMargin = HN_LEFT_MARGIN;
   _window.centerFullScreenButton = YES;
   [_window setMinSize:NSMakeSize(2 * HN_MIN_MENU_WIDTH, HN_MIN_WINDOW_HEIGHT)];
   
@@ -43,13 +42,6 @@
   categorySelector = [[HNCategorySelector alloc] init];
   [titleBarView addSubview:categorySelector];
   [categorySelector setTitle:@"Top"];
-  
-  spinner = [[NSProgressIndicator alloc] initWithFrame:CGRectMake(titleBarView.frame.size.width - 14 - 19, 11, 15, 15)];
-  spinner.autoresizingMask = NSViewMinXMargin;
-  [spinner setStyle:NSProgressIndicatorSpinningStyle];
-  [spinner setUsesThreadedAnimation:YES];
-  [spinner startAnimation:self];
-  [titleBarView addSubview:spinner];
   
   NSView* contentView = [_window contentView];
   
@@ -209,10 +201,6 @@
 {
   if (didLoadStories)
     return;
-  
-  [spinner stopAnimation:self];
-  spinner.hidden = YES;
-  _window.fullScreenButtonRightMargin = HN_LEFT_MARGIN;
   
   didLoadStories = YES;
 }
