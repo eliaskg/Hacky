@@ -22,6 +22,7 @@
   IBOutlet PXListView* listView;
   NSMutableArray* topics;
   BOOL applicationIsActive;
+  NSProgressIndicator* spinner;
 }
 
 @property (nonatomic, assign) NSUInteger scrollIndex;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet PXListView* listView;
 @property (nonatomic, retain) NSMutableArray* topics;
 @property (nonatomic, assign) BOOL applicationIsActive;
+@property (nonatomic, retain) NSProgressIndicator* spinner;
 
 - (void)markAllAsRead;
 

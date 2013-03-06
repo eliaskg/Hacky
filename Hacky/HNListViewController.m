@@ -20,6 +20,7 @@
 @synthesize topics;
 @synthesize listView;
 @synthesize applicationIsActive;
+@synthesize spinner;
 
 - (void)awakeFromNib
 {
@@ -35,6 +36,15 @@
   listView.refreshBlock = ^(EQSTRScrollView *scrollView) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
   };
+  
+  spinner = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(self.view.bounds.size.width / 2 - 18 / 2,
+                                                                  self.view.bounds.size.height / 2 - 18 / 2,
+                                                                  18,
+                                                                  18)];
+  spinner.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin;
+  [spinner setStyle:NSProgressIndicatorSpinningStyle];
+  spinner.hidden = YES;
+  [self.view addSubview:spinner];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
