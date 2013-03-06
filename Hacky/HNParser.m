@@ -42,7 +42,8 @@
       NSArray *titleTds = [tr findChildrenOfClass:@"title"];
       HTMLNode *titleTd = [titleTds objectAtIndex:1];
       HTMLNode *titleA = [titleTd findChildTag:@"a"];
-      [story setValue:[titleA contents] forKey:@"title"];
+      NSString* title = [self removeLeadingAndTrailingWhitespace:[titleA contents]];
+      [story setValue:title forKey:@"title"];
       [story setValue:[titleA getAttributeNamed:@"href"] forKey:@"url"];
       
       // --- Get id
