@@ -187,7 +187,7 @@
 {
   for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* story = [stories objectAtIndex:i];
+    HNStory* story = [stories objectAtIndex:i];
     [self setStoryIsRead:story];
   }
   
@@ -309,7 +309,7 @@
   
   for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* story = stories[i];
+    HNStory* story = stories[i];
     
     if (![self storyIsRead:story])
       unreadStories++;
