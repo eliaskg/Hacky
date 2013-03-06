@@ -19,6 +19,7 @@
 {
   NSUInteger scrollIndex;
   NSUInteger selectedIndex;
+  NSString* category;
   IBOutlet PXListView* listView;
   NSMutableArray* topics;
   BOOL applicationIsActive;
@@ -28,6 +29,7 @@
 
 @property (nonatomic, assign) NSUInteger scrollIndex;
 @property (nonatomic, assign) NSUInteger selectedIndex;
+@property (nonatomic, retain) NSString* category;
 @property (nonatomic, retain) IBOutlet PXListView* listView;
 @property (nonatomic, retain) NSMutableArray* topics;
 @property (nonatomic, assign) BOOL applicationIsActive;

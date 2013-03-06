@@ -166,7 +166,7 @@
 - (void)setNumber:(int)aNumber
 {
   number = aNumber;
-  numberLabel.stringValue = [NSString stringWithFormat:@"%d.", number];
+  numberLabel.stringValue = !!number ? [NSString stringWithFormat:@"%d.", number] : @"";
   [numberLabel sizeToFit];
 }
 

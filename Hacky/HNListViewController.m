@@ -17,6 +17,7 @@
 
 @synthesize selectedIndex;
 @synthesize scrollIndex;
+@synthesize category;
 @synthesize topics;
 @synthesize listView;
 @synthesize applicationIsActive;
@@ -376,8 +377,11 @@
     cell = [[HNPostCell alloc] initWithReusableIdentifier:LISTVIEW_CELL_IDENTIFIER];
   }
   
-  // --- Set up the new cell:
-  [cell setNumber:row + 1.0];
+  if ([category isEqualToString:@"Top"])
+    [cell setNumber:row + 1.0];
+  else
+    [cell setNumber:nil];
+  
   [cell setTopic:[topics objectAtIndex:row]];
   
   return cell;

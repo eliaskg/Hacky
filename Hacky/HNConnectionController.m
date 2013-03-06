@@ -29,7 +29,7 @@
 
 - (void)setRoute
 {
-  if ([identifier isEqualToString:@"stories"]) {
+  if ([identifier isEqualToString:@"Top"]) {
     url          = @"http://news.ycombinator.com";
     notification = @"didLoadStories";
     method       = @"GET";
@@ -37,6 +37,16 @@
   else if ([identifier isEqualToString:@"comments"]) {
     url          = @"http://news.ycombinator.com/item";
     notification = @"didLoadComments";
+    method       = @"GET";
+  }
+  else if ([identifier isEqualToString:@"New"]) {
+    url          = @"http://news.ycombinator.com/newest";
+    notification = @"didLoadStories";
+    method       = @"GET";
+  }
+  else if ([identifier isEqualToString:@"Ask"]) {
+    url          = @"http://news.ycombinator.com/ask";
+    notification = @"didLoadStories";
     method       = @"GET";
   }
 }

@@ -68,6 +68,7 @@
   
   [listViewController setIsLoading:YES];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSetTitleBadge:) name:@"shouldSetTitleBadge" object:nil];
@@ -105,6 +106,14 @@
   };
   
   [reach startNotifier];
+}
+
+- (void)didSelectCategory:(NSNotification*)aNotification
+{
+  category = [aNotification object];
+  listViewController.category = category;
+  [listViewController setIsLoading:YES];
+  [self load];
 }
 
 - (IBAction)didClickReloadMenuItem:(id)sender;
@@ -193,7 +202,7 @@
 
 - (void)load
 {
-  connectionController = [HNConnectionController connectionWithIdentifier:@"stories"];
+  connectionController = [HNConnectionController connectionWithIdentifier:category];
 }
 
 - (void)setLoadTimerIsActive:(BOOL)isActive

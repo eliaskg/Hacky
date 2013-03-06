@@ -45,6 +45,7 @@
     spinner.hidden = YES;
     [self.view addSubview:spinner];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectStory:) name:@"didSelectStory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
   }
@@ -68,6 +69,11 @@
   
   spinner.hidden = !isLoading;
   webView.hidden = isLoading;
+}
+
+- (void)didSelectCategory:(NSNotification*)aNotification
+{
+  webView.hidden = YES;
 }
 
 - (void)didSelectStory:(NSNotification*)aNotification
