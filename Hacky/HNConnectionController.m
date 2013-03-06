@@ -7,6 +7,7 @@
 //
 
 #import "HNConnectionController.h"
+#import "HNAppDelegate.h"
 
 @implementation HNConnectionController
 
@@ -49,11 +50,26 @@
     notification = @"didLoadStories";
     method       = @"GET";
   }
+  else if ([identifier isEqualToString:@"Favorites"]) {
+    notification = @"didLoadFavorites";
+  }
 }
 
 - (void)start
 {
   [self setRoute];
+  
+  if ([identifier isEqualToString:@"Favorites"]) {
+    NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
+    [results reverse];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notification object:results];
+    
+    return;
+  }
   
   if (params) {
     if ([method isEqualToString:@"GET"]) {

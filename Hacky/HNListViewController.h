@@ -14,6 +14,7 @@
 #import "EQSTRScrollView.h"
 #import "HNConnectionController.h"
 #import "HNPostCell.h"
+#import "NSDate+RelativeDate.h"
 
 @interface HNListViewController : NSViewController <PXListViewDelegate>
 {

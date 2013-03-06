@@ -59,6 +59,7 @@
   NSView* listView = listViewController.view;
   int listWidth = [[[NSUserDefaults standardUserDefaults] valueForKey:@"listWidth"] intValue];
   [listView setFrame:CGRectMake(0, 60, listWidth, 0)];
+  listViewController.category = category;
   [splitView addSubview:listView];
 
   commentsViewController = [[HNCommentsViewController alloc] init];
@@ -113,6 +114,7 @@
   category = [aNotification object];
   listViewController.category = category;
   [listViewController setIsLoading:YES];
+  [listViewController.listView scrollRowToVisible:0];
   [self load];
 }
 

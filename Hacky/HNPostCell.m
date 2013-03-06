@@ -16,6 +16,7 @@
 @synthesize number;
 @synthesize story;
 @synthesize unreadButton;
+@synthesize favoriteImageView;
 @synthesize contentView;
 @synthesize numberLabel;
 @synthesize titleLabel;
@@ -24,6 +25,9 @@
 @synthesize contextMenu;
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
+@synthesize makeFavoriteMenuItem;
+@synthesize deleteFavoriteMenuItem;
+@synthesize isFavorite;
 
 #pragma mark -
 #pragma mark Init/Dealloc
@@ -36,6 +40,9 @@
     [unreadButton setTarget:self];
     [unreadButton setAction:@selector(didClickUnreadButton:)];
     [self addSubview:unreadButton];
+    
+    favoriteImageView = [[NSImageView alloc] initWithFrame:CGRectMake(11, 30, 11, 11)];
+    [self addSubview:favoriteImageView];
     
     contentView = [[NSView alloc] initWithFrame:CGRectZero];
     contentView.autoresizingMask = NSViewWidthSizable;
@@ -129,11 +136,23 @@
     [markAsReadMenuItem setTarget:self];
     [contextMenu addItem:markAsReadMenuItem];
     
-    markAsUnreadMenuItem= [[NSMenuItem alloc] init];
+    markAsUnreadMenuItem = [[NSMenuItem alloc] init];
     [markAsUnreadMenuItem setTitle:@"Mark as Unread"];
     [markAsUnreadMenuItem setAction:@selector(didClickMarkAsUnreadButton:)];
     [markAsUnreadMenuItem setTarget:self];
     [contextMenu addItem:markAsUnreadMenuItem];
+    
+    makeFavoriteMenuItem = [[NSMenuItem alloc] init];
+    [makeFavoriteMenuItem setTitle:@"Add to Favorites"];
+    [makeFavoriteMenuItem setAction:@selector(diClickMakeFavoriteButton:)];
+    [makeFavoriteMenuItem setTarget:self];
+    [contextMenu addItem:makeFavoriteMenuItem];
+    
+    deleteFavoriteMenuItem = [[NSMenuItem alloc] init];
+    [deleteFavoriteMenuItem setTitle:@"Remove from Favorites"];
+    [deleteFavoriteMenuItem setAction:@selector(didClickDeleteFavoriteButton:)];
+    [deleteFavoriteMenuItem setTarget:self];
+    [contextMenu addItem:deleteFavoriteMenuItem];
     
     //Add the right click as the default menu
     [self setMenu:contextMenu];
@@ -153,14 +172,33 @@
   NSURL* url = [NSURL URLWithString:story.url];
   titleLabel.toolTip = [url host];
   
-  // Set Meta
-  NSString *metaString = [NSString stringWithFormat:@"%@ Points | %@ | %@ Comments", story.points, story.createdAt, story.comments];
+  NSString* metaString;
+  
+  // --- Set Meta
+  if (isFavorite) {
+    metaString = [NSString stringWithFormat:@"Added %@", story.createdAt];
+  }
+  else {
+    metaString = [NSString stringWithFormat:@"%@ Points · %@ · %@ Comments", story.points, story.createdAt, story.comments];
+  }
+  
+  favoriteImageView.hidden = !(isFavorite || story.isFavorite);
+  
   [metaLabel setStringValue:metaString];
   [metaLabel sizeToFit];
   [metaLabel setFrameOrigin:CGPointMake(numberLabel.bounds.size.width, metaLabel.frame.origin.y)];
   
-  markAsReadMenuItem.hidden = !!story.isRead;
-  markAsUnreadMenuItem.hidden = !story.isRead;
+  if (story.isFavorite) {
+    markAsReadMenuItem.hidden = true;
+    markAsUnreadMenuItem.hidden = true;
+  }
+  else {
+    markAsReadMenuItem.hidden = !!story.isRead;
+    markAsUnreadMenuItem.hidden = !story.isRead;
+  }
+  
+  makeFavoriteMenuItem.hidden = !!story.isFavorite;
+  deleteFavoriteMenuItem.hidden = !story.isFavorite;
 }
 
 - (void)setNumber:(int)aNumber
@@ -241,6 +279,17 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickMarkAsReadMenuButton" object:nil];
 }
 
+- (void)diClickMakeFavoriteButton:(id)sender
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickMakeFavoriteMenuButton" object:nil];
+}
+
+- (void)didClickDeleteFavoriteButton:(id)sender
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickDeleteFavoriteMenuButton" object:nil];
+}
+
+
 #pragma mark -
 #pragma mark Reuse
 
@@ -254,7 +303,7 @@
 
 - (void)drawRect:(NSRect)aRect
 {
-  if (story.isRead) {
+  if (story.isRead && !story.isFavorite) {
     titleLabel.alphaValue = 0.5;
     [contentView setFrame:CGRectMake(8, 1, self.frame.size.width - 16, 50)];
     [unreadButton setHidden:YES];
@@ -263,7 +312,7 @@
     titleLabel.alphaValue = 1.0;
     [titleLabel setTextColor:[NSColor blackColor]];
     [contentView setFrame:CGRectMake(30, 1, self.frame.size.width - 30 - 10, 50)];
-    [unreadButton setHidden:NO];
+    [unreadButton setHidden:isFavorite || story.isFavorite];
   }
   
   if([self isSelected]) {
@@ -297,6 +346,9 @@
     [[NSColor colorWithCalibratedRed:0.0/255.0 green:68.0/255.0 blue:141.0/255.0 alpha:1.0] set];
     
     [contentView setFrameSize:CGSizeMake(contentView.bounds.size.width - 20, contentView.bounds.size.height)];
+    
+    if (isFavorite || story.isFavorite)
+      favoriteImageView.image = [NSImage imageNamed:@"favoriteSelected"];
   }
   else {
     // --- Text Color
@@ -308,6 +360,9 @@
     
     // --- Background Color
     [HN_GRAY_LIGHTER set];
+    
+    if (isFavorite || story.isFavorite)
+      favoriteImageView.image = [NSImage imageNamed:@"favorite"];
   }
   
   gearButton.hidden = ![self isSelected];

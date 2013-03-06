@@ -40,6 +40,7 @@
   };
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:@"didLoadFavorites" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
@@ -50,6 +51,8 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMakeFavoriteMenuButton) name:@"didClickMakeFavoriteMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickDeleteFavoriteMenuButton) name:@"didClickDeleteFavoriteMenuButton" object:nil];
 }
 
 - (void)setIsLoading:(BOOL)loading
@@ -105,6 +108,31 @@
   [self updateBadge];
 }
 
+- (void)didLoadFavorites:(NSNotification*)aNotification
+{
+  NSMutableArray* favorites = [aNotification object];
+  
+  stories = [[NSMutableArray alloc] init];
+  
+  for (int i = 0; i < [favorites count]; i++) {
+    NSManagedObject* favorite = favorites[i];
+    HNStory* story  = [[HNStory alloc] init];
+    story.storyId   = [favorite valueForKey:@"id"];
+    story.title     = [favorite valueForKey:@"title"];
+    story.url       = [favorite valueForKey:@"url"];
+    NSDate* createdAt = [favorite valueForKey:@"created_at"];
+    NSString* createdAtRelative = [createdAt relativeDate];
+    story.createdAt = createdAtRelative;
+    story.isFavorite = YES;
+    [stories addObject:story];
+  }
+  
+  [self setIsLoading:NO];
+  [listView stopLoading];
+  [listView reloadData];
+  [[listView window] makeFirstResponder:listView];
+}
+
 - (void)setReadMarks
 {
   scrollIndex = -1;
@@ -121,6 +149,8 @@
         scrollIndex = i;
       }
     }
+    
+    story.isFavorite = [story isFavoriteInDB];
   }
 }
 
@@ -231,6 +261,34 @@
   [self updateBadge];
 }
 
+- (void)didClickMakeFavoriteMenuButton
+{
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  
+  [story makeFavoriteInDB];
+  
+  story.isFavorite = YES;
+  [listView reloadData];
+  [listView setSelectedRow:selectedIndex];
+}
+
+- (void)didClickDeleteFavoriteMenuButton
+{
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  
+  [story deleteFavoriteInDB];
+  
+  if ([category isEqualToString:@"Favorites"]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldClearComments" object:nil];
+  }
+  else {
+    story.isFavorite = NO;
+    [listView reloadData];
+    [listView setSelectedRow:selectedIndex];
+  }
+}
+
 - (BOOL)writeToPasteBoard:(NSString*)stringToWrite
 {
   NSPasteboard* pasteBoard = [NSPasteboard generalPasteboard];
@@ -321,6 +379,8 @@
     [cell setNumber:row + 1.0];
   else
     [cell setNumber:nil];
+  
+  cell.isFavorite = !![category isEqualToString:@"Favorites"];
   
   [cell setStory:[stories objectAtIndex:row]];
   

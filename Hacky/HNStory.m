@@ -17,6 +17,7 @@
 @synthesize comments;
 @synthesize url;
 @synthesize isRead;
+@synthesize isFavorite;
 
 @class HNStory;
 
@@ -38,7 +39,7 @@
 
 - (void)setIsReadInDB
 {
-  if (isRead)
+  if ([self isReadInDB])
     return;
   
   NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
@@ -107,7 +108,7 @@
   [cdStory setValue:storyId forKey:@"id"];
   [cdStory setValue:title forKey:@"title"];
   [cdStory setValue:url forKey:@"url"];
-  [cdStory setValue:[NSDate new] forKey:@"createdAt"];
+  [cdStory setValue:[NSDate new] forKey:@"created_at"];
   NSError *error;
   if(![context save:&error]){
     NSLog(@"%@", error);

@@ -81,6 +81,13 @@
 		7E7A3C57165A37A1008B538F /* PXListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C50165A37A1008B538F /* PXListViewCell.m */; };
 		7E7A3C67165A448D008B538F /* HNListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A3C65165A448D008B538F /* HNListViewController.m */; };
 		7E7A3C68165A448D008B538F /* HNListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A3C66165A448D008B538F /* HNListViewController.xib */; };
+		7E81AAB216E79FD8007DA99D /* NSDate+RelativeDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E81AAB116E79FD8007DA99D /* NSDate+RelativeDate.m */; };
+		7E81AAB316E7A7FF007DA99D /* NSDate+RelativeDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E81AAB116E79FD8007DA99D /* NSDate+RelativeDate.m */; };
+		7E81AAB916E7A914007DA99D /* NSArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E81AAB816E7A913007DA99D /* NSArray+Reverse.m */; };
+		7E81AABE16E7B079007DA99D /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81AABA16E7B079007DA99D /* favorite.png */; };
+		7E81AABF16E7B079007DA99D /* favorite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81AABB16E7B079007DA99D /* favorite@2x.png */; };
+		7E81AAC016E7B079007DA99D /* favoriteSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81AABC16E7B079007DA99D /* favoriteSelected.png */; };
+		7E81AAC116E7B079007DA99D /* favoriteSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81AABD16E7B079007DA99D /* favoriteSelected@2x.png */; };
 		7E8CC336166FFCED0041B5CE /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 7E8CC335166FFCED0041B5CE /* icons.iconset */; };
 		7E9A43031656B90C001AA5C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9A43021656B90C001AA5C9 /* Cocoa.framework */; };
 		7E9A430D1656B90C001AA5C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A430B1656B90C001AA5C9 /* InfoPlist.strings */; };
@@ -230,6 +237,14 @@
 		7E7A3C64165A448D008B538F /* HNListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNListViewController.h; sourceTree = "<group>"; };
 		7E7A3C65165A448D008B538F /* HNListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNListViewController.m; sourceTree = "<group>"; };
 		7E7A3C66165A448D008B538F /* HNListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNListViewController.xib; sourceTree = "<group>"; };
+		7E81AAB016E79FD8007DA99D /* NSDate+RelativeDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RelativeDate.h"; sourceTree = "<group>"; };
+		7E81AAB116E79FD8007DA99D /* NSDate+RelativeDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RelativeDate.m"; sourceTree = "<group>"; };
+		7E81AAB716E7A913007DA99D /* NSArray+Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Reverse.h"; path = "Categories/NSArray+Reverse.h"; sourceTree = "<group>"; };
+		7E81AAB816E7A913007DA99D /* NSArray+Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Reverse.m"; path = "Categories/NSArray+Reverse.m"; sourceTree = "<group>"; };
+		7E81AABA16E7B079007DA99D /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favorite.png; path = Resources/favorite.png; sourceTree = "<group>"; };
+		7E81AABB16E7B079007DA99D /* favorite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favorite@2x.png"; path = "Resources/favorite@2x.png"; sourceTree = "<group>"; };
+		7E81AABC16E7B079007DA99D /* favoriteSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteSelected.png; path = Resources/favoriteSelected.png; sourceTree = "<group>"; };
+		7E81AABD16E7B079007DA99D /* favoriteSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favoriteSelected@2x.png"; path = "Resources/favoriteSelected@2x.png"; sourceTree = "<group>"; };
 		7E8CC335166FFCED0041B5CE /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icons.iconset; path = Resources/icons.iconset; sourceTree = "<group>"; };
 		7E9A42FE1656B90B001AA5C9 /* Hacky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hacky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9A43021656B90C001AA5C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -519,6 +534,10 @@
 				7EF25C8816E525DA00F494F6 /* categorySelectorActive@2x.png */,
 				7EF25C8916E525DA00F494F6 /* categorySelectorNormal.png */,
 				7EF25C8A16E525DA00F494F6 /* categorySelectorNormal@2x.png */,
+				7E81AABA16E7B079007DA99D /* favorite.png */,
+				7E81AABB16E7B079007DA99D /* favorite@2x.png */,
+				7E81AABC16E7B079007DA99D /* favoriteSelected.png */,
+				7E81AABD16E7B079007DA99D /* favoriteSelected@2x.png */,
 				7E147344165AB56500515E6D /* unread.png */,
 				7E147345165AB56500515E6D /* unread@2x.png */,
 				7E1E929E166E0E5C0026319B /* unreadSelected.png */,
@@ -574,6 +593,10 @@
 		7EC5AB4516DFB5B300D44056 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7E81AAB716E7A913007DA99D /* NSArray+Reverse.h */,
+				7E81AAB816E7A913007DA99D /* NSArray+Reverse.m */,
+				7E81AAB016E79FD8007DA99D /* NSDate+RelativeDate.h */,
+				7E81AAB116E79FD8007DA99D /* NSDate+RelativeDate.m */,
 				7EC5AB4616DFB5E300D44056 /* NSWindow+FullScreen.h */,
 				7EC5AB4716DFB5E300D44056 /* NSWindow+FullScreen.m */,
 			);
@@ -724,6 +747,10 @@
 				7EF25C8C16E525DA00F494F6 /* categorySelectorActive@2x.png in Resources */,
 				7EF25C8D16E525DA00F494F6 /* categorySelectorNormal.png in Resources */,
 				7EF25C8E16E525DA00F494F6 /* categorySelectorNormal@2x.png in Resources */,
+				7E81AABE16E7B079007DA99D /* favorite.png in Resources */,
+				7E81AABF16E7B079007DA99D /* favorite@2x.png in Resources */,
+				7E81AAC016E7B079007DA99D /* favoriteSelected.png in Resources */,
+				7E81AAC116E7B079007DA99D /* favoriteSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +785,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E81AAB316E7A7FF007DA99D /* NSDate+RelativeDate.m in Sources */,
 				7EF25C8F16E525FF00F494F6 /* HNCategorySelector.m in Sources */,
 				7E590C7516CD253B009783A9 /* HNPullToRefreshHeader.m in Sources */,
 				7E9A430F1656B90C001AA5C9 /* main.m in Sources */,
@@ -790,6 +818,7 @@
 				7EC5AB4816DFB5E300D44056 /* NSWindow+FullScreen.m in Sources */,
 				7EC5AB5A16E3DBC500D44056 /* Models.xcdatamodeld in Sources */,
 				7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */,
+				7E81AAB916E7A914007DA99D /* NSArray+Reverse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,6 +830,7 @@
 				7E0A424C169CB97800F8DA49 /* AFHTTPClient.m in Sources */,
 				7E590C2216CD237B009783A9 /* HNPullToRefreshHeader.m in Sources */,
 				7EF25C8616E525C900F494F6 /* HNCategorySelector.m in Sources */,
+				7E81AAB216E79FD8007DA99D /* NSDate+RelativeDate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

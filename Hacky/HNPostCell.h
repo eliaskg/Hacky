@@ -18,6 +18,7 @@
   int number;
   HNStory* story;
 	HNUnreadButton* unreadButton;
+  NSImageView* favoriteImageView;
   NSView* contentView;
   NSTextField* numberLabel;
   NSTextField* titleLabel;
@@ -26,6 +27,9 @@
   NSMenu* contextMenu;
   NSMenuItem* markAsReadMenuItem;
   NSMenuItem* markAsUnreadMenuItem;
+  NSMenuItem* makeFavoriteMenuItem;
+  NSMenuItem* deleteFavoriteMenuItem;
+  BOOL isFavorite;
 }
 
 @property (nonatomic, assign) int number;
@@ -35,10 +39,14 @@
 @property (nonatomic, retain) NSTextField* titleLabel;
 @property (nonatomic, retain) NSTextField* metaLabel;
 @property (nonatomic, retain) HNUnreadButton* unreadButton;
+@property (nonatomic, retain) NSImageView* favoriteImageView;
 @property (nonatomic, retain) NSButton* gearButton;
 @property (nonatomic, retain) NSMenu* contextMenu;
 @property (nonatomic, retain) NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) NSMenuItem* markAsUnreadMenuItem;
+@property (nonatomic, retain) NSMenuItem* makeFavoriteMenuItem;
+@property (nonatomic, retain) NSMenuItem* deleteFavoriteMenuItem;
+@property (nonatomic, assign) BOOL isFavorite;
 
 - (void)setStory:(HNStory*)aStory;
 - (void)setNumber:(int)aNumber;

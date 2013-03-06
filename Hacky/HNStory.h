@@ -18,6 +18,7 @@
   NSString* comments;
   NSString* url;
   BOOL isRead;
+  BOOL isFavorite;
 }
 
 @property (nonatomic, retain) NSString* storyId;
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) NSString* comments;
 @property (nonatomic, retain) NSString* url;
 @property (nonatomic, assign) BOOL isRead;
+@property (nonatomic, assign) BOOL isFavorite;
 
 - (HNStory*)initWithDictionary:(NSMutableDictionary*)dictionary;
 - (void)setIsReadInDB;
