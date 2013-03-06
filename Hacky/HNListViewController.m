@@ -109,20 +109,11 @@
 {
   scrollIndex = -1;
   
-  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
-  
   for (int i = 0; i < [stories count]; i++)
   {
     HNStory* story = [stories objectAtIndex:i];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", story.storyId, [NSNumber numberWithInt:1]];
-    [request setEntity:entity];
-    [request setPredicate:predicate];
-    NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
-    
-    if ([results count] > 0) {
+
+    if ([story isReadInDB]) {
       story.isRead = YES;
     }
     else {
