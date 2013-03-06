@@ -19,6 +19,10 @@ body {
   border-bottom: 1px solid #d8d8d8;
   line-height: 1.5em;
   cursor: default;
+  
+  word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .meta {
