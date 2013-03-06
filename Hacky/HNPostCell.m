@@ -189,8 +189,8 @@
   [metaLabel setFrameOrigin:CGPointMake(numberLabel.bounds.size.width, metaLabel.frame.origin.y)];
   
   if (story.isFavorite) {
-    markAsReadMenuItem.hidden = true;
-    markAsUnreadMenuItem.hidden = true;
+    markAsReadMenuItem.hidden = YES;
+    markAsUnreadMenuItem.hidden = YES;
   }
   else {
     markAsReadMenuItem.hidden = !!story.isRead;
