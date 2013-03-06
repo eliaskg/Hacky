@@ -32,5 +32,8 @@
 - (void)setIsReadInDB;
 - (void)setIsUnreadInDB;
 - (BOOL)isReadInDB;
+- (BOOL)isFavoriteInDB;
+- (void)makeFavoriteInDB;
+- (void)deleteFavoriteInDB;
 
 @end

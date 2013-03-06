@@ -84,4 +84,54 @@
   return [results count] > 0;
 }
 
+- (BOOL)isFavoriteInDB
+{
+  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" inManagedObjectContext:context];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", storyId];
+  [request setEntity:entity];
+  [request setPredicate:predicate];
+  NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
+  
+  return [results count] > 0;
+}
+
+- (void)makeFavoriteInDB
+{
+  if ([self isFavoriteInDB])
+    return;
+  
+  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+  NSManagedObject *cdStory = [NSEntityDescription insertNewObjectForEntityForName:@"Favorite" inManagedObjectContext:context];
+  [cdStory setValue:storyId forKey:@"id"];
+  [cdStory setValue:title forKey:@"title"];
+  [cdStory setValue:url forKey:@"url"];
+  [cdStory setValue:[NSDate new] forKey:@"createdAt"];
+  NSError *error;
+  if(![context save:&error]){
+    NSLog(@"%@", error);
+  }
+}
+
+- (void)deleteFavoriteInDB
+{
+  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Favorite" inManagedObjectContext:context];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", storyId];
+  [request setEntity:entity];
+  [request setPredicate:predicate];
+  NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
+  
+  for (NSManagedObject *managedObject in results) {
+    [context deleteObject:managedObject];
+  }
+  
+  NSError *error;
+  if(![context save:&error]){
+    NSLog(@"%@", error);
+  }
+}
+
 @end
