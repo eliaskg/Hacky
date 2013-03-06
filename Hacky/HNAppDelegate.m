@@ -66,6 +66,8 @@
 
   [splitView addSubview:commentsView];
   
+  [listViewController setIsLoading:YES];
+  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSetTitleBadge:) name:@"shouldSetTitleBadge" object:nil];

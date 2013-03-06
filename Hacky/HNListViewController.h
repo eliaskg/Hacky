@@ -22,6 +22,7 @@
   IBOutlet PXListView* listView;
   NSMutableArray* topics;
   BOOL applicationIsActive;
+  BOOL isLoading;
   NSProgressIndicator* spinner;
 }
 
@@ -30,8 +31,10 @@
 @property (nonatomic, retain) IBOutlet PXListView* listView;
 @property (nonatomic, retain) NSMutableArray* topics;
 @property (nonatomic, assign) BOOL applicationIsActive;
+@property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, retain) NSProgressIndicator* spinner;
 
 - (void)markAllAsRead;
+- (void)setIsLoading:(BOOL)loading;
 
 @end
