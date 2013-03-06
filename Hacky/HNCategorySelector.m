@@ -167,6 +167,12 @@
     else
       menuItem.state = NSOffState;
   }
+  
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setValue:theCategory forKey:@"selectedCategory"];
+  [defaults synchronize];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectCategory" object:theCategory];
 }
 
 - (void)didClickMenuButton:(NSMenuItem*)sender

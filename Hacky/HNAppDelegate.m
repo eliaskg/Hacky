@@ -32,6 +32,8 @@
   
   [self checkDefaults];
   
+  category = [[NSUserDefaults standardUserDefaults] valueForKey:@"selectedCategory"];
+  
   _window.titleBarHeight = HN_ROW_HEIGHT;
   _window.trafficLightButtonsLeftMargin = HN_LEFT_MARGIN;
   _window.fullScreenButtonRightMargin = HN_LEFT_MARGIN;
@@ -42,7 +44,7 @@
 
   categorySelector = [[HNCategorySelector alloc] init];
   [titleBarView addSubview:categorySelector];
-  [categorySelector setCategory:[[NSUserDefaults standardUserDefaults] valueForKey:@"selectedCategory"]];
+  [categorySelector setCategory:category];
   
   NSView* contentView = [_window contentView];
   
@@ -86,6 +88,8 @@
   
   if (![defaults valueForKey:@"selectedCategory"])
     [defaults setValue:@"Top" forKey:@"selectedCategory"];
+  
+  [defaults synchronize];
 }
 
 - (void)observeReachability
