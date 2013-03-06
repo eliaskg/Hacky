@@ -43,34 +43,34 @@ a, a:active, a:visited {
   color: #00a2ff;
 }
 
-/* 12px steps */
+/* 10px steps */
 
 .margin-0 {
-  padding-left: 19px;
+  padding-left: 10px;
 }
 
 .margin-40 {
-  padding-left: 31px;
+  padding-left: 20px;
 }
 
 .margin-80 {
-  padding-left: 43px;
+  padding-left: 30px;
 }
 
 .margin-120 {
-  padding-left: 55px;
+  padding-left: 40px;
 }
 
 .margin-160 {
-  padding-left: 67px;
+  padding-left: 50px;
 }
 
 .margin-200 {
-  padding-left: 79px;
+  padding-left: 60px;
 }
 
 .margin-240 {
-  padding-left: 91px;
+  padding-left: 70px;
 }
 
 .margin-280 {
@@ -78,13 +78,13 @@ a, a:active, a:visited {
 }
 
 .margin-320 {
-  padding-left: 115px;
+  padding-left: 80px;
 }
 
 .margin-360 {
-  padding-left: 127px;
+  padding-left: 90px;
 }
 
 .margin-400 {
-  padding-left: 139px;
+  padding-left: 100px;
 }
