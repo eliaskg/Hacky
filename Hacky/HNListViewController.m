@@ -133,62 +133,12 @@
   }
 }
 
-- (void)setStoryIsRead:(HNStory*)theStory
-{
-  if (theStory.isRead)
-    return;
-  
-  NSString* storyId = theStory.storyId;
-  
-  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
-  NSManagedObject *cdStory = [NSEntityDescription insertNewObjectForEntityForName:@"Story" inManagedObjectContext:context];
-  [cdStory setValue:storyId forKey:@"id"];
-  [cdStory setValue:[NSNumber numberWithBool:YES] forKey:@"isRead"];
-  NSError *error;
-  if(![context save:&error]){
-    NSLog(@"%@", error);
-  }
-}
-
-- (void)setStoryIsUnread:(HNStory*)theStory
-{
-  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", theStory.storyId, [NSNumber numberWithInt:1]];
-  [request setEntity:entity];
-  [request setPredicate:predicate];
-  NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
-  
-  for (NSManagedObject *managedObject in results) {
-    [context deleteObject:managedObject];
-  }
-  
-  NSError *error;
-  if(![context save:&error]){
-    NSLog(@"%@", error);
-  }
-}
-
-- (BOOL)storyIsRead:(HNStory*)theStory
-{
-  NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", theStory.storyId, [NSNumber numberWithInt:1]];
-  [request setEntity:entity];
-  [request setPredicate:predicate];
-  NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
-  
-  return [results count] > 0;
-}
-
 - (void)markAllAsRead
 {
   for (int i = 0; i < [stories count]; i++)
   {
     HNStory* story = [stories objectAtIndex:i];
-    [self setStoryIsRead:story];
+    [story setIsReadInDB];
   }
   
   [self setReadMarks];
@@ -210,7 +160,7 @@
   
   story.isRead = YES;
   
-  [self setStoryIsRead:story];
+  [story setIsReadInDB];
   
   [self shouldReloadData];
   [listView setSelectedRow:selectedIndex];
@@ -268,7 +218,7 @@
 {
   HNStory* story = [stories objectAtIndex:selectedIndex];
   
-  [self setStoryIsRead:story];
+  [story setIsReadInDB];
 
   story.isRead = YES;
   [listView reloadData];
@@ -281,7 +231,7 @@
 {
   HNStory* story = [stories objectAtIndex:selectedIndex];
   
-  [self setStoryIsUnread:story];
+  [story setIsUnreadInDB];
   
   story.isRead = NO;
   [listView reloadData];
@@ -311,7 +261,7 @@
   {
     HNStory* story = stories[i];
     
-    if (![self storyIsRead:story])
+    if (![story isReadInDB])
       unreadStories++;
   }
   

@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
-#import "HNParser.h"
-#import "HNStory.h"
 #import "HNConnectionController.h"
+#import "HNParser.h"
+
+@class HNStory;
 
 @interface HNCommentsViewController : NSViewController
 {

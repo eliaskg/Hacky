@@ -19,6 +19,7 @@
 #import "NSWindow+FullScreen.h"
 
 @class HNListViewController;
+@class HNCommentsViewController;
 
 @interface HNAppDelegate : NSObject <NSApplicationDelegate, NSSplitViewDelegate>
 {

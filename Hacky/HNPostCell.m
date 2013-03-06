@@ -7,7 +7,7 @@
 //
 
 #import "HNPostCell.h"
-
+#import "HNStory.h"
 #import <iso646.h>
 
 

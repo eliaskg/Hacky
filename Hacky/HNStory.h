@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HNAppDelegate.h"
 
 @interface HNStory : NSObject
 {
@@ -28,5 +29,8 @@
 @property (nonatomic, assign) BOOL isRead;
 
 - (HNStory*)initWithDictionary:(NSMutableDictionary*)dictionary;
+- (void)setIsReadInDB;
+- (void)setIsUnreadInDB;
+- (BOOL)isReadInDB;
 
 @end

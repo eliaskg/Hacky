@@ -8,6 +8,7 @@
 
 #import "HNParser.h"
 #import "HTMLParser.h"
+#import "HNStory.h"
 
 @implementation HNParser
 

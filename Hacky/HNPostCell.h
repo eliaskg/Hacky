@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import "HNConstants.h"
-#import "HNStory.h"
 #import "PXListViewCell.h"
 #import "HNUnreadButton.h"
+
+@class HNStory;
 
 @interface HNPostCell : PXListViewCell
 {
