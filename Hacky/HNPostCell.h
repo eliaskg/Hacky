@@ -8,12 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "HNConstants.h"
+#import "HNStory.h"
 #import "PXListViewCell.h"
 #import "HNUnreadButton.h"
 
 @interface HNPostCell : PXListViewCell
 {
   int number;
+  HNStory* story;
 	HNUnreadButton* unreadButton;
   NSView* contentView;
   NSTextField* numberLabel;
@@ -26,7 +28,7 @@
 }
 
 @property (nonatomic, assign) int number;
-@property (nonatomic, retain) NSMutableDictionary* topic;
+@property (nonatomic, retain) HNStory* story;
 @property (nonatomic, retain) NSView* contentView;
 @property (nonatomic, retain) NSTextField* numberLabel;
 @property (nonatomic, retain) NSTextField* titleLabel;
@@ -37,7 +39,7 @@
 @property (nonatomic, retain) NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) NSMenuItem* markAsUnreadMenuItem;
 
-- (void)setTopic:(NSMutableDictionary*)aTopic;
+- (void)setStory:(HNStory*)aStory;
 - (void)setNumber:(int)aNumber;
 
 @end

@@ -9,19 +9,20 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 #import "HNParser.h"
+#import "HNStory.h"
 #import "HNConnectionController.h"
 
 @interface HNCommentsViewController : NSViewController
 {
   WebView* webView;
-  NSMutableDictionary* story;
+  HNStory* story;
   HNConnectionController* connectionController;
   NSProgressIndicator* spinner;
   BOOL isLoading;
 }
 
 @property (nonatomic, retain) WebView* webView;
-@property (nonatomic, retain) NSMutableDictionary* story;
+@property (nonatomic, retain) HNStory* story;
 @property (nonatomic, retain) HNConnectionController* connectionController;
 @property (nonatomic, retain) NSProgressIndicator* spinner;
 @property (nonatomic, assign) BOOL isLoading;

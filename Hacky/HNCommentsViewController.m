@@ -78,16 +78,16 @@
 
 - (void)didSelectStory:(NSNotification*)aNotification
 { 
-  NSMutableDictionary* theStory = [aNotification object];
+  HNStory* theStory = [aNotification object];
   
-  if ([[story valueForKey:@"id"] isEqualToString:[theStory valueForKey:@"id"]])
+  if ([story.storyId isEqualToString:theStory.storyId])
     return;
   
   [self setIsLoading:YES];
   
   story = theStory;
   
-  NSDictionary* params = [NSDictionary dictionaryWithObject:[story valueForKey:@"id"] forKey:@"id"];
+  NSDictionary* params = [NSDictionary dictionaryWithObject:story.storyId forKey:@"id"];
   
   connectionController = [HNConnectionController connectionWithIdentifier:@"comments" params:params];
 }

@@ -18,7 +18,7 @@
 @synthesize selectedIndex;
 @synthesize scrollIndex;
 @synthesize category;
-@synthesize topics;
+@synthesize stories;
 @synthesize listView;
 @synthesize applicationIsActive;
 @synthesize isLoading;
@@ -30,7 +30,7 @@
   
   self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   
-  topics = [[NSMutableArray alloc] init];
+  stories = [[NSMutableArray alloc] init];
   
   listView.delegate = self;
   listView.borderType = NSNoBorder;
@@ -87,7 +87,7 @@
   
   NSString* response = [aNotification object];
   HNParser* parser = [[HNParser alloc] init];
-  topics = [parser parseStories:response];
+  stories = [parser parseStories:response];
   
   [listView stopLoading];
   
@@ -112,18 +112,18 @@
   NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
   
-  for (int i = 0; i < [topics count]; i++)
+  for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* topic = [topics objectAtIndex:i];
+    HNStory* story = [stories objectAtIndex:i];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", [topic valueForKey:@"id"], [NSNumber numberWithInt:1]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", story.storyId, [NSNumber numberWithInt:1]];
     [request setEntity:entity];
     [request setPredicate:predicate];
     NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
     
     if ([results count] > 0) {
-      [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
+      story.isRead = YES;
     }
     else {
       if (scrollIndex == -1) {
@@ -133,29 +133,29 @@
   }
 }
 
-- (void)setTopicIsRead:(NSMutableDictionary*)theTopic
+- (void)setStoryIsRead:(HNStory*)theStory
 {
-  if ([theTopic valueForKey:@"isRead"] == [NSNumber numberWithInt:1])
+  if (theStory.isRead)
     return;
   
-  NSString* topicId = [theTopic valueForKey:@"id"];
+  NSString* storyId = theStory.storyId;
   
   NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
-  NSManagedObject *cdTopic = [NSEntityDescription insertNewObjectForEntityForName:@"Story" inManagedObjectContext:context];
-  [cdTopic setValue:topicId forKey:@"id"];
-  [cdTopic setValue:[NSNumber numberWithBool:YES] forKey:@"isRead"];
+  NSManagedObject *cdStory = [NSEntityDescription insertNewObjectForEntityForName:@"Story" inManagedObjectContext:context];
+  [cdStory setValue:storyId forKey:@"id"];
+  [cdStory setValue:[NSNumber numberWithBool:YES] forKey:@"isRead"];
   NSError *error;
   if(![context save:&error]){
     NSLog(@"%@", error);
   }
 }
 
-- (void)setTopicIsUnread:(NSMutableDictionary*)theTopic
+- (void)setStoryIsUnread:(HNStory*)theStory
 {
   NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", [theTopic valueForKey:@"id"], [NSNumber numberWithInt:1]];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", theStory.storyId, [NSNumber numberWithInt:1]];
   [request setEntity:entity];
   [request setPredicate:predicate];
   NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
@@ -170,12 +170,12 @@
   }
 }
 
-- (BOOL)topicIsRead:(NSMutableDictionary*)theTopic
+- (BOOL)storyIsRead:(HNStory*)theStory
 {
   NSManagedObjectContext* context = [[HNAppDelegate sharedAppDelegate] managedObjectContext];
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"Story" inManagedObjectContext:context];
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", [theTopic valueForKey:@"id"], [NSNumber numberWithInt:1]];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@ AND isRead == %@", theStory.storyId, [NSNumber numberWithInt:1]];
   [request setEntity:entity];
   [request setPredicate:predicate];
   NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
@@ -185,10 +185,10 @@
 
 - (void)markAllAsRead
 {
-  for (int i = 0; i < [topics count]; i++)
+  for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* topic = [topics objectAtIndex:i];
-    [self setTopicIsRead:topic];
+    NSMutableDictionary* story = [stories objectAtIndex:i];
+    [self setStoryIsRead:story];
   }
   
   [self setReadMarks];
@@ -204,13 +204,13 @@
 }
 
 - (void)openURL {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSURL* url = [NSURL URLWithString:[topic valueForKey:@"url"]];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  NSURL* url = [NSURL URLWithString:story.url];
   [[NSWorkspace sharedWorkspace] openURL:url];
   
-  [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
+  story.isRead = YES;
   
-  [self setTopicIsRead:topic];
+  [self setStoryIsRead:story];
   
   [self shouldReloadData];
   [listView setSelectedRow:selectedIndex];
@@ -220,34 +220,33 @@
 
 - (void)didClickCommentsMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   NSString* baseUrl = @"http://news.ycombinator.com/item?id=";
-  NSString* commentsUrl = [baseUrl stringByAppendingString:[topic valueForKey:@"id"]];
+  NSString* commentsUrl = [baseUrl stringByAppendingString:story.storyId];
   NSURL* url = [NSURL URLWithString:commentsUrl];
   [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (void)didClickCopyMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSString* stringToCopy = [[[topic valueForKey:@"title"] stringByAppendingString:@" "] stringByAppendingString:[topic valueForKey:@"url"]];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  NSString* stringToCopy = [[story.title stringByAppendingString:@" "] stringByAppendingString:story.url];
   [self writeToPasteBoard:stringToCopy];
 }
 
 - (void)didClickCopyURLMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSString* stringToCopy = [topic valueForKey:@"url"];
-  [self writeToPasteBoard:stringToCopy];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  [self writeToPasteBoard:story.url];
 }
 
 - (void)didClickInstapaperMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   NSString* baseURL = @"http://www.instapaper.com/hello2?url=";
-  NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* title = [[topic valueForKey:@"title"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, topicURL, title];
+  NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, storyURL, title];
   
   NSURL* url = [NSURL URLWithString:ipURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
@@ -255,11 +254,11 @@
 
 - (void)didClickTweetMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   NSString* baseURL = @"https://twitter.com/share?url=";
-  NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* title = [[topic valueForKey:@"title"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&text=%@", baseURL, topicURL, title];
+  NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&text=%@", baseURL, storyURL, title];
   
   NSURL* url = [NSURL URLWithString:twitterURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
@@ -267,11 +266,11 @@
 
 - (void)didClickMarkAsReadMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   
-  [self setTopicIsRead:topic];
+  [self setStoryIsRead:story];
 
-  [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
+  story.isRead = YES;
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
   
@@ -280,11 +279,11 @@
 
 - (void)didClickMarkAsUnreadMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   
-  [self setTopicIsUnread:topic];
+  [self setStoryIsUnread:story];
   
-  [topic removeObjectForKey:@"isRead"];
+  story.isRead = NO;
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
   
@@ -306,27 +305,27 @@
 
 - (void)updateBadge
 {
-  int unreadTopics = 0;
+  int unreadStories = 0;
   
-  for (int i = 0; i < [topics count]; i++)
+  for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* topic = topics[i];
+    NSMutableDictionary* story = stories[i];
     
-    if (![self topicIsRead:topic])
-      unreadTopics++;
+    if (![self storyIsRead:story])
+      unreadStories++;
   }
   
   NSString* badgeString;
   
-  if (unreadTopics == 0)
+  if (unreadStories == 0)
     badgeString = @"";
   else
-    badgeString = [NSString stringWithFormat:@"%d", unreadTopics];
+    badgeString = [NSString stringWithFormat:@"%d", unreadStories];
   
   NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
   [tile setBadgeLabel:badgeString];
   
-  NSNumber* badgeNumber = [NSNumber numberWithInt:unreadTopics];
+  NSNumber* badgeNumber = [NSNumber numberWithInt:unreadStories];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSetTitleBadge" object:badgeNumber];
 }
 
@@ -335,34 +334,34 @@
 ////////////////////////////////////////////////////////////////////////
 
 - (NSUInteger)numberOfRowsInListView:(PXListView*)listView {
-  return [topics count];
+  return [stories count];
 }
 
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification
 {
   selectedIndex = listView.selectedRow;
   
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   
   id appDelegate = [[NSApplication sharedApplication] delegate];
   
   NSMenuItem* markAsReadMenuItem = [appDelegate markAsReadMenuItem];
   NSMenuItem* markAsUnreadMenuItem = [appDelegate markAsUnreadMenuItem];
   
-  markAsReadMenuItem.hidden = !![topic valueForKey:@"isRead"];
-  markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
+  markAsReadMenuItem.hidden = !!story.isRead;
+  markAsUnreadMenuItem.hidden = !story.isRead;
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectStory" object:topic];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectStory" object:story];
 }
 
 - (void)didUseRightClick:(NSNotification*)aNotification
 {
-  NSMutableDictionary* clickedTopic = [aNotification object];
+  HNStory* clickedStory = [aNotification object];
   
-  for (int i = 0; i < [topics count]; i++) {
-    NSMutableDictionary* topic = topics[i];
+  for (int i = 0; i < [stories count]; i++) {
+    HNStory* story = stories[i];
     
-    if ([[topic valueForKey:@"id"] isEqualToString:[clickedTopic valueForKey:@"id"]]) {
+    if ([story.storyId isEqualToString:clickedStory.storyId]) {
       [listView setSelectedRow:i];
       break;
     }
@@ -382,7 +381,7 @@
   else
     [cell setNumber:nil];
   
-  [cell setTopic:[topics objectAtIndex:row]];
+  [cell setStory:[stories objectAtIndex:row]];
   
   return cell;
 }

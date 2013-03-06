@@ -109,6 +109,7 @@
 		7EF25C8D16E525DA00F494F6 /* categorySelectorNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF25C8916E525DA00F494F6 /* categorySelectorNormal.png */; };
 		7EF25C8E16E525DA00F494F6 /* categorySelectorNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF25C8A16E525DA00F494F6 /* categorySelectorNormal@2x.png */; };
 		7EF25C8F16E525FF00F494F6 /* HNCategorySelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF25C8516E525C900F494F6 /* HNCategorySelector.m */; };
+		7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF25C9116E76EC400F494F6 /* HNStory.m */; };
 		7EF5C7FB16611B74006DC677 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C7F916611B74006DC677 /* reload.png */; };
 		7EF5C7FC16611B74006DC677 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C7FA16611B74006DC677 /* reload@2x.png */; };
 		7EF5C80916626FB7006DC677 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80716626FB7006DC677 /* gear.png */; };
@@ -274,6 +275,8 @@
 		7EF25C8816E525DA00F494F6 /* categorySelectorActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "categorySelectorActive@2x.png"; path = "Resources/categorySelectorActive@2x.png"; sourceTree = "<group>"; };
 		7EF25C8916E525DA00F494F6 /* categorySelectorNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = categorySelectorNormal.png; path = Resources/categorySelectorNormal.png; sourceTree = "<group>"; };
 		7EF25C8A16E525DA00F494F6 /* categorySelectorNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "categorySelectorNormal@2x.png"; path = "Resources/categorySelectorNormal@2x.png"; sourceTree = "<group>"; };
+		7EF25C9016E76EC400F494F6 /* HNStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStory.h; sourceTree = "<group>"; };
+		7EF25C9116E76EC400F494F6 /* HNStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStory.m; sourceTree = "<group>"; };
 		7EF5C7F916611B74006DC677 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reload.png; path = Resources/reload.png; sourceTree = "<group>"; };
 		7EF5C7FA16611B74006DC677 /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reload@2x.png"; path = "Resources/reload@2x.png"; sourceTree = "<group>"; };
 		7EF5C80716626FB7006DC677 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Resources/gear.png; sourceTree = "<group>"; };
@@ -429,6 +432,8 @@
 				7EC5AB4916DFBF0800D44056 /* HNConstants.h */,
 				7E9A43141656B90C001AA5C9 /* HNAppDelegate.h */,
 				7E9A43151656B90C001AA5C9 /* HNAppDelegate.m */,
+				7EF25C9016E76EC400F494F6 /* HNStory.h */,
+				7EF25C9116E76EC400F494F6 /* HNStory.m */,
 				7EF25C8416E525C900F494F6 /* HNCategorySelector.h */,
 				7EF25C8516E525C900F494F6 /* HNCategorySelector.m */,
 				7EC5AB4216DCE07700D44056 /* HNSplitView.h */,
@@ -784,6 +789,7 @@
 				7EC5AB4416DCE07700D44056 /* HNSplitView.m in Sources */,
 				7EC5AB4816DFB5E300D44056 /* NSWindow+FullScreen.m in Sources */,
 				7EC5AB5A16E3DBC500D44056 /* Models.xcdatamodeld in Sources */,
+				7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

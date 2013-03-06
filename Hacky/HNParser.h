@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HNStory.h"
 
 @interface HNParser : NSObject
 

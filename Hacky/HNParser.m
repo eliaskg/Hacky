@@ -66,11 +66,11 @@
       if (![metaAs count])
         continue;
       
-      // --- Get score
-      HTMLNode* scoreSpan = [metaTd findChildTag:@"span"];
-      NSString* scoreText = [scoreSpan contents];
-      NSString* score = [NSString stringWithFormat:@"%li", [self numberFromString:scoreText]];
-      [story setValue:score forKey:@"score"];
+      // --- Get points
+      HTMLNode* pointsSpan = [metaTd findChildTag:@"span"];
+      NSString* pointsText = [pointsSpan contents];
+      NSString* points = [NSString stringWithFormat:@"%li", [self numberFromString:pointsText]];
+      [story setValue:points forKey:@"points"];
       
       // --- Get username
       HTMLNode* userA = [metaAs objectAtIndex:0];
@@ -86,12 +86,14 @@
       NSString* createdTextRaw = [createdElement allContents];
       NSString* createdTextNoDivider = [createdTextRaw stringByReplacingOccurrencesOfString:@"|" withString:@""];
       NSString* createdTextNoWhitespace = [self removeLeadingAndTrailingWhitespace:createdTextNoDivider];
-      [story setValue:createdTextNoWhitespace forKey:@"created_at"];
+      [story setValue:createdTextNoWhitespace forKey:@"createdAt"];
       
       // -- Add a copy of the story to the array
       NSMutableDictionary* story_ = [NSMutableDictionary dictionaryWithDictionary:story];
-      [stories addObject:story_];
-      //      j++;
+      
+      HNStory* story = [[HNStory alloc] initWithDictionary:story_];
+      
+      [stories addObject:story];
     }
   }
   

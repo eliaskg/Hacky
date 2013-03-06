@@ -14,7 +14,7 @@
 @implementation HNPostCell
 
 @synthesize number;
-@synthesize topic;
+@synthesize story;
 @synthesize unreadButton;
 @synthesize contentView;
 @synthesize numberLabel;
@@ -144,23 +144,23 @@
 	return self;
 }
 
-- (void)setTopic:(NSMutableDictionary*)aTopic
+- (void)setStory:(HNStory*)aStory
 {
-  topic = aTopic;
+  story = aStory;
   
   titleLabel.frame = CGRectMake(numberLabel.bounds.size.width, titleLabel.frame.origin.y, contentView.bounds.size.width - numberLabel.bounds.size.width, numberLabel.bounds.size.height);
   
-  NSURL* url = [NSURL URLWithString:[topic valueForKey:@"url"]];
+  NSURL* url = [NSURL URLWithString:story.url];
   titleLabel.toolTip = [url host];
   
   // Set Meta
-  NSString *metaString = [NSString stringWithFormat:@"%@ Points | %@ | %@ Comments", [topic valueForKey:@"score"], [topic valueForKey:@"created_at"], [topic valueForKey:@"comments"]];
+  NSString *metaString = [NSString stringWithFormat:@"%@ Points | %@ | %@ Comments", story.points, story.createdAt, story.comments];
   [metaLabel setStringValue:metaString];
   [metaLabel sizeToFit];
   [metaLabel setFrameOrigin:CGPointMake(numberLabel.bounds.size.width, metaLabel.frame.origin.y)];
   
-  markAsReadMenuItem.hidden = !![topic valueForKey:@"isRead"];
-  markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
+  markAsReadMenuItem.hidden = !!story.isRead;
+  markAsUnreadMenuItem.hidden = !story.isRead;
 }
 
 - (void)setNumber:(int)aNumber
@@ -191,7 +191,7 @@
 
 - (void)didUseMenu:(NSNotification*)aNotification
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"didUseRightClick" object:topic];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didUseRightClick" object:story];
 }
 
 - (void)didClickOpenURLButton:(id)sender
@@ -254,7 +254,7 @@
 
 - (void)drawRect:(NSRect)aRect
 {
-  if ([topic valueForKey:@"isRead"]) {
+  if (story.isRead) {
     titleLabel.alphaValue = 0.5;
     [contentView setFrame:CGRectMake(8, 1, self.frame.size.width - 16, 50)];
     [unreadButton setHidden:YES];
@@ -282,7 +282,7 @@
                                      [NSFont fontWithName:@"LucidaGrande-Bold" size:12], NSFontAttributeName,
                                      shadow, NSShadowAttributeName, paragraphStyle, NSParagraphStyleAttributeName, 
                                      nil];
-    NSAttributedString *s = [[NSAttributedString alloc] initWithString:[topic valueForKey:@"title"] attributes:sAttribs];
+    NSAttributedString *s = [[NSAttributedString alloc] initWithString:story.title attributes:sAttribs];
     [titleLabel setAttributedStringValue:s];
     
     // --- Background Color
@@ -304,7 +304,7 @@
     [metaLabel setTextColor:HN_GRAY];
     [numberLabel setTextColor:HN_GRAY_LIGHT];
     
-    [titleLabel setStringValue:[topic valueForKey:@"title"]];
+    [titleLabel setStringValue:story.title];
     
     // --- Background Color
     [HN_GRAY_LIGHTER set];
