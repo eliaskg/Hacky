@@ -107,9 +107,11 @@
     NSString* jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     NSString* jsonStringCleaned1 = [jsonString stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
     NSString* jsonStringCleaned2 = [jsonStringCleaned1 stringByReplacingOccurrencesOfString:@"\\t" withString:@"  "];
-    NSString* jsonStringCleaned3 = [jsonStringCleaned2 stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-    NSString* jsonStringCleaned4 = [jsonStringCleaned3 stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-    NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonStringCleaned4];
+    NSString* jsonStringCleaned3 = [jsonStringCleaned2 stringByReplacingOccurrencesOfString:@"\\ " withString:@""];
+    NSString* jsonStringCleaned4 = [jsonStringCleaned3 stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    NSString* jsonStringCleaned5 = [jsonStringCleaned4 stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+    NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonStringCleaned5];
+
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
   }
   
