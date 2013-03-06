@@ -1,6 +1,14 @@
 function parseComments(jsonString) {
-  var comments  = JSON.parse(jsonString);
   var container = $('#comments');
+  
+  try {
+    var comments = JSON.parse(jsonString);
+  }
+  catch(error) {
+    container.html('<div class="error">' + error + '</div>');
+    return;
+  }
+  
   container.html('');
   
   document.body.scrollTop = 0;

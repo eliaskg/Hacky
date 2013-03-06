@@ -46,6 +46,14 @@ body {
 a, a:active, a:visited {
   color: #007ec8;
 }
+
+.error {
+  padding: 10px;
+  background: #f6c6bb;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-top: 1px solid #eaaea2;
+  border-bottom: 1px solid #eaaea2;
 }
 
 /* 10px steps */
