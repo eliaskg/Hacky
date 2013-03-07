@@ -30,8 +30,11 @@ body {
 }
 
 .meta.hidden {
-  opacity: 0.4;
   margin: 0;
+}
+
+.meta.hidden .username, .meta.hidden .createdAt {
+  opacity: 0.4;
 }
 
 .meta:hover .minimizer {
@@ -53,6 +56,10 @@ body {
 
 .minimizer:hover {
   opacity: 1.0;
+}
+
+.username, .createdAt {
+  -webkit-transition: opacity 0.3s;
 }
 
 .username {
