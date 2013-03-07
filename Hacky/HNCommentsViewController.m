@@ -13,8 +13,7 @@
 @synthesize webView;
 @synthesize story;
 @synthesize connectionController;
-@synthesize spinner;
-@synthesize isLoading;
+@synthesize loadingView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,10 +22,13 @@
     self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     
     webView = [[WebView alloc] initWithFrame:self.view.bounds];
-    webView.hidden = YES;
     webView.policyDelegate = self;
     webView.autoresizingMask = self.view.autoresizingMask;
     [self.view addSubview:webView];
+    
+    loadingView = [[HNLoadingView alloc] init];
+    loadingView.frame = webView.frame;
+    [self.view addSubview:loadingView];
     
     NSString* filePath = [[NSBundle mainBundle] pathForResource:@"comments"
                                                          ofType:@"html"
@@ -36,15 +38,6 @@
     NSURLRequest* request = [NSURLRequest requestWithURL:fileURL];
     [[webView mainFrame] loadRequest:request];
     
-    spinner = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(self.view.bounds.size.width / 2 - 18 / 2,
-                                                                    self.view.bounds.size.height / 2 - 18 / 2,
-                                                                    18,
-                                                                    18)];
-    spinner.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin;
-    [spinner setStyle:NSProgressIndicatorSpinningStyle];
-    spinner.hidden = YES;
-    [self.view addSubview:spinner];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectStory:) name:@"didSelectStory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
@@ -52,24 +45,6 @@
   }
     
   return self;
-}
-
-- (void)setIsLoading:(BOOL)loading
-{
-  if (loading == isLoading)
-    return;
-  
-  isLoading = loading;
-  
-  if (isLoading) {
-    [spinner startAnimation:self];
-  }
-  else {
-    [spinner stopAnimation:self];
-  }
-  
-  spinner.hidden = !isLoading;
-  webView.hidden = isLoading;
 }
 
 - (void)didSelectCategory:(NSNotification*)aNotification
@@ -84,7 +59,7 @@
   if ([story.storyId isEqualToString:theStory.storyId])
     return;
   
-  [self setIsLoading:YES];
+  loadingView.isLoading = YES;
   
   story = theStory;
   
@@ -122,7 +97,7 @@
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
   }
   
-  [self setIsLoading:NO];
+  loadingView.isLoading = NO;
 }
 
 - (void)shouldClearComments:(NSNotification*)aNotification

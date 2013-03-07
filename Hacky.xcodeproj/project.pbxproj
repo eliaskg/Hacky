@@ -88,6 +88,7 @@
 		7E81AABF16E7B079007DA99D /* favorite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81AABB16E7B079007DA99D /* favorite@2x.png */; };
 		7E81AAC016E7B079007DA99D /* favoriteSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81AABC16E7B079007DA99D /* favoriteSelected.png */; };
 		7E81AAC116E7B079007DA99D /* favoriteSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81AABD16E7B079007DA99D /* favoriteSelected@2x.png */; };
+		7E81AAC716E8CDDB007DA99D /* HNLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E81AAC616E8CDDB007DA99D /* HNLoadingView.m */; };
 		7E8CC336166FFCED0041B5CE /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 7E8CC335166FFCED0041B5CE /* icons.iconset */; };
 		7E9A43031656B90C001AA5C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9A43021656B90C001AA5C9 /* Cocoa.framework */; };
 		7E9A430D1656B90C001AA5C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A430B1656B90C001AA5C9 /* InfoPlist.strings */; };
@@ -245,6 +246,8 @@
 		7E81AABB16E7B079007DA99D /* favorite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favorite@2x.png"; path = "Resources/favorite@2x.png"; sourceTree = "<group>"; };
 		7E81AABC16E7B079007DA99D /* favoriteSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteSelected.png; path = Resources/favoriteSelected.png; sourceTree = "<group>"; };
 		7E81AABD16E7B079007DA99D /* favoriteSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favoriteSelected@2x.png"; path = "Resources/favoriteSelected@2x.png"; sourceTree = "<group>"; };
+		7E81AAC516E8CDDB007DA99D /* HNLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNLoadingView.h; sourceTree = "<group>"; };
+		7E81AAC616E8CDDB007DA99D /* HNLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNLoadingView.m; sourceTree = "<group>"; };
 		7E8CC335166FFCED0041B5CE /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icons.iconset; path = Resources/icons.iconset; sourceTree = "<group>"; };
 		7E9A42FE1656B90B001AA5C9 /* Hacky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hacky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9A43021656B90C001AA5C9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -459,6 +462,8 @@
 				7E7A3C64165A448D008B538F /* HNListViewController.h */,
 				7E7A3C65165A448D008B538F /* HNListViewController.m */,
 				7E7A3C66165A448D008B538F /* HNListViewController.xib */,
+				7E81AAC516E8CDDB007DA99D /* HNLoadingView.h */,
+				7E81AAC616E8CDDB007DA99D /* HNLoadingView.m */,
 				7EE9054816CE90870010FD71 /* HNCommentsViewController.h */,
 				7EE9054916CE90870010FD71 /* HNCommentsViewController.m */,
 				7E590C2016CD237B009783A9 /* HNPullToRefreshHeader.h */,
@@ -819,6 +824,7 @@
 				7EC5AB5A16E3DBC500D44056 /* Models.xcdatamodeld in Sources */,
 				7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */,
 				7E81AAB916E7A914007DA99D /* NSArray+Reverse.m in Sources */,
+				7E81AAC716E8CDDB007DA99D /* HNLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

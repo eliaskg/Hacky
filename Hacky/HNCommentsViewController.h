@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import "HNConnectionController.h"
 #import "HNParser.h"
+#import "HNLoadingView.h"
 
 @class HNStory;
 
@@ -18,14 +19,12 @@
   WebView* webView;
   HNStory* story;
   HNConnectionController* connectionController;
-  NSProgressIndicator* spinner;
-  BOOL isLoading;
+  HNLoadingView* loadingView;
 }
 
 @property (nonatomic, retain) WebView* webView;
 @property (nonatomic, retain) HNStory* story;
 @property (nonatomic, retain) HNConnectionController* connectionController;
-@property (nonatomic, retain) NSProgressIndicator* spinner;
-@property (nonatomic, assign) BOOL isLoading;
+@property (nonatomic, retain) HNLoadingView* loadingView;
 
 @end

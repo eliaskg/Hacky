@@ -67,7 +67,7 @@
 
   [splitView addSubview:commentsView];
   
-  [listViewController setIsLoading:YES];
+  listViewController.loadingView.isLoading = YES;
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
@@ -113,7 +113,7 @@
 {
   category = [aNotification object];
   listViewController.category = category;
-  [listViewController setIsLoading:YES];
+  listViewController.loadingView.isLoading = YES;
   [listViewController.listView scrollRowToVisible:0];
   [self load];
 }

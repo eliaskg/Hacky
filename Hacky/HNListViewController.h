@@ -15,6 +15,7 @@
 #import "HNConnectionController.h"
 #import "HNPostCell.h"
 #import "NSDate+RelativeDate.h"
+#import "HNLoadingView.h"
 
 @interface HNListViewController : NSViewController <PXListViewDelegate>
 {
@@ -24,8 +25,7 @@
   IBOutlet PXListView* listView;
   NSMutableArray* stories;
   BOOL applicationIsActive;
-  BOOL isLoading;
-  NSProgressIndicator* spinner;
+  HNLoadingView* loadingView;
 }
 
 @property (nonatomic, assign) NSUInteger scrollIndex;
@@ -34,10 +34,8 @@
 @property (nonatomic, retain) IBOutlet PXListView* listView;
 @property (nonatomic, retain) NSMutableArray* stories;
 @property (nonatomic, assign) BOOL applicationIsActive;
-@property (nonatomic, assign) BOOL isLoading;
-@property (nonatomic, retain) NSProgressIndicator* spinner;
+@property (nonatomic, retain) HNLoadingView* loadingView;
 
 - (void)markAllAsRead;
-- (void)setIsLoading:(BOOL)loading;
 
 @end

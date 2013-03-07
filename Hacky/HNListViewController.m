@@ -21,8 +21,7 @@
 @synthesize stories;
 @synthesize listView;
 @synthesize applicationIsActive;
-@synthesize isLoading;
-@synthesize spinner;
+@synthesize loadingView;
 
 - (void)awakeFromNib
 {
@@ -38,6 +37,10 @@
   listView.refreshBlock = ^(EQSTRScrollView *scrollView) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
   };
+  
+  loadingView = [[HNLoadingView alloc] init];
+  loadingView.frame = listView.frame;
+  [self.view addSubview:loadingView];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:@"didLoadFavorites" object:nil];
@@ -55,32 +58,6 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickDeleteFavoriteMenuButton) name:@"didClickDeleteFavoriteMenuButton" object:nil];
 }
 
-- (void)setIsLoading:(BOOL)loading
-{
-  if (loading == isLoading)
-    return;
-  
-  isLoading = loading;
-  
-  if (isLoading) {
-    if (!spinner) {
-      spinner = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(self.view.bounds.size.width / 2 - 18 / 2, self.view.bounds.size.height / 2 - 18 / 2, 18, 18)];
-      spinner.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin | NSViewMinYMargin | NSViewMaxYMargin;
-      [spinner setStyle:NSProgressIndicatorSpinningStyle];
-      spinner.hidden = YES;
-      [self.view addSubview:spinner];
-    }
-    
-    [spinner startAnimation:self];
-  }
-  else {
-    [spinner stopAnimation:self];
-  }
-  
-  spinner.hidden = !isLoading;
-  listView.hidden = isLoading;
-}
-
 - (void)setCategory:(NSString *)theCategory
 {
   if ([category isEqualToString:theCategory])
@@ -93,7 +70,7 @@
 
 - (void)didLoadStories:(NSNotification*)aNotification
 {
-  [self setIsLoading:NO];
+  loadingView.isLoading = NO;
   
   if ([[aNotification object] isKindOfClass:[NSError class]])
     return;
@@ -137,7 +114,7 @@
     [stories addObject:story];
   }
   
-  [self setIsLoading:NO];
+  loadingView.isLoading = NO;
   [listView stopLoading];
   [listView reloadData];
   [[listView window] makeFirstResponder:listView];

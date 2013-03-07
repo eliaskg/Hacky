@@ -51,14 +51,14 @@
 										<reference key="NSNextResponder" ref="1019926776"/>
 										<int key="NSvFlags">274</int>
 										<array class="NSMutableArray" key="NSSubviews"/>
-										<string key="NSFrameSize">{38, 270}</string>
+										<string key="NSFrameSize">{38, 38}</string>
 										<reference key="NSSuperview" ref="1019926776"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="439889247"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 									</object>
 								</array>
-								<string key="NSFrame">{{1, 1}, {38, 270}}</string>
+								<string key="NSFrame">{{1, 1}, {38, 38}}</string>
 								<reference key="NSSuperview" ref="500748683"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="857933870"/>
@@ -98,7 +98,7 @@
 								<double key="NSPercent">0.50602412223815918</double>
 							</object>
 						</array>
-						<string key="NSFrameSize">{40, 272}</string>
+						<string key="NSFrameSize">{40, 40}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1019926776"/>
@@ -112,7 +112,7 @@
 						<double key="NSMagnification">1</double>
 					</object>
 				</array>
-				<string key="NSFrameSize">{40, 272}</string>
+				<string key="NSFrameSize">{40, 40}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="500748683"/>
