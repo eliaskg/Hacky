@@ -18,7 +18,9 @@ function parseComments(jsonString) {
     var element = $('<div class="commentContainer margin-' + comment.margin + '">' +
                       '<div class="meta">' +
                         '<span class="username">' +
-                          comment.user +
+                          '<span class="text">' +
+                            comment.user +
+                          '</span>' +
                           '<span class="minimizer">-</span>' +
                         '</span>' +
                         '<span class="createdAt">' +

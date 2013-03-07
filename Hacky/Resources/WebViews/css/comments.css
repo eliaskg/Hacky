@@ -33,7 +33,7 @@ body {
   margin: 0;
 }
 
-.meta.hidden .username, .meta.hidden .createdAt {
+.meta.hidden .username .text, .meta.hidden .createdAt {
   opacity: 0.4;
 }
 
