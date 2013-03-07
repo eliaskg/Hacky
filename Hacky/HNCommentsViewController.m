@@ -41,7 +41,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectStory:) name:@"didSelectStory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldClearComments:) name:@"shouldClearComments" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldClearComments) name:@"shouldClearComments" object:nil];
   }
     
   return self;
@@ -49,7 +49,7 @@
 
 - (void)didSelectCategory:(NSNotification*)aNotification
 {
-  webView.hidden = YES;
+  [self shouldClearComments];
 }
 
 - (void)didSelectStory:(NSNotification*)aNotification
@@ -100,7 +100,7 @@
   loadingView.isLoading = NO;
 }
 
-- (void)shouldClearComments:(NSNotification*)aNotification
+- (void)shouldClearComments
 {
   [webView stringByEvaluatingJavaScriptFromString:@"parseComments('[]')"];
 }

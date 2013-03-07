@@ -58,7 +58,7 @@ body {
   opacity: 1.0;
 }
 
-.username, .createdAt {
+.username .text, .createdAt {
   -webkit-transition: opacity 0.3s;
 }
 
