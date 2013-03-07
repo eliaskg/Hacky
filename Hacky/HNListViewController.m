@@ -333,9 +333,13 @@
   
   NSMenuItem* markAsReadMenuItem = [appDelegate markAsReadMenuItem];
   NSMenuItem* markAsUnreadMenuItem = [appDelegate markAsUnreadMenuItem];
+  NSMenuItem* addFavoriteMenuItem = [appDelegate addFavoritesMenuItem];
+  NSMenuItem* deleteFavoriteMenuItem = [appDelegate deleteFavoritesMenuItem];
   
   markAsReadMenuItem.hidden = !!story.isRead;
   markAsUnreadMenuItem.hidden = !story.isRead;
+  addFavoriteMenuItem.hidden = !!story.isFavorite;
+  deleteFavoriteMenuItem.hidden = !story.isFavorite;
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectStory" object:story];
 }

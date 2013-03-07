@@ -30,6 +30,8 @@
   NSTimer* loadTimer;
   IBOutlet NSMenuItem* markAsReadMenuItem;
   IBOutlet NSMenuItem* markAsUnreadMenuItem;
+  IBOutlet NSMenuItem* addFavoritesMenuItem;
+  IBOutlet NSMenuItem* deleteFavoritesMenuItem;
   IBOutlet NSMenuItem* fullScreenMenuItem;
   HNConnectionController* connectionController;
   NSSplitView* splitView;
@@ -48,6 +50,8 @@
 @property (nonatomic, retain) NSTimer* loadTimer;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsUnreadMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem* addFavoritesMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem* deleteFavoritesMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* fullScreenMenuItem;
 @property (nonatomic, retain) HNConnectionController* connectionController;
 @property (nonatomic, retain) NSSplitView* splitView;

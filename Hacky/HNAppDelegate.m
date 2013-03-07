@@ -17,6 +17,8 @@
 @synthesize loadTimer;
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
+@synthesize addFavoritesMenuItem;
+@synthesize deleteFavoritesMenuItem;
 @synthesize fullScreenMenuItem;
 @synthesize connectionController;
 @synthesize splitView;
@@ -178,6 +180,16 @@
 - (IBAction)didClickMarkAsUnreadButton:(id)sender
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickMarkAsUnreadMenuButton" object:nil];
+}
+
+- (IBAction)didClickAddFavoritesButton:(id)sender
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickMakeFavoriteMenuButton" object:nil];
+}
+
+- (IBAction)didClickDeleteFavoritesButton:(id)sender
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickDeleteFavoriteMenuButton" object:nil];
 }
 
 - (IBAction)didClickFullScreenButton:(id)sender
