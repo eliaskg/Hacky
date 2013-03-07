@@ -29,6 +29,32 @@ body {
   margin-bottom: 7px;
 }
 
+.meta.hidden {
+  opacity: 0.4;
+  margin: 0;
+}
+
+.meta:hover .minimizer {
+  display: inline-block;
+}
+
+.minimizer {
+  display: none;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 1.2em;
+  line-height: 1em;
+  text-align: center;
+  color: #fff;
+  margin-left: 0.4em;
+  background: #c2c2c2;
+  opacity: 0.5;
+}
+
+.minimizer:hover {
+  opacity: 1.0;
+}
+
 .username {
   display: inline-block;
   width: 60%;
