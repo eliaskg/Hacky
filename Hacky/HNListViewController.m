@@ -81,6 +81,16 @@
   listView.hidden = isLoading;
 }
 
+- (void)setCategory:(NSString *)theCategory
+{
+  if ([category isEqualToString:theCategory])
+    return;
+  
+  category = theCategory;
+  
+  [listView.refreshHeader setHidden:([category isEqualToString:@"Favorites"])];
+}
+
 - (void)didLoadStories:(NSNotification*)aNotification
 {
   [self setIsLoading:NO];
