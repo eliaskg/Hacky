@@ -28,6 +28,7 @@
   HNCategorySelector* categorySelector;
   HNListViewController* listViewController;
   NSTimer* loadTimer;
+  IBOutlet NSButton* markAllAsReadButton;
   IBOutlet NSMenuItem* markAsReadMenuItem;
   IBOutlet NSMenuItem* markAsUnreadMenuItem;
   IBOutlet NSMenuItem* addFavoritesMenuItem;
@@ -48,6 +49,7 @@
 @property (nonatomic, retain) HNCategorySelector* categorySelector;
 @property (nonatomic, retain) HNListViewController* listViewController;
 @property (nonatomic, retain) NSTimer* loadTimer;
+@property (nonatomic, retain) IBOutlet NSButton* markAllAsReadButton;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsReadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* markAsUnreadMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* addFavoritesMenuItem;

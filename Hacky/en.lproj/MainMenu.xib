@@ -410,7 +410,6 @@
 							<string key="NSFrame">{{5, -1}, {140, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="11494394">
@@ -694,6 +693,14 @@
 						<reference key="destination" ref="1048771154"/>
 					</object>
 					<int key="connectionID">660</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">markAllAsReadButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="742983570"/>
+					</object>
+					<int key="connectionID">662</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1136,7 +1143,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">661</int>
+			<int key="maxID">662</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1144,8 +1151,10 @@
 					<string key="className">HNAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="didClickAddFavoritesButton:">id</string>
 						<string key="didClickCopyButton:">id</string>
 						<string key="didClickCopyURLButton:">id</string>
+						<string key="didClickDeleteFavoritesButton:">id</string>
 						<string key="didClickFullScreenButton:">id</string>
 						<string key="didClickInstapaperButton:">id</string>
 						<string key="didClickMarkAllAsReadButton:">id</string>
@@ -1157,12 +1166,20 @@
 						<string key="didClickViewCommentsButton:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="didClickAddFavoritesButton:">
+							<string key="name">didClickAddFavoritesButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="didClickCopyButton:">
 							<string key="name">didClickCopyButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="didClickCopyURLButton:">
 							<string key="name">didClickCopyURLButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="didClickDeleteFavoritesButton:">
+							<string key="name">didClickDeleteFavoritesButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="didClickFullScreenButton:">
@@ -1206,6 +1223,7 @@
 						<string key="addFavoritesMenuItem">NSMenuItem</string>
 						<string key="deleteFavoritesMenuItem">NSMenuItem</string>
 						<string key="fullScreenMenuItem">NSMenuItem</string>
+						<string key="markAllAsReadButton">NSButton</string>
 						<string key="markAsReadMenuItem">NSMenuItem</string>
 						<string key="markAsUnreadMenuItem">NSMenuItem</string>
 						<string key="window">INAppStoreWindow</string>
@@ -1222,6 +1240,10 @@
 						<object class="IBToOneOutletInfo" key="fullScreenMenuItem">
 							<string key="name">fullScreenMenuItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="markAllAsReadButton">
+							<string key="name">markAllAsReadButton</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="markAsReadMenuItem">
 							<string key="name">markAsReadMenuItem</string>

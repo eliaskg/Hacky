@@ -15,6 +15,7 @@
 @synthesize listViewController;
 @synthesize categorySelector;
 @synthesize loadTimer;
+@synthesize markAllAsReadButton;
 @synthesize markAsReadMenuItem;
 @synthesize markAsUnreadMenuItem;
 @synthesize addFavoritesMenuItem;
@@ -71,6 +72,8 @@
   
   listViewController.loadingView.isLoading = YES;
   
+  markAllAsReadButton.enabled = ![category isEqualToString:@"Favorites"];
+  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
@@ -118,6 +121,8 @@
   listViewController.loadingView.isLoading = YES;
   [listViewController.listView scrollRowToVisible:0];
   [self load];
+  
+  markAllAsReadButton.enabled = ![category isEqualToString:@"Favorites"];
 }
 
 - (IBAction)didClickReloadMenuItem:(id)sender;
