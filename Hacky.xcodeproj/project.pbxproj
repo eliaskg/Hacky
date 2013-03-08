@@ -943,7 +943,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Elias Klughammer (57FJEXS65S)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
@@ -952,6 +952,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = Hacky;
+				PROVISIONING_PROFILE = "0682ED90-98FA-4F95-A27A-3AA6085AFAC2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -960,7 +961,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Elias Klughammer (57FJEXS65S)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
@@ -969,6 +970,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = Hacky;
+				PROVISIONING_PROFILE = "0682ED90-98FA-4F95-A27A-3AA6085AFAC2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
