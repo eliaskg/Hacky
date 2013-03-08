@@ -9,9 +9,14 @@ function parseComments(jsonString) {
     return;
   }
   
-  container.html('');
+  clearComments()
   
   document.body.scrollTop = 0;
+  
+  if (!comments.length) {
+    container.append('<p class="noComments"><span>No Comments</span></p>');
+    return;
+  }
   
   for (var i = 0; i < comments.length; i++) {
     var comment = comments[i];
@@ -34,6 +39,10 @@ function parseComments(jsonString) {
   }
   
   $('.minimizer').click(didClickMinimizer);
+}
+
+function clearComments() {
+  $('#comments').html('');
 }
 
 function didClickMinimizer(event) {

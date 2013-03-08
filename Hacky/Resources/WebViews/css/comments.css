@@ -80,6 +80,24 @@ a, a:active, a:visited {
   color: #007ec8;
 }
 
+.noComments {
+  text-align: center;
+  font-size: 0.9em;
+  height: 1.5em;
+  line-height: 1.5em;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: -0.75em;
+}
+
+.noComments span {
+  background: #cbcbcb;
+  padding: 0.5em 1em;
+  border-radius: 2em;
+  color: #fff;
+}
+
 .error {
   padding: 10px;
   background: #f6c6bb;

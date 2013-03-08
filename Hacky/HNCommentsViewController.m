@@ -102,7 +102,7 @@
 
 - (void)shouldClearComments
 {
-  [webView stringByEvaluatingJavaScriptFromString:@"parseComments('[]')"];
+  [webView stringByEvaluatingJavaScriptFromString:@"clearComments()"];
 }
 
 - (void)webView:(WebView *)webView
