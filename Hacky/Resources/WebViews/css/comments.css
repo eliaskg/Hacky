@@ -25,6 +25,10 @@ body {
   hyphens: auto;
 }
 
+.post {
+  background: #F6F6EF;
+}
+
 .meta {
   margin-bottom: 7px;
 }

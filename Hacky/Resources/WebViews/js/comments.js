@@ -20,7 +20,8 @@ function parseComments(jsonString) {
   
   for (var i = 0; i < comments.length; i++) {
     var comment = comments[i];
-    var element = $('<div class="commentContainer margin-' + comment.margin + '">' +
+    var postClass = comment.isPost ? 'post' : '';
+    var element = $('<div class="commentContainer margin-' + comment.margin + ' ' + postClass + '">' +
                       '<div class="meta">' +
                         '<span class="username">' +
                           '<span class="text">' +

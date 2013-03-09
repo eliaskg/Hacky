@@ -37,5 +37,6 @@
 - (BOOL)isFavoriteInDB;
 - (void)makeFavoriteInDB;
 - (void)deleteFavoriteInDB;
+- (BOOL)hasURL;
 
 @end

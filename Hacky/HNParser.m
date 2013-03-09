@@ -45,7 +45,13 @@
       HTMLNode *titleA = [titleTd findChildTag:@"a"];
       NSString* title = [self removeLeadingAndTrailingWhitespace:[titleA contents]];
       [story setValue:title forKey:@"title"];
-      [story setValue:[titleA getAttributeNamed:@"href"] forKey:@"url"];
+      NSMutableString* url = [[titleA getAttributeNamed:@"href"] mutableCopy];
+      
+      if (![url hasPrefix:@"http"]) {
+        [url insertString:@"http://news.ycombinator.com/" atIndex:0];
+      }
+      
+      [story setValue:url forKey:@"url"];
       
       // --- Get id
       NSArray* tds = [tr findChildTags:@"td"];
@@ -101,14 +107,62 @@
   return stories;
 }
 
-- (NSMutableArray*)parseComments:(NSString*)response
+- (NSMutableArray*)parseComments:(NSString*)theResponse hasURL:(BOOL)hasURL
 {
   NSMutableArray* comments = [[NSMutableArray alloc] init];
   
   NSError *error = nil;
-  HTMLParser *parser = [[HTMLParser alloc] initWithString:response error:&error];
+  HTMLParser *parser = [[HTMLParser alloc] initWithString:theResponse error:&error];
   
   HTMLNode *bodyNode = [parser body];
+  
+  // --- If the story is a text post, we have have to parse it as a comment
+  if (hasURL) {
+    NSMutableDictionary* postComment = [[NSMutableDictionary alloc] init];
+    // --- If it's a text story, we need the text
+    HTMLNode* mainTable = [bodyNode findChildTag:@"table"];
+    NSArray* mainTables = [mainTable findChildTags:@"table"];
+    HTMLNode* postTable = mainTables[1];
+    NSArray* postTrs = [postTable findChildTags:@"tr"];
+    
+    HTMLNode* metaTr = postTrs[1];
+    HTMLNode* metaContainer = [metaTr findChildOfClass:@"subtext"];
+    NSArray* metaLinks = [metaContainer findChildTags:@"a"];
+    HTMLNode* userLink = [metaLinks objectAtIndex:0];
+    
+    // --- New users are inside od a <font> tag
+    HTMLNode* newUser = [userLink findChildTag:@"font"];
+    NSString* userName;
+    
+    if (newUser)
+      userName = [newUser contents];
+    else
+      userName = [userLink contents];
+    
+    [postComment setValue:userName forKey:@"user"];
+    
+    NSString* metaContent = [metaContainer allContents];
+    NSArray* metaParts = [metaContent componentsSeparatedByString:userName];
+    NSString* createdRaw = metaParts[1];
+    NSArray* createdRawParts = [createdRaw componentsSeparatedByString:@"|"];
+    NSString* createdWhitespace = createdRawParts[0];
+    NSString* created = [self removeLeadingAndTrailingWhitespace:createdWhitespace];
+    [postComment setValue:created forKey:@"created"];
+    
+    HTMLNode* postTr = postTrs[3];
+    NSArray* postTds = [postTr findChildTags:@"td"];
+    HTMLNode* postTd = postTds[1];
+    NSMutableString* post = [[postTd rawContents] mutableCopy];
+    [post replaceOccurrencesOfString:@"<td>" withString:@"" options:nil range:NSMakeRange(0, [post length])];
+    [post replaceOccurrencesOfString:@"</td>" withString:@"" options:nil range:NSMakeRange(0, [post length])];
+    [postComment setValue:post forKey:@"content"];
+    
+    [postComment setValue:@"true" forKey:@"isPost"];
+    
+    [postComment setValue:@"0" forKey:@"margin"];
+    
+    [comments addObject:postComment];
+  }
   
   NSArray* commentContainers = [bodyNode findChildrenOfClass:@"comment"];
   

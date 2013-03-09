@@ -37,6 +37,11 @@
   return self;
 }
 
+- (BOOL)hasURL
+{
+  return [url hasPrefix:@"http://news.ycombinator.com"];
+}
+
 - (void)setIsReadInDB
 {
   if ([self isReadInDB])

@@ -79,7 +79,8 @@
   NSString* response = [aNotification object];
   
   HNParser* parser = [[HNParser alloc] init];
-  NSMutableArray* comments = [parser parseComments:response];
+  
+  NSMutableArray* comments = [parser parseComments:response hasURL:story.hasURL];
   
   NSError *error;
   NSData *jsonData = [NSJSONSerialization dataWithJSONObject:comments
