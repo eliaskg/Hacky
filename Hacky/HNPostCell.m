@@ -41,7 +41,7 @@
     [unreadButton setAction:@selector(didClickUnreadButton:)];
     [self addSubview:unreadButton];
     
-    favoriteImageView = [[NSImageView alloc] initWithFrame:CGRectMake(11, 30, 11, 11)];
+    favoriteImageView = [[NSImageView alloc] initWithFrame:CGRectMake(10, 29, 13, 13)];
     [self addSubview:favoriteImageView];
     
     contentView = [[NSView alloc] initWithFrame:CGRectZero];
