@@ -464,7 +464,6 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-      NSLog(@"iCloudy---");
       [[NSNotificationCenter defaultCenter] postNotificationName:@"iCloudStatusDidChange" object:self userInfo:nil];
     });
   });
