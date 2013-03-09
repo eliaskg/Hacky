@@ -59,6 +59,9 @@
   if ([story.storyId isEqualToString:theStory.storyId])
     return;
   
+  if (connectionController)
+    [connectionController cancel];
+  
   loadingView.isLoading = YES;
   
   story = theStory;
