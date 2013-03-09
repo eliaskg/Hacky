@@ -65,7 +65,9 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
     NSMutableArray *results = [[context executeFetchRequest:request error:nil] mutableCopy];
-    [results reverse];
+    
+    [results sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:NO]]];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:notification object:results];
     
     return;
