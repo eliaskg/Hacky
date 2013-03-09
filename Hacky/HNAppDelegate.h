@@ -25,6 +25,7 @@
 {
   IBOutlet INAppStoreWindow* window;
   NSString* category;
+  BOOL iCloudIsReady;
   HNCategorySelector* categorySelector;
   HNListViewController* listViewController;
   NSTimer* loadTimer;
@@ -46,6 +47,7 @@
 
 @property (assign) IBOutlet INAppStoreWindow* window;
 @property (nonatomic, retain) NSString* category;
+@property (nonatomic, assign) BOOL iCloudIsReady;
 @property (nonatomic, retain) HNCategorySelector* categorySelector;
 @property (nonatomic, retain) HNListViewController* listViewController;
 @property (nonatomic, retain) NSTimer* loadTimer;
