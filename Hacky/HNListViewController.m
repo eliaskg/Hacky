@@ -272,8 +272,9 @@
   else {
     story.isFavorite = NO;
     [listView reloadData];
-    [listView setSelectedRow:selectedIndex];
   }
+  
+  [listView setSelectedRow:selectedIndex];
 }
 
 - (BOOL)writeToPasteBoard:(NSString*)stringToWrite
