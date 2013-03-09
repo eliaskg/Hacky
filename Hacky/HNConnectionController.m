@@ -89,7 +89,7 @@
   [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
     [[NSNotificationCenter defaultCenter] postNotificationName:myself.notification object:operation.responseString];
   } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-    NSLog(@"Failure");
+//    NSLog(@"Failure");
   }];
   
   [networkOperation start];
