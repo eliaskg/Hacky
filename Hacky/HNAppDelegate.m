@@ -147,6 +147,16 @@
     titleString = [NSString stringWithFormat:@"Hacky (%@)", number];
 }
 
+- (void)iCloudDidUpdate
+{
+  if ([category isEqualToString:@"Favorites"])
+    [self load];
+  else {
+    [listViewController setReadMarks];
+    [listViewController.listView reloadData];
+  }
+}
+
 - (IBAction)didClickOpenURLButton:(id)sender
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickOpenURLMenuButton" object:nil];
@@ -337,7 +347,7 @@
   [moc performBlock:^{
     [moc mergeChangesFromContextDidSaveNotification:notification];
     
-    [myself load];
+    [myself iCloudDidUpdate];
   }];
 }
 

@@ -37,5 +37,6 @@
 @property (nonatomic, retain) HNLoadingView* loadingView;
 
 - (void)markAllAsRead;
+- (void)setReadMarks;
 
 @end

@@ -127,11 +127,10 @@
   for (int i = 0; i < [stories count]; i++)
   {
     HNStory* story = [stories objectAtIndex:i];
+    
+    story.isRead = [story isReadInDB];
 
-    if ([story isReadInDB]) {
-      story.isRead = YES;
-    }
-    else {
+    if (!story.isRead) {
       if (scrollIndex == -1) {
         scrollIndex = i;
       }
@@ -326,6 +325,9 @@
 
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification
 {
+  if (!stories.count)
+    return;
+  
   selectedIndex = listView.selectedRow;
   
   HNStory* story = [stories objectAtIndex:selectedIndex];

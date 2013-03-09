@@ -22,6 +22,8 @@
 {
   self = [super initWithFrame:CGRectZero];
   if (self) {
+    self.autoresizingMask = NSViewMinXMargin | NSViewMaxXMargin;
+    
     titleLabel = [[NSTextField alloc] initWithFrame:CGRectZero];
     [titleLabel setEditable:NO];
     [titleLabel setBezeled:NO];
