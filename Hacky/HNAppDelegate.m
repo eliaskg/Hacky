@@ -74,6 +74,7 @@
   
   markAllAsReadButton.enabled = ![category isEqualToString:@"Favorites"];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDidUpdate) name:@"iCloudDidUpdate" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
@@ -151,10 +152,6 @@
 {
   if ([category isEqualToString:@"Favorites"])
     [self load];
-  else {
-    [listViewController setReadMarks];
-    [listViewController.listView reloadData];
-  }
 }
 
 - (IBAction)didClickOpenURLButton:(id)sender
@@ -342,12 +339,10 @@
   
   NSManagedObjectContext* moc = [self managedObjectContext];
   
-  HNAppDelegate* myself = self;
-  
   [moc performBlock:^{
     [moc mergeChangesFromContextDidSaveNotification:notification];
     
-    [myself iCloudDidUpdate];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"iCloudDidUpdate" object:nil];
   }];
 }
 

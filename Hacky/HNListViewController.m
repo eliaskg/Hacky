@@ -42,6 +42,7 @@
   loadingView.frame = listView.frame;
   [self.view addSubview:loadingView];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDidUpdate:) name:@"iCloudDidUpdate" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:@"didLoadFavorites" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
@@ -66,6 +67,16 @@
   category = theCategory;
   
   [listView.refreshHeader setHidden:([category isEqualToString:@"Favorites"])];
+  
+  selectedIndex = 0;
+}
+
+- (void)iCloudDidUpdate:(NSNotification*)aNotification
+{
+  [self setReadMarks];
+  [listView reloadData];
+  [listView setSelectedRow:selectedIndex];
+  [self updateBadge];
 }
 
 - (void)didLoadStories:(NSNotification*)aNotification
@@ -116,7 +127,7 @@
   
   loadingView.isLoading = NO;
   [listView stopLoading];
-  [listView reloadData];
+  [self reloadData];
   [[listView window] makeFirstResponder:listView];
 }
 
