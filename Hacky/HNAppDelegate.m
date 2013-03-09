@@ -74,7 +74,6 @@
   
   markAllAsReadButton.enabled = ![category isEqualToString:@"Favorites"];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(somethingChanged:) name:@"SomethingChanged" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
@@ -100,11 +99,6 @@
     [defaults setValue:@"Top" forKey:@"selectedCategory"];
   
   [defaults synchronize];
-}
-
-- (void)somethingChanged:(NSNotification*)aNotification
-{
-  NSLog(@"somethingsChanged");
 }
 
 - (void)observeReachability
@@ -338,15 +332,12 @@
   
   NSManagedObjectContext* moc = [self managedObjectContext];
   
+  HNAppDelegate* myself = self;
+  
   [moc performBlock:^{
-    
     [moc mergeChangesFromContextDidSaveNotification:notification];
     
-    NSNotification* refreshNotification = [NSNotification notificationWithName:@"SomethingChanged"
-                                                                        object:self
-                                                                      userInfo:[notification userInfo]];
-    
-    [[NSNotificationCenter defaultCenter] postNotification:refreshNotification];
+    [myself load];
   }];
 }
 
@@ -453,10 +444,6 @@
     [psc unlock];
     
   }
-  
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SomethingChanged" object:self userInfo:nil];
-  });
   
   return persistentStoreCoordinator;
 }
