@@ -53,9 +53,9 @@
         
         if (relativeNumber && relativeNumber != INT32_MAX) {
             if (relativeNumber > 1) {
-                return [NSString stringWithFormat:@"%d %@s ago", relativeNumber, NSLocalizedString(selectorName, nil)];
+                return [NSString stringWithFormat:@"%li %@s ago", relativeNumber, NSLocalizedString(selectorName, nil)];
             } else {
-                return [NSString stringWithFormat:@"%d %@ ago", relativeNumber, NSLocalizedString(selectorName, nil)];
+                return [NSString stringWithFormat:@"%li %@ ago", relativeNumber, NSLocalizedString(selectorName, nil)];
             }
         }
     }
