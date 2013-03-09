@@ -104,6 +104,8 @@
     [jsonString replaceOccurrencesOfString:@"'" withString:@"\\'" options:nil range:NSMakeRange(0, [jsonString length])];
     
     NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonString];
+    
+//    NSLog(@"%@", jsFunction);
 
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
   }
