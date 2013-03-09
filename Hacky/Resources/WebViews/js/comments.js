@@ -20,6 +20,10 @@ function parseComments(jsonString) {
   
   for (var i = 0; i < comments.length; i++) {
     var comment = comments[i];
+    
+    var content = comment.content;
+    content = content.replace(/&#012;/g, "\n");
+    
     var postClass = comment.isPost ? 'post' : '';
     var element = $('<div class="commentContainer margin-' + comment.margin + ' ' + postClass + '">' +
                       '<div class="meta">' +
@@ -33,7 +37,7 @@ function parseComments(jsonString) {
                           comment.created +
                         '</span>' +
                       '</div>' +
-                      comment.content +
+                      content +
                     '</div>');
     
     container.append(element);

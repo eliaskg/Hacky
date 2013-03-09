@@ -155,6 +155,7 @@
     NSMutableString* post = [[postTd rawContents] mutableCopy];
     [post replaceOccurrencesOfString:@"<td>" withString:@"" options:nil range:NSMakeRange(0, [post length])];
     [post replaceOccurrencesOfString:@"</td>" withString:@"" options:nil range:NSMakeRange(0, [post length])];
+
     [postComment setValue:post forKey:@"content"];
     
     [postComment setValue:@"true" forKey:@"isPost"];

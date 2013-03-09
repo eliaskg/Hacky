@@ -90,13 +90,20 @@
   if (!jsonData) {
     NSLog(@"Got an error: %@", error);
   } else {
-    NSString* jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSString* jsonStringCleaned1 = [jsonString stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
-    NSString* jsonStringCleaned2 = [jsonStringCleaned1 stringByReplacingOccurrencesOfString:@"\\t" withString:@"  "];
-    NSString* jsonStringCleaned3 = [jsonStringCleaned2 stringByReplacingOccurrencesOfString:@"\\ " withString:@""];
-    NSString* jsonStringCleaned4 = [jsonStringCleaned3 stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-    NSString* jsonStringCleaned5 = [jsonStringCleaned4 stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-    NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonStringCleaned5];
+    NSMutableString* jsonString = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] mutableCopy];
+    
+    [jsonString replaceOccurrencesOfString:@"\\\\" withString:@"&#092;" options:nil range:NSMakeRange(0, [jsonString length])];
+    [jsonString replaceOccurrencesOfString:@"\\n" withString:@"&#012;" options:nil range:NSMakeRange(0, [jsonString length])];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\\\[^\"\\/t]" options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    jsonString = [[regex stringByReplacingMatchesInString:jsonString options:0 range:NSMakeRange(0, [jsonString length]) withTemplate:@""] mutableCopy];
+
+    [jsonString replaceOccurrencesOfString:@"\\t" withString:@"  " options:nil range:NSMakeRange(0, [jsonString length])];
+    [jsonString replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:nil range:NSMakeRange(0, [jsonString length])];
+    [jsonString replaceOccurrencesOfString:@"'" withString:@"\\'" options:nil range:NSMakeRange(0, [jsonString length])];
+    
+    NSString* jsFunction = [NSString stringWithFormat:@"parseComments('%@')", jsonString];
 
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
   }
