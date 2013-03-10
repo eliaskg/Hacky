@@ -66,7 +66,7 @@
   
   category = theCategory;
   
-  [listView.refreshHeader setHidden:([category isEqualToString:@"Favorites"])];
+  [listView.refreshHeader setHidden:[category isEqualToString:@"Favorites"]];
   
   selectedIndex = 0;
 }
@@ -127,6 +127,7 @@
   
   loadingView.isLoading = NO;
   [listView stopLoading];
+  [listView.refreshHeader setHidden:YES];
   [self reloadData];
   [[listView window] makeFirstResponder:listView];
 }
