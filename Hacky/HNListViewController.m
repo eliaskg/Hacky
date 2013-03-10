@@ -273,6 +273,8 @@
   story.isFavorite = YES;
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
+  
+  [self updateBadge];
 }
 
 - (void)didClickDeleteFavoriteMenuButton
@@ -314,7 +316,7 @@
   {
     HNStory* story = stories[i];
     
-    if (![story isReadInDB])
+    if (!story.isRead && !story.isFavorite)
       unreadStories++;
   }
   
