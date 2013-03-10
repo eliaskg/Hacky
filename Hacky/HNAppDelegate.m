@@ -176,7 +176,7 @@
 
 - (IBAction)didClickCopyButton:(id)sender
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickCopyMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickCopyMenuButton" object:_window.firstResponder];
 }
 
 - (IBAction)didClickCopyURLButton:(id)sender

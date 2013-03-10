@@ -49,7 +49,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCommentsMenuButton) name:@"didClickCommentsMenuButton" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton) name:@"didClickCopyMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton:) name:@"didClickCopyMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyURLMenuButton) name:@"didClickCopyURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickInstapaperMenuButton) name:@"didClickInstapaperMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
@@ -196,8 +196,13 @@
   [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (void)didClickCopyMenuButton
+- (void)didClickCopyMenuButton:(NSNotification*)aNotification
 {
+  id responder = [aNotification object];
+  
+  if (responder != listView)
+    return;
+  
   HNStory* story = [stories objectAtIndex:selectedIndex];
   NSString* stringToCopy = [[story.title stringByAppendingString:@" "] stringByAppendingString:story.url];
   [self writeToPasteBoard:stringToCopy];
