@@ -79,13 +79,17 @@
   {
     NSMutableDictionary* topic = [topics objectAtIndex:i];
     
-    if ([defaults valueForKey:[topic valueForKey:@"id"]]) {
-      [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
-    }
-    else {
-      if (scrollIndex == -1) {
-        scrollIndex = i;
+    if ([topic objectForKey:@"id"]) {
+      if ([defaults valueForKey:[topic valueForKey:@"id"]]) {
+        [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
       }
+      else {
+        if (scrollIndex == -1) {
+          scrollIndex = i;
+        }
+      }
+    } else {
+      scrollIndex = i;
     }
   }
 }
@@ -225,8 +229,10 @@
   {
     NSMutableDictionary* topic = topics[i];
     
-    if (![defaults valueForKey:[topic valueForKey:@"id"]])
-      unreadTopics++;
+    if ([topic objectForKey:@"id"]) {
+      if (![defaults valueForKey:[topic valueForKey:@"id"]])
+        unreadTopics++;
+    }
   }
   
   NSString* badgeString;
