@@ -9,7 +9,7 @@ function parseComments(jsonString) {
     return;
   }
   
-  clearComments()
+  clearComments();
   
   document.body.scrollTop = 0;
   
