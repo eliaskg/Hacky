@@ -1,19 +1,23 @@
 <p align="center">
-  <img src="http://i.imgur.com/EhCeLsb.png" alt="Hacky for Mac" />
+  <img src="http://i.imgur.com/z7AWw8o.png" alt="Hacky for Mac" />
 </p>
 
 ## Introduction
 
-Hacky for Mac provides browsing Hacker News in a clean and minimalistic way:
+Hacky for Mac lets you browse Hacker News in a clean and minimalistic way:
 
-+ Read / Unread Markers
-+ Twitter Support
-+ Send to Instapaper
++ Favorites with iCloud support 
++ Comments 
++ Read / Unread Markers 
++ Twitter Support 
++ Send to Instapaper 
 + Retina ready
 
 ## Installation
 
 You need the latest version of [Xcode](https://developer.apple.com/xcode/) for building the source. Alternatively you can install Hacky via the [Mac App Store](https://itunes.apple.com/us/app/hacky/id584949645?ls=1&mt=12).
+
+Note: Hacky makes use of iCloud which needs a valid provisioning profile. If you are building Hacky from source, add your own or remove it in the code.
 
 ## FAQ
 
