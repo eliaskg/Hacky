@@ -41,7 +41,7 @@ body {
   opacity: 0.4;
 }
 
-.meta:hover .minimizer {
+.commentContainer:hover .minimizer {
   display: inline-block;
 }
 
