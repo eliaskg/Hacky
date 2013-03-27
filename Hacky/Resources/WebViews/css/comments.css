@@ -29,6 +29,10 @@ body {
   background: #F6F6EF;
 }
 
+.post .minimizer {
+  display: none !important;
+}
+
 .meta {
   margin-bottom: 7px;
 }
