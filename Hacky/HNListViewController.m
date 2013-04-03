@@ -1,5 +1,5 @@
 //
-//  HNListView.m
+//  HNListViewController.m
 //  Hacky
 //
 //  Created by Elias Klughammer on 16.11.12.
@@ -17,9 +17,11 @@
 
 @synthesize selectedIndex;
 @synthesize scrollIndex;
-@synthesize topics;
+@synthesize category;
+@synthesize stories;
 @synthesize listView;
 @synthesize applicationIsActive;
+@synthesize loadingView;
 
 - (void)awakeFromNib
 {
@@ -27,33 +29,68 @@
   
   self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   
-  topics = [[NSMutableArray alloc] init];
+  stories = [[NSMutableArray alloc] init];
   
   listView.delegate = self;
   listView.borderType = NSNoBorder;
-  listView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+  listView.autoresizingMask = self.view.autoresizingMask;
+  listView.refreshBlock = ^(EQSTRScrollView *scrollView) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
+  };
   
+  loadingView = [[HNLoadingView alloc] init];
+  loadingView.frame = listView.frame;
+  [self.view addSubview:loadingView];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDidUpdate:) name:@"iCloudDidUpdate" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:@"didLoadFavorites" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCommentsMenuButton) name:@"didClickCommentsMenuButton" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton) name:@"didClickCopyMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton:) name:@"didClickCopyMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyURLMenuButton) name:@"didClickCopyURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickInstapaperMenuButton) name:@"didClickInstapaperMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMakeFavoriteMenuButton) name:@"didClickMakeFavoriteMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickDeleteFavoriteMenuButton) name:@"didClickDeleteFavoriteMenuButton" object:nil];
+}
+
+- (void)setCategory:(NSString *)theCategory
+{
+  if ([category isEqualToString:theCategory])
+    return;
+  
+  category = theCategory;
+  
+  [listView.refreshHeader setHidden:[category isEqualToString:@"Favorites"]];
+  
+  selectedIndex = 0;
+}
+
+- (void)iCloudDidUpdate:(NSNotification*)aNotification
+{
+  [self setReadMarks];
+  [listView reloadData];
+  [listView setSelectedRow:selectedIndex];
+  [self updateBadge];
 }
 
 - (void)didLoadStories:(NSNotification*)aNotification
 {
+  loadingView.isLoading = NO;
+  
   if ([[aNotification object] isKindOfClass:[NSError class]])
     return;
   
   NSString* response = [aNotification object];
   HNParser* parser = [[HNParser alloc] init];
-  topics = [parser parseStories:response];
+  stories = [parser parseStories:response];
+  
+  [listView stopLoading];
   
   [self setReadMarks];
   
@@ -69,38 +106,60 @@
   [self updateBadge];
 }
 
+- (void)didLoadFavorites:(NSNotification*)aNotification
+{
+  NSMutableArray* favorites = [aNotification object];
+  
+  stories = [[NSMutableArray alloc] init];
+  
+  for (int i = 0; i < [favorites count]; i++) {
+    NSManagedObject* favorite = favorites[i];
+    HNStory* story  = [[HNStory alloc] init];
+    story.storyId   = [favorite valueForKey:@"id"];
+    story.title     = [favorite valueForKey:@"title"];
+    story.url       = [favorite valueForKey:@"url"];
+    NSDate* createdAt = [favorite valueForKey:@"created_at"];
+    NSString* createdAtRelative = [createdAt relativeDate];
+    story.createdAt = createdAtRelative;
+    story.isFavorite = YES;
+    [stories addObject:story];
+  }
+  
+  loadingView.isLoading = NO;
+  [listView stopLoading];
+  [listView.refreshHeader setHidden:YES];
+  [self reloadData];
+  [[listView window] makeFirstResponder:listView];
+}
+
 - (void)setReadMarks
 {
   scrollIndex = -1;
   
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  
-  for (int i = 0; i < [topics count]; i++)
+  for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* topic = [topics objectAtIndex:i];
+    HNStory* story = [stories objectAtIndex:i];
     
-    if ([defaults valueForKey:[topic valueForKey:@"id"]]) {
-      [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
-    }
-    else {
+    story.isRead = [story isReadInDB];
+
+    if (!story.isRead) {
       if (scrollIndex == -1) {
         scrollIndex = i;
       }
     }
+    
+    story.isFavorite = [story isFavoriteInDB];
   }
 }
 
 - (void)markAllAsRead
 {
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  
-  for (int i = 0; i < [topics count]; i++)
+  for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* topic = [topics objectAtIndex:i];
-    [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
+    HNStory* story = [stories objectAtIndex:i];
+    [story setIsReadInDB];
   }
   
-  [defaults synchronize];
   [self setReadMarks];
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
@@ -114,15 +173,13 @@
 }
 
 - (void)openURL {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSURL* url = [NSURL URLWithString:[topic valueForKey:@"url"]];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  NSURL* url = [NSURL URLWithString:story.url];
   [[NSWorkspace sharedWorkspace] openURL:url];
   
-  [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
+  story.isRead = YES;
   
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
-  [defaults synchronize];
+  [story setIsReadInDB];
   
   [self shouldReloadData];
   [listView setSelectedRow:selectedIndex];
@@ -132,34 +189,38 @@
 
 - (void)didClickCommentsMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   NSString* baseUrl = @"http://news.ycombinator.com/item?id=";
-  NSString* commentsUrl = [baseUrl stringByAppendingString:[topic valueForKey:@"id"]];
+  NSString* commentsUrl = [baseUrl stringByAppendingString:story.storyId];
   NSURL* url = [NSURL URLWithString:commentsUrl];
   [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (void)didClickCopyMenuButton
+- (void)didClickCopyMenuButton:(NSNotification*)aNotification
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSString* stringToCopy = [[[topic valueForKey:@"title"] stringByAppendingString:@" "] stringByAppendingString:[topic valueForKey:@"url"]];
+  id responder = [aNotification object];
+  
+  if (responder != listView)
+    return;
+  
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  NSString* stringToCopy = [[story.title stringByAppendingString:@" "] stringByAppendingString:story.url];
   [self writeToPasteBoard:stringToCopy];
 }
 
 - (void)didClickCopyURLMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSString* stringToCopy = [topic valueForKey:@"url"];
-  [self writeToPasteBoard:stringToCopy];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  [self writeToPasteBoard:story.url];
 }
 
 - (void)didClickInstapaperMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   NSString* baseURL = @"http://www.instapaper.com/hello2?url=";
-  NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* title = [[topic valueForKey:@"title"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, topicURL, title];
+  NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, storyURL, title];
   
   NSURL* url = [NSURL URLWithString:ipURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
@@ -167,11 +228,11 @@
 
 - (void)didClickTweetMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   NSString* baseURL = @"https://twitter.com/share?url=";
-  NSString* topicURL = [[topic valueForKey:@"url"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* title = [[topic valueForKey:@"title"] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&text=%@", baseURL, topicURL, title];
+  NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString* twitterURL = [NSString stringWithFormat:@"%@%@&text=%@", baseURL, storyURL, title];
   
   NSURL* url = [NSURL URLWithString:twitterURL];
   [[NSWorkspace sharedWorkspace] openURL:url];
@@ -179,11 +240,11 @@
 
 - (void)didClickMarkAsReadMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setValue:[NSNumber numberWithInt:1] forKey:[topic valueForKey:@"id"]];
-  [defaults synchronize];
-  [topic setValue:[NSNumber numberWithInt:1] forKey:@"isRead"];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  
+  [story setIsReadInDB];
+
+  story.isRead = YES;
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
   
@@ -192,15 +253,46 @@
 
 - (void)didClickMarkAsUnreadMenuButton
 {
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  [defaults removeObjectForKey:[topic valueForKey:@"id"]];
-  [defaults synchronize];
-  [topic removeObjectForKey:@"isRead"];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  
+  [story setIsUnreadInDB];
+  
+  story.isRead = NO;
   [listView reloadData];
   [listView setSelectedRow:selectedIndex];
   
   [self updateBadge];
+}
+
+- (void)didClickMakeFavoriteMenuButton
+{
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  
+  [story makeFavoriteInDB];
+  
+  story.isFavorite = YES;
+  [listView reloadData];
+  [listView setSelectedRow:selectedIndex];
+  
+  [self updateBadge];
+}
+
+- (void)didClickDeleteFavoriteMenuButton
+{
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  
+  [story deleteFavoriteInDB];
+  
+  if ([category isEqualToString:@"Favorites"]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadStories" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldClearComments" object:nil];
+  }
+  else {
+    story.isFavorite = NO;
+    [listView reloadData];
+  }
+  
+  [listView setSelectedRow:selectedIndex];
 }
 
 - (BOOL)writeToPasteBoard:(NSString*)stringToWrite
@@ -218,28 +310,27 @@
 
 - (void)updateBadge
 {
-  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-  int unreadTopics = 0;
+  int unreadStories = 0;
   
-  for (int i = 0; i < [topics count]; i++)
+  for (int i = 0; i < [stories count]; i++)
   {
-    NSMutableDictionary* topic = topics[i];
+    HNStory* story = stories[i];
     
-    if (![defaults valueForKey:[topic valueForKey:@"id"]])
-      unreadTopics++;
+    if (!story.isRead && !story.isFavorite)
+      unreadStories++;
   }
   
   NSString* badgeString;
   
-  if (unreadTopics == 0)
+  if (unreadStories == 0)
     badgeString = @"";
   else
-    badgeString = [NSString stringWithFormat:@"%d", unreadTopics];
+    badgeString = [NSString stringWithFormat:@"%d", unreadStories];
   
   NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
   [tile setBadgeLabel:badgeString];
   
-  NSNumber* badgeNumber = [NSNumber numberWithInt:unreadTopics];
+  NSNumber* badgeNumber = [NSNumber numberWithInt:unreadStories];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSetTitleBadge" object:badgeNumber];
 }
 
@@ -248,32 +339,41 @@
 ////////////////////////////////////////////////////////////////////////
 
 - (NSUInteger)numberOfRowsInListView:(PXListView*)listView {
-  return [topics count];
+  return [stories count];
 }
 
 - (void)listViewSelectionDidChange:(NSNotification*)aNotification
 {
+  if (!stories.count)
+    return;
+  
   selectedIndex = listView.selectedRow;
   
-  NSMutableDictionary* topic = [topics objectAtIndex:selectedIndex];
+  HNStory* story = [stories objectAtIndex:selectedIndex];
   
   id appDelegate = [[NSApplication sharedApplication] delegate];
   
   NSMenuItem* markAsReadMenuItem = [appDelegate markAsReadMenuItem];
   NSMenuItem* markAsUnreadMenuItem = [appDelegate markAsUnreadMenuItem];
+  NSMenuItem* addFavoriteMenuItem = [appDelegate addFavoritesMenuItem];
+  NSMenuItem* deleteFavoriteMenuItem = [appDelegate deleteFavoritesMenuItem];
   
-  markAsReadMenuItem.hidden = !![topic valueForKey:@"isRead"];
-  markAsUnreadMenuItem.hidden = ![topic valueForKey:@"isRead"];
+  markAsReadMenuItem.hidden = !!story.isRead;
+  markAsUnreadMenuItem.hidden = !story.isRead;
+  addFavoriteMenuItem.hidden = !!story.isFavorite;
+  deleteFavoriteMenuItem.hidden = !story.isFavorite;
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didSelectStory" object:story];
 }
 
 - (void)didUseRightClick:(NSNotification*)aNotification
 {
-  NSMutableDictionary* clickedTopic = [aNotification object];
+  HNStory* clickedStory = [aNotification object];
   
-  for (int i = 0; i < [topics count]; i++) {
-    NSMutableDictionary* topic = topics[i];
+  for (int i = 0; i < [stories count]; i++) {
+    HNStory* story = stories[i];
     
-    if ([[topic valueForKey:@"id"] isEqualToString:[clickedTopic valueForKey:@"id"]]) {
+    if ([story.storyId isEqualToString:clickedStory.storyId]) {
       [listView setSelectedRow:i];
       break;
     }
@@ -288,9 +388,14 @@
     cell = [[HNPostCell alloc] initWithReusableIdentifier:LISTVIEW_CELL_IDENTIFIER];
   }
   
-  // --- Set up the new cell:
-  [cell setNumber:row + 1];
-  [cell setTopic:[topics objectAtIndex:row]];
+  if ([category isEqualToString:@"Top"])
+    [cell setNumber:row + 1.0];
+  else
+    [cell setNumber:nil];
+  
+  cell.isFavorite = !![category isEqualToString:@"Favorites"];
+  
+  [cell setStory:[stories objectAtIndex:row]];
   
   return cell;
 }

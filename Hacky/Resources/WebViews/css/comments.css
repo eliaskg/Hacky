@@ -1,0 +1,182 @@
+body {
+  text-rendering: optimizelegibility;
+  font-family: "Lucida Grande";
+  font-size: 12px;
+}
+
+#pullToRefresh {
+  position: absolute;
+  background: gray;
+  height: 34px;
+  top: -34px;
+}
+
+.commentContainer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 7px 10px;
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 1.5em;
+  cursor: default;
+  
+  word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.post {
+  background: #F6F6EF;
+}
+
+.post .minimizer {
+  display: none !important;
+}
+
+.meta {
+  margin-bottom: 7px;
+}
+
+.meta.hidden {
+  margin: 0;
+}
+
+.meta.hidden .username .text, .meta.hidden .createdAt {
+  opacity: 0.4;
+}
+
+.commentContainer:hover .minimizer {
+  display: inline-block;
+}
+
+.minimizer {
+  display: none;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 1.2em;
+  line-height: 1em;
+  text-align: center;
+  color: #fff;
+  margin-left: 0.4em;
+  background: #c2c2c2;
+  opacity: 0.5;
+}
+
+.minimizer:hover {
+  opacity: 1.0;
+}
+
+.username .text, .createdAt {
+  -webkit-transition: opacity 0.3s;
+}
+
+.username {
+  display: inline-block;
+  width: 60%;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.createdAt {
+  display: inline-block;
+  width: 40%;
+  text-align: right;
+  color: #a9a9a9;
+}
+
+a, a:active, a:visited {
+  color: #007ec8;
+}
+
+.noComments {
+  text-align: center;
+  font-size: 0.9em;
+  height: 1.5em;
+  line-height: 1.5em;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: -0.75em;
+}
+
+.noComments span {
+  background: #cbcbcb;
+  padding: 0.5em 1em;
+  border-radius: 2em;
+  color: #fff;
+}
+
+.error {
+  padding: 10px;
+  background: #f6c6bb;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-top: 1px solid #eaaea2;
+  border-bottom: 1px solid #eaaea2;
+}
+
+/* 10px steps */
+
+.margin-0 {
+  padding-left: 10px;
+}
+
+.margin-40 {
+  padding-left: 20px;
+}
+
+.margin-80 {
+  padding-left: 30px;
+}
+
+.margin-120 {
+  padding-left: 40px;
+}
+
+.margin-160 {
+  padding-left: 50px;
+}
+
+.margin-200 {
+  padding-left: 60px;
+}
+
+.margin-240 {
+  padding-left: 70px;
+}
+
+.margin-280 {
+  padding-left: 103px;
+}
+
+.margin-320 {
+  padding-left: 80px;
+}
+
+.margin-360 {
+  padding-left: 90px;
+}
+
+.margin-400 {
+  padding-left: 100px;
+}
+
+.margin-440 {
+  padding-left: 110px;
+}
+
+.margin-480 {
+  padding-left: 120px;
+}
+
+.margin-520 {
+  padding-left: 130px;
+}
+
+.margin-560 {
+  padding-left: 140px;
+}
+
+.margin-600 {
+  padding-left: 140px;
+}

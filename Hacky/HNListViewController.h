@@ -11,23 +11,30 @@
 #import "HNParser.h"
 #import "PXListView.h"
 #import "PXListDocumentView.h"
+#import "EQSTRScrollView.h"
 #import "HNConnectionController.h"
 #import "HNPostCell.h"
+#import "NSDate+RelativeDate.h"
+#import "HNLoadingView.h"
 
 @interface HNListViewController : NSViewController <PXListViewDelegate>
 {
   NSUInteger scrollIndex;
   NSUInteger selectedIndex;
+  NSString* category;
   IBOutlet PXListView* listView;
-  NSMutableArray* topics;
+  NSMutableArray* stories;
   BOOL applicationIsActive;
+  HNLoadingView* loadingView;
 }
 
 @property (nonatomic, assign) NSUInteger scrollIndex;
 @property (nonatomic, assign) NSUInteger selectedIndex;
+@property (nonatomic, retain) NSString* category;
 @property (nonatomic, retain) IBOutlet PXListView* listView;
-@property (nonatomic, retain) NSMutableArray* topics;
+@property (nonatomic, retain) NSMutableArray* stories;
 @property (nonatomic, assign) BOOL applicationIsActive;
+@property (nonatomic, retain) HNLoadingView* loadingView;
 
 - (void)markAllAsRead;
 

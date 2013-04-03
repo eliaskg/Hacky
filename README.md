@@ -1,19 +1,23 @@
 <p align="center">
-  <img src="http://i.imgur.com/EhCeLsb.png" alt="Hacky for Mac" />
+  <img src="http://i.imgur.com/z7AWw8o.png" alt="Hacky for Mac" />
 </p>
 
 ## Introduction
 
-Hacky for Mac provides browsing Hacker News in a clean and minimalistic way:
+Hacky for Mac lets you browse Hacker News in a clean and minimalistic way:
 
-+ Read / Unread Markers
-+ Twitter Support
-+ Send to Instapaper
++ Favorites with iCloud support 
++ Comments 
++ Read / Unread Markers 
++ Twitter Support 
++ Send to Instapaper 
 + Retina ready
 
 ## Installation
 
 You need the latest version of [Xcode](https://developer.apple.com/xcode/) for building the source. Alternatively you can install Hacky via the [Mac App Store](https://itunes.apple.com/us/app/hacky/id584949645?ls=1&mt=12).
+
+Note: Hacky makes use of iCloud which needs a valid provisioning profile. If you are building Hacky from source, add your own or remove it in the code.
 
 ## FAQ
 
@@ -39,8 +43,12 @@ __A:__ Personally I like getting my apps via Mac App Store. It means easy updati
 Hacky makes use of the folling open source libraries. Give a round of applause!
 
 + [AFNetworking](https://github.com/AFNetworking/AFNetworking)
-+ [INAppStoreWindow](https://github.com/indragiek/INAppStoreWindow)
-+ [PXListView](https://github.com/Perspx/PXListView)
++ [HTMLParser](https://github.com/zootreeves/Objective-C-HMTL-Parser) by Ben Reeves
++ [INAppStoreWindow](https://github.com/indragiek/INAppStoreWindow) by Indragie Karunaratne
++ [Normalize.css](http://necolas.github.com/normalize.css) by Nicolas Gallagher
++ [PXListView](https://github.com/Perspx/PXListView) by Alex Rozanski
++ [ScrollToRefresh](https://github.com/alexzielenski/ScrollToRefresh) by Alex Zielenski
++ [Zepto.js](http://zeptojs.com) by Thomas Fuchs
 
 ## License
 
