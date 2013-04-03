@@ -397,7 +397,8 @@
     NSString *iCloudDataDirectoryName = @"Data.nosync";
     NSString *iCloudLogsDirectoryName = @"Logs";
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL* applicationDocumentsDirectory = [NSURL URLWithString:[self applicationDocumentsDirectory]];
+    NSURL* applicationDocumentsDirectory = [self applicationFilesDirectory];
+    NSLog(@"%@", applicationDocumentsDirectory);
     NSURL *localStore = [applicationDocumentsDirectory URLByAppendingPathComponent:dataFileName];
     NSURL *iCloud = [fileManager URLForUbiquityContainerIdentifier:nil];
     
@@ -448,6 +449,37 @@
     }
     else {
       NSLog(@"iCloud is NOT working - using a local store");
+      
+      NSFileManager *fileManager = [NSFileManager defaultManager];
+      NSURL *applicationFilesDirectory = [self applicationFilesDirectory];
+      NSError *error = nil;
+      
+      NSDictionary *properties = [applicationFilesDirectory resourceValuesForKeys:@[NSURLIsDirectoryKey] error:&error];
+      
+      if (!properties) {
+        BOOL ok = NO;
+        if ([error code] == NSFileReadNoSuchFileError) {
+          ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
+        }
+        if (!ok) {
+          [[NSApplication sharedApplication] presentError:error];
+        }
+      } else {
+        if (![properties[NSURLIsDirectoryKey] boolValue]) {
+          // Customize and localize this error.
+          NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
+          
+          NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+          [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
+          error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
+          
+          [[NSApplication sharedApplication] presentError:error];
+        }
+      }
+      
+      
+      
+      
       NSMutableDictionary *options = [NSMutableDictionary dictionary];
       [options setObject:[NSNumber numberWithBool:YES] forKey:NSMigratePersistentStoresAutomaticallyOption];
       [options setObject:[NSNumber numberWithBool:YES] forKey:NSInferMappingModelAutomaticallyOption];
@@ -473,11 +505,11 @@
 
 #pragma mark Application's Documents directory
 
-/**
- Returns the path to the application's Documents directory.
- */
-- (NSString *)applicationDocumentsDirectory {
-	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+- (NSURL *)applicationFilesDirectory
+{
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
+  return [appSupportURL URLByAppendingPathComponent:@"Hacky"];
 }
 
 #pragma mark access to app delegate etc.
