@@ -307,6 +307,14 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
+								<object class="NSMenuItem" id="451341834">
+									<reference key="NSMenu" ref="378044301"/>
+									<string key="NSTitle">Toggle Comments Drawer</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
 							</array>
 						</object>
 					</object>
@@ -402,7 +410,7 @@
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<string key="NSWindowContentMinSize">{801, 400}</string>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSButton" id="742983570">
@@ -410,8 +418,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, -1}, {140, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="11494394">
@@ -436,11 +442,9 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{801, 600}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="742983570"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
 				<string key="NSMinSize">{801, 422}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSAutorecalculatesContentBorderThicknessMinY">NO</bool>
@@ -704,6 +708,22 @@
 						<reference key="destination" ref="742983570"/>
 					</object>
 					<int key="connectionID">662</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">toggleCommentsMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="451341834"/>
+					</object>
+					<int key="connectionID">668</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">didClickToggleCommentsButton:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="451341834"/>
+					</object>
+					<int key="connectionID">669</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1056,6 +1076,7 @@
 						<reference key="object" ref="378044301"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="963926660"/>
+							<reference ref="451341834"/>
 						</array>
 						<reference key="parent" ref="175676075"/>
 					</object>
@@ -1078,6 +1099,11 @@
 						<int key="objectID">628</int>
 						<reference key="object" ref="392364122"/>
 						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">667</int>
+						<reference key="object" ref="451341834"/>
+						<reference key="parent" ref="378044301"/>
 					</object>
 				</array>
 			</object>
@@ -1137,6 +1163,7 @@
 				<string key="652.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="655.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="656.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="667.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="81.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="83.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1146,7 +1173,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">662</int>
+			<int key="maxID">669</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1154,8 +1181,10 @@
 					<string key="className">HNAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="didClickAddFavoritesButton:">id</string>
 						<string key="didClickCopyButton:">id</string>
 						<string key="didClickCopyURLButton:">id</string>
+						<string key="didClickDeleteFavoritesButton:">id</string>
 						<string key="didClickFullScreenButton:">id</string>
 						<string key="didClickInstapaperButton:">id</string>
 						<string key="didClickMarkAllAsReadButton:">id</string>
@@ -1163,16 +1192,25 @@
 						<string key="didClickMarkAsUnreadButton:">id</string>
 						<string key="didClickOpenURLButton:">id</string>
 						<string key="didClickReloadMenuItem:">id</string>
+						<string key="didClickToggleCommentsButton:">id</string>
 						<string key="didClickTweetButton:">id</string>
 						<string key="didClickViewCommentsButton:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="didClickAddFavoritesButton:">
+							<string key="name">didClickAddFavoritesButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="didClickCopyButton:">
 							<string key="name">didClickCopyButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="didClickCopyURLButton:">
 							<string key="name">didClickCopyURLButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="didClickDeleteFavoritesButton:">
+							<string key="name">didClickDeleteFavoritesButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="didClickFullScreenButton:">
@@ -1203,6 +1241,10 @@
 							<string key="name">didClickReloadMenuItem:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="didClickToggleCommentsButton:">
+							<string key="name">didClickToggleCommentsButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="didClickTweetButton:">
 							<string key="name">didClickTweetButton:</string>
 							<string key="candidateClassName">id</string>
@@ -1219,6 +1261,7 @@
 						<string key="markAllAsReadButton">NSButton</string>
 						<string key="markAsReadMenuItem">NSMenuItem</string>
 						<string key="markAsUnreadMenuItem">NSMenuItem</string>
+						<string key="toggleCommentsMenuItem">NSMenuItem</string>
 						<string key="window">INAppStoreWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1244,6 +1287,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="markAsUnreadMenuItem">
 							<string key="name">markAsUnreadMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toggleCommentsMenuItem">
+							<string key="name">toggleCommentsMenuItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="window">

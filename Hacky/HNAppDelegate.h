@@ -57,6 +57,8 @@
 @property (nonatomic, retain) IBOutlet NSMenuItem* addFavoritesMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* deleteFavoritesMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* fullScreenMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem* toggleCommentsMenuItem;
+
 @property (nonatomic, retain) HNConnectionController* connectionController;
 @property (nonatomic, retain) NSSplitView* splitView;
 @property (nonatomic, retain) HNCommentsViewController* commentsViewController;
@@ -77,6 +79,7 @@
 - (IBAction)didClickMarkAsReadButton:(id)sender;
 - (IBAction)didClickMarkAsUnreadButton:(id)sender;
 - (IBAction)didClickFullScreenButton:(id)sender;
+- (IBAction)didClickToggleCommentsButton:(id)sender;
 
 + (HNAppDelegate*)sharedAppDelegate;
 

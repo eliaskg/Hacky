@@ -226,6 +226,18 @@
     menuItem.title = @"Enter Full Screen";
 }
 
+- (IBAction)didClickToggleCommentsButton:(id)sender
+{
+    CGFloat maxWidth = splitView.frame.size.width - 1;
+    CGFloat newWidth = maxWidth;
+    
+    if (listViewController.view.frame.size.width == maxWidth) {
+        newWidth = maxWidth / 2;
+    }
+    
+    [splitView setPosition:newWidth ofDividerAtIndex:0];
+}
+
 - (void)workspaceDidWake:(NSNotification*)aNotification
 {
   [self load];
@@ -290,23 +302,6 @@
   return YES;
 }
 
-- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize
-{
-  CGFloat dividerThickness = [sender dividerThickness];
-  NSRect leftRect  = [[[sender subviews] objectAtIndex:0] frame];
-  NSRect rightRect = [[[sender subviews] objectAtIndex:1] frame];
-  NSRect newFrame  = [sender frame];
-  
-  leftRect.size.height = newFrame.size.height;
-  leftRect.origin = NSMakePoint(0, 0);
-  rightRect.size.width = newFrame.size.width - leftRect.size.width - dividerThickness;
-  rightRect.size.height = newFrame.size.height;
-  rightRect.origin.x = leftRect.size.width + dividerThickness;
-  
-  [[[sender subviews] objectAtIndex:0] setFrame:leftRect];
-  [[[sender subviews] objectAtIndex:1] setFrame:rightRect];
-}
-
 - (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(double)proposedMin ofSubviewAt:(NSInteger)offset
 {
   return proposedMin + HN_MIN_MENU_WIDTH;
@@ -315,6 +310,11 @@
 - (CGFloat)splitView:(NSSplitView *)sender constrainMaxCoordinate:(double)proposedMax ofSubviewAt:(NSInteger)offset
 {
   return proposedMax - HN_MIN_MENU_WIDTH;
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
+{
+    return (subview == commentsViewController.view);
 }
 
 #pragma mark Core Data stack
