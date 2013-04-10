@@ -228,7 +228,7 @@
 
 - (IBAction)didClickToggleCommentsButton:(id)sender
 {
-    CGFloat maxWidth = splitView.frame.size.width - 1;
+    CGFloat maxWidth = splitView.frame.size.width;
     CGFloat newWidth = maxWidth;
     
     if (listViewController.view.frame.size.width == maxWidth) {
@@ -315,6 +315,10 @@
 - (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
 {
     return (subview == commentsViewController.view);
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex {
+    return YES;
 }
 
 #pragma mark Core Data stack
