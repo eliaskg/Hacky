@@ -187,13 +187,7 @@
     
     // --- New users are inside od a <font> tag
     HTMLNode* newUser = [userLink findChildTag:@"font"];
-    NSString* userName;
-    
-    if (newUser)
-      userName = [newUser contents];
-    else
-      userName = [userLink contents];
-
+    NSString* userName = newUser? [newUser contents] : [userLink contents];
     [comment setValue:userName forKey:@"user"];
     
     NSString* idHref = [idLink getAttributeNamed:@"href"];
@@ -237,9 +231,7 @@
   [scanner scanCharactersFromSet:numbers intoString:&numberString];
   
   // Result.
-  long number = [numberString integerValue];
-  
-  return number;
+  return [numberString integerValue];
 }
 
 -(NSString*)removeLeadingAndTrailingWhitespace:(NSString*)string {
