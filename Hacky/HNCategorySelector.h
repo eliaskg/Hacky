@@ -28,5 +28,6 @@
 @property (nonatomic, retain) NSMenu* menu;
 
 - (void)setCategory:(NSString*)theCategory;
+- (NSMenuItem*)menuItemWithTitle:(NSString*)menuTitle andAction:(SEL)selector;
 
 @end

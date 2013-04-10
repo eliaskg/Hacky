@@ -43,33 +43,15 @@
     menu = [[NSMenu alloc] initWithTitle:@"Category"];
     [menu setMenuChangedMessagesEnabled:YES];
     
-    NSMenuItem *topMenu = [[NSMenuItem alloc] init];
-    [topMenu setTitle:@"Top"];
-    [topMenu setAction:@selector(didClickMenuButton:)];
-    [topMenu setTarget:self];
-    [menu addItem:topMenu];
-    
-    NSMenuItem *newMenu = [[NSMenuItem alloc] init];
-    [newMenu setTitle:@"New"];
-    [newMenu setAction:@selector(didClickMenuButton:)];
-    [newMenu setTarget:self];
-    [menu addItem:newMenu];
-    
-    NSMenuItem *askMenu = [[NSMenuItem alloc] init];
-    [askMenu setTitle:@"Ask"];
-    [askMenu setAction:@selector(didClickMenuButton:)];
-    [askMenu setTarget:self];
-    [menu addItem:askMenu];
-    
-    NSMenuItem *favoritesMenu = [[NSMenuItem alloc] init];
-    [favoritesMenu setTitle:@"Favorites"];
-    [favoritesMenu setAction:@selector(didClickMenuButton:)];
-    [favoritesMenu setTarget:self];
-    [menu addItem:favoritesMenu];
+    NSArray* menuTitles = @[@"Top", @"New", @"Ask", @"Favorites"];
+    for (NSString* menuTitle in menuTitles) {
+        [menu addItem:[self menuItemWithTitle:menuTitle andAction:@selector(didClickMenuButton:)]];
+    }
   }
   
   return self;
 }
+
 
 - (void)setTitle:(NSString *)theTitle
 {
@@ -158,16 +140,9 @@
   
   [self setTitle:theCategory];
   
-  NSArray* menuItems = menu.itemArray;
-  
   // --- Set check mark
-  for (int i = 0; i < [menuItems count]; i++) {
-    NSMenuItem* menuItem = menuItems[i];
-    
-    if ([menuItem.title isEqualToString:theCategory])
-      menuItem.state = NSOnState;
-    else
-      menuItem.state = NSOffState;
+  for (NSMenuItem* menuItem in menu.itemArray) {
+    menuItem.state = [menuItem.title isEqualToString:theCategory] ? NSOnState : NSOffState;
   }
   
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -180,6 +155,17 @@
 - (void)didClickMenuButton:(NSMenuItem*)sender
 {
   [self setCategory:sender.title];
+}
+
+
+# pragma -
+- (NSMenuItem*)menuItemWithTitle:(NSString*)menuTitle andAction:(SEL)selector
+{
+    NSMenuItem *favoritesMenu = [NSMenuItem new];
+    [favoritesMenu setTitle:menuTitle];
+    [favoritesMenu setAction:selector];
+    [favoritesMenu setTarget:self];
+    return favoritesMenu;
 }
 
 @end

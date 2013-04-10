@@ -112,8 +112,7 @@
   
   stories = [[NSMutableArray alloc] init];
   
-  for (int i = 0; i < [favorites count]; i++) {
-    NSManagedObject* favorite = favorites[i];
+  for (NSManagedObject* favorite in favorites) {
     HNStory* story  = [[HNStory alloc] init];
     story.storyId   = [favorite valueForKey:@"id"];
     story.title     = [favorite valueForKey:@"title"];
@@ -320,12 +319,7 @@
       unreadStories++;
   }
   
-  NSString* badgeString;
-  
-  if (unreadStories == 0)
-    badgeString = @"";
-  else
-    badgeString = [NSString stringWithFormat:@"%d", unreadStories];
+  NSString* badgeString = (unreadStories == 0) ? @"" : [NSString stringWithFormat:@"%d", unreadStories];
   
   NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
   [tile setBadgeLabel:badgeString];
