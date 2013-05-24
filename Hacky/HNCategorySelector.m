@@ -131,9 +131,8 @@
   dropDownImageView.image = dropDownImageNormal;
 }
 
-- (void)mouseUp:(NSEvent *)theEvent
+- (void)mouseDown:(NSEvent *)theEvent
 {
-//  [NSMenu popUpContextMenu:menu withEvent:theEvent forView:self];
   NSRect frame = [dropDownImageView frame];
   NSPoint menuOrigin = [self convertPoint:NSMakePoint(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height / 3.4) toView:nil];
   
