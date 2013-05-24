@@ -31,7 +31,7 @@
 - (void)setRoute
 {
   if ([identifier isEqualToString:@"Top"]) {
-    url          = @"http://news.ycombinator.com";
+    url          = @"http://news.ycombinator.com/";
     notification = @"didLoadStories";
     method       = @"GET";
   }
@@ -91,7 +91,7 @@
   [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
     [[NSNotificationCenter defaultCenter] postNotificationName:myself.notification object:operation.responseString];
   } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-//    NSLog(@"Failure");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didRaiseConnectionFailure" object:nil];
   }];
   
   [networkOperation start];

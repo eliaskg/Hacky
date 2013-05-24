@@ -22,6 +22,7 @@
 @synthesize listView;
 @synthesize applicationIsActive;
 @synthesize loadingView;
+@synthesize failureView;
 
 - (void)awakeFromNib
 {
@@ -42,6 +43,9 @@
   loadingView.frame = listView.frame;
   [self.view addSubview:loadingView];
   
+  failureView = [[HNFailureView alloc] init];
+  [self.view addSubview:failureView];
+  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDidUpdate:) name:@"iCloudDidUpdate" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:@"didLoadFavorites" object:nil];
@@ -57,6 +61,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMakeFavoriteMenuButton) name:@"didClickMakeFavoriteMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickDeleteFavoriteMenuButton) name:@"didClickDeleteFavoriteMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRaiseConnectionFailure:) name:@"didRaiseConnectionFailure" object:nil];
 }
 
 - (void)setCategory:(NSString *)theCategory
@@ -69,6 +74,8 @@
   [listView.refreshHeader setHidden:[category isEqualToString:@"Favorites"]];
   
   selectedIndex = 0;
+  
+  [failureView hide];
 }
 
 - (void)iCloudDidUpdate:(NSNotification*)aNotification
@@ -82,6 +89,7 @@
 - (void)didLoadStories:(NSNotification*)aNotification
 {
   loadingView.isLoading = NO;
+  [failureView hide];
   
   if ([[aNotification object] isKindOfClass:[NSError class]])
     return;
@@ -332,6 +340,14 @@
   
   NSNumber* badgeNumber = [NSNumber numberWithInt:unreadStories];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSetTitleBadge" object:badgeNumber];
+}
+
+- (void)didRaiseConnectionFailure:(NSNotification*)notification
+{
+  loadingView.isLoading = NO;
+  [failureView show];
+  stories = [[NSMutableArray alloc] init];
+  [listView reloadData];
 }
 
 ////////////////////////////////////////////////////////////////////////

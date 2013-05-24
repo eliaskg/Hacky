@@ -43,6 +43,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectStory:) name:@"didSelectStory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldClearComments) name:@"shouldClearComments" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRaiseConnectionFailure:) name:@"didRaiseConnectionFailure" object:nil];
   }
     
   return self;
@@ -125,6 +126,11 @@
 - (void)shouldClearComments
 {
   [webView stringByEvaluatingJavaScriptFromString:@"clearComments()"];
+}
+
+- (void)didRaiseConnectionFailure:(NSNotification*)notification
+{
+  [self shouldClearComments];
 }
 
 - (void)webView:(WebView *)webView

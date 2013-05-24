@@ -16,6 +16,7 @@
 #import "HNPostCell.h"
 #import "NSDate+RelativeDate.h"
 #import "HNLoadingView.h"
+#import "HNFailureView.h"
 
 @interface HNListViewController : NSViewController <PXListViewDelegate>
 {
@@ -26,6 +27,7 @@
   NSMutableArray* stories;
   BOOL applicationIsActive;
   HNLoadingView* loadingView;
+  HNFailureView* failureView;
 }
 
 @property (nonatomic, assign) NSUInteger scrollIndex;
@@ -35,6 +37,7 @@
 @property (nonatomic, retain) NSMutableArray* stories;
 @property (nonatomic, assign) BOOL applicationIsActive;
 @property (nonatomic, retain) HNLoadingView* loadingView;
+@property (nonatomic, retain) HNFailureView* failureView;
 
 - (void)markAllAsRead;
 

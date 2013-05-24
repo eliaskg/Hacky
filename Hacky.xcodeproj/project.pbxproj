@@ -22,6 +22,7 @@
 		7E1E929D166DF6D10026319B /* HNUnreadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E929C166DF6D10026319B /* HNUnreadButton.m */; };
 		7E1E92A0166E0E5C0026319B /* unreadSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929E166E0E5C0026319B /* unreadSelected.png */; };
 		7E1E92A1166E0E5C0026319B /* unreadSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */; };
+		7E4FF4A6174EFF7900D9FD68 /* HNFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4FF4A5174EFF7900D9FD68 /* HNFailureView.m */; };
 		7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E52826A16C1B152000BA274 /* libxml2.2.dylib */; };
 		7E590C1816CCF587009783A9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E590C1716CCF587009783A9 /* CoreServices.framework */; };
 		7E590C1E16CD2364009783A9 /* EQSTRClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E590C1B16CD2364009783A9 /* EQSTRClipView.m */; };
@@ -164,6 +165,8 @@
 		7E1E929E166E0E5C0026319B /* unreadSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unreadSelected.png; path = Resources/unreadSelected.png; sourceTree = "<group>"; };
 		7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unreadSelected@2x.png"; path = "Resources/unreadSelected@2x.png"; sourceTree = "<group>"; };
 		7E1E92AC166FD4DC0026319B /* Hacky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hacky.entitlements; sourceTree = "<group>"; };
+		7E4FF4A4174EFF7900D9FD68 /* HNFailureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFailureView.h; sourceTree = "<group>"; };
+		7E4FF4A5174EFF7900D9FD68 /* HNFailureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFailureView.m; sourceTree = "<group>"; };
 		7E52826A16C1B152000BA274 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		7E590C1716CCF587009783A9 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		7E590C1A16CD2364009783A9 /* EQSTRClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSTRClipView.h; sourceTree = "<group>"; };
@@ -464,6 +467,8 @@
 				7E7A3C66165A448D008B538F /* HNListViewController.xib */,
 				7E81AAC516E8CDDB007DA99D /* HNLoadingView.h */,
 				7E81AAC616E8CDDB007DA99D /* HNLoadingView.m */,
+				7E4FF4A4174EFF7900D9FD68 /* HNFailureView.h */,
+				7E4FF4A5174EFF7900D9FD68 /* HNFailureView.m */,
 				7EE9054816CE90870010FD71 /* HNCommentsViewController.h */,
 				7EE9054916CE90870010FD71 /* HNCommentsViewController.m */,
 				7E590C2016CD237B009783A9 /* HNPullToRefreshHeader.h */,
@@ -825,6 +830,7 @@
 				7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */,
 				7E81AAB916E7A914007DA99D /* NSArray+Reverse.m in Sources */,
 				7E81AAC716E8CDDB007DA99D /* HNLoadingView.m in Sources */,
+				7E4FF4A6174EFF7900D9FD68 /* HNFailureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
