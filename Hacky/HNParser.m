@@ -23,6 +23,11 @@
   
   NSArray* tables = [bodyNode findChildTags:@"table"];
   
+  if ([tables count] < 3) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didRaiseConnectionFailure" object:nil];
+    return false;
+  }
+  
   HTMLNode* mainTable = tables[2];
   
   NSArray* trs_ = [mainTable findChildTags:@"tr"];
