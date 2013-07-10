@@ -189,6 +189,11 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickInstapaperMenuButton" object:nil];
 }
 
+- (IBAction)didClickPocketButton:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickPocketMenuButton" object:nil];
+}
+
 - (IBAction)didClickTweetButton:(id)sender
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickTweetMenuButton" object:nil];
