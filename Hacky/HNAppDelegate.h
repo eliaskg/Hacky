@@ -73,6 +73,7 @@
 - (IBAction)didClickCopyButton:(id)sender;
 - (IBAction)didClickCopyURLButton:(id)sender;
 - (IBAction)didClickInstapaperButton:(id)sender;
+- (IBAction)didClickPocketButton:(id)sender;
 - (IBAction)didClickTweetButton:(id)sender;
 - (IBAction)didClickMarkAsReadButton:(id)sender;
 - (IBAction)didClickMarkAsUnreadButton:(id)sender;

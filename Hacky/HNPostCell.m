@@ -122,6 +122,12 @@
     [instapaper setTarget:self];
     [contextMenu addItem:instapaper];
     
+    NSMenuItem *pocket = [[NSMenuItem alloc] init];
+    [pocket setTitle:@"Send to Pocket"];
+    [pocket setAction:@selector(didClickPocketButton:)];
+    [pocket setTarget:self];
+    [contextMenu addItem:pocket];
+        
     NSMenuItem *tweet = [[NSMenuItem alloc] init];
     [tweet setTitle:@"Tweet"];
     [tweet setAction:@selector(didClickTweetButton:)];
@@ -255,6 +261,11 @@
 - (void)didClickInstapaperButton:(id)sender
 {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickInstapaperMenuButton" object:nil];
+}
+
+- (void)didClickPocketButton:(id)sender
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickPocketMenuButton" object:nil];
 }
 
 - (void)didClickTweetButton:(id)sender
