@@ -16,6 +16,7 @@ extern NSString * const HNConnectionControllerDidRaiseConnectionFailureNotificat
 extern NSString * const HNConnectionControllerDidLoadStoriesNotification;
 extern NSString * const HNConnectionControllerDidLoadCommentsNotification;
 extern NSString * const HNConnectionControllerDidLoadFavoritesNotification;
+  extern NSString * const HNConnectionControllerDidLoadResultsKey;
 
 @interface HNConnectionController : NSObject
 {

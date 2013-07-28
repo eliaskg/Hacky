@@ -14,6 +14,7 @@ NSString * const HNConnectionControllerDidRaiseConnectionFailureNotification = @
 NSString * const HNConnectionControllerDidLoadStoriesNotification = @"didLoadStories";
 NSString * const HNConnectionControllerDidLoadCommentsNotification = @"didLoadComments";
 NSString * const HNConnectionControllerDidLoadFavoritesNotification = @"didLoadFavorites";
+  NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
 
 @implementation HNConnectionController
 
