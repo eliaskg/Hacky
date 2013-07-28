@@ -105,6 +105,7 @@
   stories = parsedStories;
   
   [listView stopLoading];
+  [[listView refreshHeader] updateLabelWithDate:[NSDate date]];
   
   [self setReadMarks];
   
@@ -143,6 +144,7 @@
   
   loadingView.isLoading = NO;
   [listView stopLoading];
+  [[listView refreshHeader] updateLabelWithDate:[NSDate date]];
   [listView.refreshHeader setHidden:YES];
   [self reloadData];
   [[listView window] makeFirstResponder:listView];
