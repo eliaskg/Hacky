@@ -11,6 +11,10 @@
 
 NSString * const HNConnectionControllerDidRaiseConnectionFailureNotification = @"didRaiseConnectionFailure";
 	NSString * const HNConnectionControllerDidRaiseConnectionFailureErrorKey = @"didRaiseConnectionFailureErrorKey";
+NSString * const HNConnectionControllerDidLoadStoriesNotification = @"didLoadStories";
+NSString * const HNConnectionControllerDidLoadCommentsNotification = @"didLoadComments";
+NSString * const HNConnectionControllerDidLoadFavoritesNotification = @"didLoadFavorites";
+  NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
 
 @implementation HNConnectionController
 
@@ -35,26 +39,26 @@ NSString * const HNConnectionControllerDidRaiseConnectionFailureNotification = @
 {
   if ([identifier isEqualToString:@"Top"]) {
     url          = @"http://news.ycombinator.com/";
-    notification = @"didLoadStories";
+    notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"comments"]) {
     url          = @"http://news.ycombinator.com/item";
-    notification = @"didLoadComments";
+    notification = HNConnectionControllerDidLoadCommentsNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"New"]) {
     url          = @"http://news.ycombinator.com/newest";
-    notification = @"didLoadStories";
+    notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"Ask"]) {
     url          = @"http://news.ycombinator.com/ask";
-    notification = @"didLoadStories";
+    notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"Favorites"]) {
-    notification = @"didLoadFavorites";
+    notification = HNConnectionControllerDidLoadFavoritesNotification;
   }
 }
 

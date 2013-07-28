@@ -30,7 +30,7 @@
   
   self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
   
-  stories = [[NSMutableArray alloc] init];
+  stories = [[NSArray alloc] init];
   
   listView.delegate = self;
   listView.borderType = NSNoBorder;
@@ -47,8 +47,8 @@
   [self.view addSubview:failureView];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDidUpdate:) name:@"iCloudDidUpdate" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:@"didLoadFavorites" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:HNConnectionControllerDidLoadStoriesNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:HNConnectionControllerDidLoadFavoritesNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
@@ -88,17 +88,24 @@
 
 - (void)didLoadStories:(NSNotification*)aNotification
 {
-  loadingView.isLoading = NO;
-  [failureView hide];
-  
   if ([[aNotification object] isKindOfClass:[NSError class]])
     return;
   
   NSString* response = [aNotification object];
   HNParser* parser = [[HNParser alloc] init];
-  stories = [parser parseStories:response];
+  
+  NSArray* parsedStories = [parser parseStories:response];
+  if (parsedStories == nil) {
+	  return;
+  }
+	
+  loadingView.isLoading = NO;
+  [failureView hide];
+  
+  stories = parsedStories;
   
   [listView stopLoading];
+  [[listView refreshHeader] updateLabelWithDate:[NSDate date]];
   
   [self setReadMarks];
   
@@ -118,7 +125,7 @@
 {
   NSMutableArray* favorites = [aNotification object];
   
-  stories = [[NSMutableArray alloc] init];
+  NSMutableArray *newStories = [[NSMutableArray alloc] init];
   
   for (int i = 0; i < [favorites count]; i++) {
     NSManagedObject* favorite = favorites[i];
@@ -130,11 +137,14 @@
     NSString* createdAtRelative = [createdAt relativeDate];
     story.createdAt = createdAtRelative;
     story.isFavorite = YES;
-    [stories addObject:story];
+    [newStories addObject:story];
   }
+  
+  stories = newStories;
   
   loadingView.isLoading = NO;
   [listView stopLoading];
+  [[listView refreshHeader] updateLabelWithDate:[NSDate date]];
   [listView.refreshHeader setHidden:YES];
   [self reloadData];
   [[listView window] makeFirstResponder:listView];

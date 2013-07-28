@@ -81,7 +81,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDidUpdate) name:@"iCloudDidUpdate" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:HNConnectionControllerDidLoadStoriesNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSetTitleBadge:) name:@"shouldSetTitleBadge" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:_window];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:_window];

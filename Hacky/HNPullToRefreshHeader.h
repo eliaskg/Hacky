@@ -38,4 +38,6 @@
 - (void)startLoading;
 - (void)stopLoading;
 
+- (void)updateLabelWithDate:(NSDate *)date;
+
 @end

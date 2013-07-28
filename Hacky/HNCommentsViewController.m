@@ -41,7 +41,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton:) name:@"didClickCopyMenuButton" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectStory:) name:@"didSelectStory" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:@"didLoadComments" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadComments:) name:HNConnectionControllerDidLoadCommentsNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldClearComments) name:@"shouldClearComments" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRaiseConnectionFailure:) name:HNConnectionControllerDidRaiseConnectionFailureNotification object:connectionController];
   }
@@ -54,7 +54,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"didSelectCategory" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"didClickCopyMenuButton" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"didSelectStory" object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"didLoadComments" object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:HNConnectionControllerDidLoadCommentsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"shouldClearComments" object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:HNConnectionControllerDidRaiseConnectionFailureNotification object:connectionController];
 }
