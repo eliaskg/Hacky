@@ -61,7 +61,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMakeFavoriteMenuButton) name:@"didClickMakeFavoriteMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickDeleteFavoriteMenuButton) name:@"didClickDeleteFavoriteMenuButton" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRaiseConnectionFailure:) name:@"didRaiseConnectionFailure" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRaiseConnectionFailure:) name:HNConnectionControllerDidRaiseConnectionFailureNotification object:nil];
 }
 
 - (void)setCategory:(NSString *)theCategory
@@ -342,8 +342,13 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSetTitleBadge" object:badgeNumber];
 }
 
-- (void)didRaiseConnectionFailure:(NSNotification*)notification
+- (void)didRaiseConnectionFailure:(NSNotification *)notification
 {
+  NSError *failureError = [notification userInfo][HNConnectionControllerDidRaiseConnectionFailureErrorKey];
+  if ([[failureError domain] isEqualToString:NSURLErrorDomain] && [failureError code] == NSURLErrorCancelled) {
+    return;
+  }
+	
   loadingView.isLoading = NO;
   [failureView show];
   stories = [[NSMutableArray alloc] init];

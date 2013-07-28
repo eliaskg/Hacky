@@ -24,7 +24,7 @@
   NSArray* tables = [bodyNode findChildTags:@"table"];
   
   if ([tables count] < 3) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didRaiseConnectionFailure" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HNConnectionControllerDidRaiseConnectionFailureNotification object:nil];
     return false;
   }
   

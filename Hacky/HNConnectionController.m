@@ -9,6 +9,9 @@
 #import "HNConnectionController.h"
 #import "HNAppDelegate.h"
 
+NSString * const HNConnectionControllerDidRaiseConnectionFailureNotification = @"didRaiseConnectionFailure";
+	NSString * const HNConnectionControllerDidRaiseConnectionFailureErrorKey = @"didRaiseConnectionFailureErrorKey";
+
 @implementation HNConnectionController
 
 @synthesize identifier;
@@ -91,7 +94,10 @@
   [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
     [[NSNotificationCenter defaultCenter] postNotificationName:myself.notification object:operation.responseString];
   } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didRaiseConnectionFailure" object:nil];
+	  NSDictionary *userInfo = @{
+		HNConnectionControllerDidRaiseConnectionFailureErrorKey : error,
+	  };
+	  [[NSNotificationCenter defaultCenter] postNotificationName:HNConnectionControllerDidRaiseConnectionFailureNotification object:myself userInfo:userInfo];
   }];
   
   [networkOperation start];

@@ -10,6 +10,9 @@
 #import "AFNetworking.h"
 #import "NSArray+Reverse.h"
 
+extern NSString * const HNConnectionControllerDidRaiseConnectionFailureNotification;
+	extern NSString * const HNConnectionControllerDidRaiseConnectionFailureErrorKey;
+
 @interface HNConnectionController : NSObject
 {
   NSString *identifier;
