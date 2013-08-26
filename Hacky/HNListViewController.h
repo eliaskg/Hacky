@@ -24,7 +24,7 @@
   NSUInteger selectedIndex;
   NSString* category;
   IBOutlet PXListView* listView;
-  NSMutableArray* stories;
+  NSArray* stories;
   BOOL applicationIsActive;
   HNLoadingView* loadingView;
   HNFailureView* failureView;
@@ -34,7 +34,7 @@
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, retain) NSString* category;
 @property (nonatomic, retain) IBOutlet PXListView* listView;
-@property (nonatomic, retain) NSMutableArray* stories;
+@property (nonatomic, retain) NSArray* stories;
 @property (nonatomic, assign) BOOL applicationIsActive;
 @property (nonatomic, retain) HNLoadingView* loadingView;
 @property (nonatomic, retain) HNFailureView* failureView;

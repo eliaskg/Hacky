@@ -100,7 +100,6 @@
 		7E9A43211656B90C001AA5C9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9A43201656B90C001AA5C9 /* SenTestingKit.framework */; };
 		7E9A43221656B90C001AA5C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9A43021656B90C001AA5C9 /* Cocoa.framework */; };
 		7E9A432A1656B90C001AA5C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A43281656B90C001AA5C9 /* InfoPlist.strings */; };
-		7E9A432D1656B90C001AA5C9 /* HackyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A432C1656B90C001AA5C9 /* HackyTests.m */; };
 		7EA2E1F416AEA63800418696 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA2E1F116AEA63800418696 /* Reachability.m */; };
 		7EC5AB4416DCE07700D44056 /* HNSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4316DCE07700D44056 /* HNSplitView.m */; };
 		7EC5AB4816DFB5E300D44056 /* NSWindow+FullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5AB4716DFB5E300D44056 /* NSWindow+FullScreen.m */; };
@@ -269,8 +268,6 @@
 		7E9A43201656B90C001AA5C9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		7E9A43271656B90C001AA5C9 /* HackyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HackyTests-Info.plist"; sourceTree = "<group>"; };
 		7E9A43291656B90C001AA5C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7E9A432B1656B90C001AA5C9 /* HackyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HackyTests.h; sourceTree = "<group>"; };
-		7E9A432C1656B90C001AA5C9 /* HackyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackyTests.m; sourceTree = "<group>"; };
 		7EA2E1EF16AEA63800418696 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7EA2E1F016AEA63800418696 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		7EA2E1F116AEA63800418696 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -333,6 +330,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D113A4917A580C500A967C2 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				7E590C1916CD2364009783A9 /* PullToRefresh */,
+				7EF1D88A16C6DFE1009ECC16 /* HTMLParser */,
+				7EA2E1EE16AEA63800418696 /* Reachability */,
+				7E0A422D169CB2CF00F8DA49 /* AFNetworking */,
+				7E14733E165A550E00515E6D /* INAppStoreWindow */,
+				7E7A3C45165A37A1008B538F /* PXListView */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		6D113A4A17A580DA00A967C2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7E9A43141656B90C001AA5C9 /* HNAppDelegate.h */,
+				7E9A43151656B90C001AA5C9 /* HNAppDelegate.m */,
+				7E9A43171656B90C001AA5C9 /* MainMenu.xib */,
+				7EC5AB4916DFBF0800D44056 /* HNConstants.h */,
+				6D113A5017A5817C00A967C2 /* UI */,
+				6D113A4F17A5817400A967C2 /* Data */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		6D113A4B17A5812D00A967C2 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7E7A3C64165A448D008B538F /* HNListViewController.h */,
+				7E7A3C65165A448D008B538F /* HNListViewController.m */,
+				7E7A3C66165A448D008B538F /* HNListViewController.xib */,
+				7E7A3C2C165A35EB008B538F /* HNPostCell.h */,
+				7E7A3C2D165A35EB008B538F /* HNPostCell.m */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
+		6D113A4C17A5813200A967C2 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				7EE9054816CE90870010FD71 /* HNCommentsViewController.h */,
+				7EE9054916CE90870010FD71 /* HNCommentsViewController.m */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
+		6D113A4D17A5814300A967C2 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				7EF25C8416E525C900F494F6 /* HNCategorySelector.h */,
+				7EF25C8516E525C900F494F6 /* HNCategorySelector.m */,
+				7EC5AB4216DCE07700D44056 /* HNSplitView.h */,
+				7EC5AB4316DCE07700D44056 /* HNSplitView.m */,
+				7E81AAC516E8CDDB007DA99D /* HNLoadingView.h */,
+				7E81AAC616E8CDDB007DA99D /* HNLoadingView.m */,
+				7E4FF4A4174EFF7900D9FD68 /* HNFailureView.h */,
+				7E4FF4A5174EFF7900D9FD68 /* HNFailureView.m */,
+				7E590C2016CD237B009783A9 /* HNPullToRefreshHeader.h */,
+				7E590C2116CD237B009783A9 /* HNPullToRefreshHeader.m */,
+				7E1E929B166DF6D10026319B /* HNUnreadButton.h */,
+				7E1E929C166DF6D10026319B /* HNUnreadButton.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		6D113A4F17A5817400A967C2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7E7A3C261658FE10008B538F /* HNConnectionController.h */,
+				7E7A3C271658FE11008B538F /* HNConnectionController.m */,
+				7E68947B16C2FAB100427C5E /* HNParser.h */,
+				7E68947C16C2FAB100427C5E /* HNParser.m */,
+				7EF25C9016E76EC400F494F6 /* HNStory.h */,
+				7EF25C9116E76EC400F494F6 /* HNStory.m */,
+				7EC5AB5816E3DBC500D44056 /* Models.xcdatamodeld */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		6D113A5017A5817C00A967C2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6D113A4B17A5812D00A967C2 /* List */,
+				6D113A4C17A5813200A967C2 /* Comments */,
+				6D113A4D17A5814300A967C2 /* Controls */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		7E0A422D169CB2CF00F8DA49 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +443,8 @@
 				7E0A423F169CB2CF00F8DA49 /* UIImageView+AFNetworking.h */,
 				7E0A4240169CB2CF00F8DA49 /* UIImageView+AFNetworking.m */,
 			);
-			path = AFNetworking;
+			name = AFNetworking;
+			path = Hacky/AFNetworking;
 			sourceTree = "<group>";
 		};
 		7E14733E165A550E00515E6D /* INAppStoreWindow */ = {
@@ -366,7 +454,8 @@
 				7E147340165A550E00515E6D /* INAppStoreWindow.h */,
 				7E147341165A550E00515E6D /* INAppStoreWindow.m */,
 			);
-			path = INAppStoreWindow;
+			name = INAppStoreWindow;
+			path = Hacky/INAppStoreWindow;
 			sourceTree = "<group>";
 		};
 		7E590C1916CD2364009783A9 /* PullToRefresh */ = {
@@ -377,7 +466,8 @@
 				7E590C1C16CD2364009783A9 /* EQSTRScrollView.h */,
 				7E590C1D16CD2364009783A9 /* EQSTRScrollView.m */,
 			);
-			path = PullToRefresh;
+			name = PullToRefresh;
+			path = Hacky/PullToRefresh;
 			sourceTree = "<group>";
 		};
 		7E7A3C45165A37A1008B538F /* PXListView */ = {
@@ -397,20 +487,15 @@
 				7E7A3C51165A37A1008B538F /* PXListViewDelegate.h */,
 				7E7A3C52165A37A1008B538F /* PXListViewDropHighlight.h */,
 			);
-			path = PXListView;
+			name = PXListView;
+			path = Hacky/PXListView;
 			sourceTree = "<group>";
 		};
 		7E9A42F31656B90B001AA5C9 = {
 			isa = PBXGroup;
 			children = (
-				7EE9054B16CFF3300010FD71 /* WebKit.framework */,
-				7E590C7316CD24D9009783A9 /* QuartzCore.framework */,
-				7E590C1716CCF587009783A9 /* CoreServices.framework */,
-				7E52826A16C1B152000BA274 /* libxml2.2.dylib */,
-				7E7A3C241658FC9A008B538F /* Security.framework */,
-				7E7A3C221658FC91008B538F /* SystemConfiguration.framework */,
-				7E7A3C201658FC85008B538F /* CFNetwork.framework */,
 				7E9A43081656B90C001AA5C9 /* Hacky */,
+				6D113A4917A580C500A967C2 /* Libraries */,
 				7E9A43251656B90C001AA5C9 /* HackyTests */,
 				7E9A43011656B90B001AA5C9 /* Frameworks */,
 				7E9A42FF1656B90B001AA5C9 /* Products */,
@@ -429,6 +514,13 @@
 		7E9A43011656B90B001AA5C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EE9054B16CFF3300010FD71 /* WebKit.framework */,
+				7E590C7316CD24D9009783A9 /* QuartzCore.framework */,
+				7E590C1716CCF587009783A9 /* CoreServices.framework */,
+				7E52826A16C1B152000BA274 /* libxml2.2.dylib */,
+				7E7A3C241658FC9A008B538F /* Security.framework */,
+				7E7A3C221658FC91008B538F /* SystemConfiguration.framework */,
+				7E7A3C201658FC85008B538F /* CFNetwork.framework */,
 				7E9A43021656B90C001AA5C9 /* Cocoa.framework */,
 				7E9A43201656B90C001AA5C9 /* SenTestingKit.framework */,
 				7E9A43041656B90C001AA5C9 /* Other Frameworks */,
@@ -449,44 +541,8 @@
 		7E9A43081656B90C001AA5C9 /* Hacky */ = {
 			isa = PBXGroup;
 			children = (
-				7E1E92AC166FD4DC0026319B /* Hacky.entitlements */,
-				7EC5AB4916DFBF0800D44056 /* HNConstants.h */,
-				7E9A43141656B90C001AA5C9 /* HNAppDelegate.h */,
-				7E9A43151656B90C001AA5C9 /* HNAppDelegate.m */,
-				7EF25C9016E76EC400F494F6 /* HNStory.h */,
-				7EF25C9116E76EC400F494F6 /* HNStory.m */,
-				7EF25C8416E525C900F494F6 /* HNCategorySelector.h */,
-				7EF25C8516E525C900F494F6 /* HNCategorySelector.m */,
-				7EC5AB4216DCE07700D44056 /* HNSplitView.h */,
-				7EC5AB4316DCE07700D44056 /* HNSplitView.m */,
-				7E68947B16C2FAB100427C5E /* HNParser.h */,
-				7E68947C16C2FAB100427C5E /* HNParser.m */,
-				7E9A43171656B90C001AA5C9 /* MainMenu.xib */,
-				7E7A3C64165A448D008B538F /* HNListViewController.h */,
-				7E7A3C65165A448D008B538F /* HNListViewController.m */,
-				7E7A3C66165A448D008B538F /* HNListViewController.xib */,
-				7E81AAC516E8CDDB007DA99D /* HNLoadingView.h */,
-				7E81AAC616E8CDDB007DA99D /* HNLoadingView.m */,
-				7E4FF4A4174EFF7900D9FD68 /* HNFailureView.h */,
-				7E4FF4A5174EFF7900D9FD68 /* HNFailureView.m */,
-				7EE9054816CE90870010FD71 /* HNCommentsViewController.h */,
-				7EE9054916CE90870010FD71 /* HNCommentsViewController.m */,
-				7E590C2016CD237B009783A9 /* HNPullToRefreshHeader.h */,
-				7E590C2116CD237B009783A9 /* HNPullToRefreshHeader.m */,
-				7E7A3C2C165A35EB008B538F /* HNPostCell.h */,
-				7E7A3C2D165A35EB008B538F /* HNPostCell.m */,
-				7E1E929B166DF6D10026319B /* HNUnreadButton.h */,
-				7E1E929C166DF6D10026319B /* HNUnreadButton.m */,
-				7E7A3C261658FE10008B538F /* HNConnectionController.h */,
-				7E7A3C271658FE11008B538F /* HNConnectionController.m */,
-				7EC5AB5816E3DBC500D44056 /* Models.xcdatamodeld */,
+				6D113A4A17A580DA00A967C2 /* Classes */,
 				7EC5AB4516DFB5B300D44056 /* Categories */,
-				7E590C1916CD2364009783A9 /* PullToRefresh */,
-				7EF1D88A16C6DFE1009ECC16 /* HTMLParser */,
-				7EA2E1EE16AEA63800418696 /* Reachability */,
-				7E0A422D169CB2CF00F8DA49 /* AFNetworking */,
-				7E14733E165A550E00515E6D /* INAppStoreWindow */,
-				7E7A3C45165A37A1008B538F /* PXListView */,
 				7EC36A0D165786A000080514 /* Resources */,
 				7E9A43091656B90C001AA5C9 /* Supporting Files */,
 			);
@@ -496,6 +552,7 @@
 		7E9A43091656B90C001AA5C9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E1E92AC166FD4DC0026319B /* Hacky.entitlements */,
 				7E9A430A1656B90C001AA5C9 /* Hacky-Info.plist */,
 				7E9A430B1656B90C001AA5C9 /* InfoPlist.strings */,
 				7E9A430E1656B90C001AA5C9 /* main.m */,
@@ -508,8 +565,6 @@
 		7E9A43251656B90C001AA5C9 /* HackyTests */ = {
 			isa = PBXGroup;
 			children = (
-				7E9A432B1656B90C001AA5C9 /* HackyTests.h */,
-				7E9A432C1656B90C001AA5C9 /* HackyTests.m */,
 				7E9A43261656B90C001AA5C9 /* Supporting Files */,
 			);
 			path = HackyTests;
@@ -532,7 +587,8 @@
 				7EA2E1F116AEA63800418696 /* Reachability.m */,
 				7EA2E1F216AEA63800418696 /* README.md */,
 			);
-			path = Reachability;
+			name = Reachability;
+			path = Hacky/Reachability;
 			sourceTree = "<group>";
 		};
 		7EC36A0D165786A000080514 /* Resources */ = {
@@ -622,7 +678,8 @@
 				7EF1D88E16C6DFE1009ECC16 /* HTMLParser.m */,
 				7EF1D88F16C6DFE1009ECC16 /* README.md */,
 			);
-			path = HTMLParser;
+			name = HTMLParser;
+			path = Hacky/HTMLParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -838,7 +895,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E9A432D1656B90C001AA5C9 /* HackyTests.m in Sources */,
 				7E0A424C169CB97800F8DA49 /* AFHTTPClient.m in Sources */,
 				7E590C2216CD237B009783A9 /* HNPullToRefreshHeader.m in Sources */,
 				7EF25C8616E525C900F494F6 /* HNCategorySelector.m in Sources */,
