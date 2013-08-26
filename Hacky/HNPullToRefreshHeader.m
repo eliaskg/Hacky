@@ -59,8 +59,6 @@
       [self addSubview:animationImage];
       
       [self initLoadingImages];
-      
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:@"didLoadStories" object:nil];
     }
     
     return self;
@@ -77,28 +75,6 @@
     if (loadingImage)
       [loadingImages addObject:loadingImage];
   }
-}
-
-- (void)didLoadStories:(NSNotification*)aNotification
-{
-  NSDate *date = [NSDate date];
-  
-  NSDateFormatter *timeDateFormatter = [[NSDateFormatter alloc] init];
-  [timeDateFormatter setLocale: [NSLocale autoupdatingCurrentLocale]];
-  [timeDateFormatter setDateFormat:@"HH:mm"];
-  NSString *timeDateString = [timeDateFormatter stringFromDate:date];
-  
-  NSDateFormatter *dayDateFormatter = [[NSDateFormatter alloc] init];
-  [dayDateFormatter setTimeStyle:NSDateFormatterNoStyle];
-  [dayDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-  NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"];
-  [dayDateFormatter setLocale:locale];
-  [dayDateFormatter setDoesRelativeDateFormatting:YES];
-  NSString *dayDateString = [dayDateFormatter stringFromDate:date];
-  
-  NSString *updatedString = [NSString stringWithFormat:@"Updated %@ at %@", dayDateString, timeDateString];
-  [updatedLabel setStringValue:updatedString];
-  [updatedLabel sizeToFit];
 }
 
 - (void)drawRect:(NSRect)aRect
@@ -140,6 +116,26 @@
   animationImage.image = nil;
   [animationTimer invalidate];
   animationStep = 1;
+}
+
+- (void)updateLabelWithDate:(NSDate *)date
+{
+  NSDateFormatter *timeDateFormatter = [[NSDateFormatter alloc] init];
+  [timeDateFormatter setLocale: [NSLocale autoupdatingCurrentLocale]];
+  [timeDateFormatter setDateFormat:@"HH:mm"];
+  NSString *timeDateString = [timeDateFormatter stringFromDate:date];
+  
+  NSDateFormatter *dayDateFormatter = [[NSDateFormatter alloc] init];
+  [dayDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+  [dayDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+  NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"];
+  [dayDateFormatter setLocale:locale];
+  [dayDateFormatter setDoesRelativeDateFormatting:YES];
+  NSString *dayDateString = [dayDateFormatter stringFromDate:date];
+  
+  NSString *updatedString = [NSString stringWithFormat:@"Updated %@ at %@", dayDateString, timeDateString];
+  [updatedLabel setStringValue:updatedString];
+  [updatedLabel sizeToFit];
 }
 
 - (void)animationTimerDidFire
