@@ -22,7 +22,7 @@
     int paddingY = 6;
     
     NSTextField *labelView = [[NSTextField alloc] initWithFrame:NSMakeRect(paddingX, paddingY, 0, 0)];
-    labelView.stringValue = @"Hacker News seems to be down";
+    labelView.stringValue = @"No connection to Hacker News";
     [labelView setTextColor:[NSColor whiteColor]];
     [labelView setEditable:NO];
     [labelView setBezeled:NO];
