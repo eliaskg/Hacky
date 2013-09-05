@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "HNConstants.h"
+#import "HNConfig.h"
 #import "HNStory.h"
 #import "HNCategorySelector.h"
 #import "HNSplitView.h"

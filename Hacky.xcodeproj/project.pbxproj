@@ -19,6 +19,7 @@
 		7E147343165A550E00515E6D /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E147341165A550E00515E6D /* INAppStoreWindow.m */; };
 		7E147346165AB56500515E6D /* unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E147344165AB56500515E6D /* unread.png */; };
 		7E147347165AB56500515E6D /* unread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E147345165AB56500515E6D /* unread@2x.png */; };
+		7E1D97D017D8BADB0027E328 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1D97CF17D8BADB0027E328 /* Crashlytics.framework */; };
 		7E1E929D166DF6D10026319B /* HNUnreadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E929C166DF6D10026319B /* HNUnreadButton.m */; };
 		7E1E92A0166E0E5C0026319B /* unreadSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929E166E0E5C0026319B /* unreadSelected.png */; };
 		7E1E92A1166E0E5C0026319B /* unreadSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */; };
@@ -159,6 +160,8 @@
 		7E147341165A550E00515E6D /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
 		7E147344165AB56500515E6D /* unread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unread.png; path = Resources/unread.png; sourceTree = "<group>"; };
 		7E147345165AB56500515E6D /* unread@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unread@2x.png"; path = "Resources/unread@2x.png"; sourceTree = "<group>"; };
+		7E1D97CF17D8BADB0027E328 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		7E1D97D117D8EB290027E328 /* HNConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNConfig.h; sourceTree = "<group>"; };
 		7E1E929B166DF6D10026319B /* HNUnreadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNUnreadButton.h; sourceTree = "<group>"; };
 		7E1E929C166DF6D10026319B /* HNUnreadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUnreadButton.m; sourceTree = "<group>"; };
 		7E1E929E166E0E5C0026319B /* unreadSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unreadSelected.png; path = Resources/unreadSelected.png; sourceTree = "<group>"; };
@@ -315,6 +318,7 @@
 				7E7A3C251658FC9A008B538F /* Security.framework in Frameworks */,
 				7E7A3C211658FC85008B538F /* CFNetwork.framework in Frameworks */,
 				7E9A43031656B90C001AA5C9 /* Cocoa.framework in Frameworks */,
+				7E1D97D017D8BADB0027E328 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +354,7 @@
 				7E9A43151656B90C001AA5C9 /* HNAppDelegate.m */,
 				7E9A43171656B90C001AA5C9 /* MainMenu.xib */,
 				7EC5AB4916DFBF0800D44056 /* HNConstants.h */,
+				7E1D97D117D8EB290027E328 /* HNConfig.h */,
 				6D113A5017A5817C00A967C2 /* UI */,
 				6D113A4F17A5817400A967C2 /* Data */,
 			);
@@ -523,6 +528,7 @@
 				7E7A3C201658FC85008B538F /* CFNetwork.framework */,
 				7E9A43021656B90C001AA5C9 /* Cocoa.framework */,
 				7E9A43201656B90C001AA5C9 /* SenTestingKit.framework */,
+				7E1D97CF17D8BADB0027E328 /* Crashlytics.framework */,
 				7E9A43041656B90C001AA5C9 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -692,6 +698,7 @@
 				7E9A42FA1656B90B001AA5C9 /* Sources */,
 				7E9A42FB1656B90B001AA5C9 /* Frameworks */,
 				7E9A42FC1656B90B001AA5C9 /* Resources */,
+				7E0A41CC17D8B845001C0E73 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -832,6 +839,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7E0A41CC17D8B845001C0E73 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run cc907972f172daaa010ae82a4eda23a08d86e988";
+		};
 		7E9A431D1656B90C001AA5C9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1007,6 +1027,11 @@
 				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer: Elias Klughammer (57FJEXS65S)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -1025,6 +1050,10 @@
 				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer: Elias Klughammer (57FJEXS65S)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hacky/Hacky-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
