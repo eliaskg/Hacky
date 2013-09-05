@@ -10,11 +10,11 @@
 #import "HNAppDelegate.h"
 
 NSString * const HNConnectionControllerDidRaiseConnectionFailureNotification = @"didRaiseConnectionFailure";
-	NSString * const HNConnectionControllerDidRaiseConnectionFailureErrorKey = @"didRaiseConnectionFailureErrorKey";
+NSString * const HNConnectionControllerDidRaiseConnectionFailureErrorKey = @"didRaiseConnectionFailureErrorKey";
 NSString * const HNConnectionControllerDidLoadStoriesNotification = @"didLoadStories";
 NSString * const HNConnectionControllerDidLoadCommentsNotification = @"didLoadComments";
 NSString * const HNConnectionControllerDidLoadFavoritesNotification = @"didLoadFavorites";
-  NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
+NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
 
 @implementation HNConnectionController
 
