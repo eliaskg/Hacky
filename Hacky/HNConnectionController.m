@@ -57,6 +57,11 @@ NSString * const HNConnectionControllerDidLoadFavoritesNotification = @"didLoadF
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
+  else if ([identifier isEqualToString:@"Best"]) {
+    url          = @"http://news.ycombinator.com/best";
+    notification = HNConnectionControllerDidLoadStoriesNotification;
+    method       = @"GET";
+  }
   else if ([identifier isEqualToString:@"Favorites"]) {
     notification = HNConnectionControllerDidLoadFavoritesNotification;
   }
