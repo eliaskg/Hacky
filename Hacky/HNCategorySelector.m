@@ -61,6 +61,12 @@
     [askMenu setTarget:self];
     [menu addItem:askMenu];
     
+    NSMenuItem *bestMenu = [[NSMenuItem alloc] init];
+    [bestMenu setTitle:@"Best"];
+    [bestMenu setAction:@selector(didClickMenuButton:)];
+    [bestMenu setTarget:self];
+    [menu addItem:bestMenu];
+    
     NSMenuItem *favoritesMenu = [[NSMenuItem alloc] init];
     [favoritesMenu setTitle:@"Favorites"];
     [favoritesMenu setAction:@selector(didClickMenuButton:)];

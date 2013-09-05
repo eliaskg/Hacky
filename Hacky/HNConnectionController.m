@@ -10,11 +10,11 @@
 #import "HNAppDelegate.h"
 
 NSString * const HNConnectionControllerDidRaiseConnectionFailureNotification = @"didRaiseConnectionFailure";
-	NSString * const HNConnectionControllerDidRaiseConnectionFailureErrorKey = @"didRaiseConnectionFailureErrorKey";
+NSString * const HNConnectionControllerDidRaiseConnectionFailureErrorKey = @"didRaiseConnectionFailureErrorKey";
 NSString * const HNConnectionControllerDidLoadStoriesNotification = @"didLoadStories";
 NSString * const HNConnectionControllerDidLoadCommentsNotification = @"didLoadComments";
 NSString * const HNConnectionControllerDidLoadFavoritesNotification = @"didLoadFavorites";
-  NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
+NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
 
 @implementation HNConnectionController
 
@@ -54,6 +54,11 @@ NSString * const HNConnectionControllerDidLoadFavoritesNotification = @"didLoadF
   }
   else if ([identifier isEqualToString:@"Ask"]) {
     url          = @"http://news.ycombinator.com/ask";
+    notification = HNConnectionControllerDidLoadStoriesNotification;
+    method       = @"GET";
+  }
+  else if ([identifier isEqualToString:@"Best"]) {
+    url          = @"http://news.ycombinator.com/best";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
