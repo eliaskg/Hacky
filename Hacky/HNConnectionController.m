@@ -62,6 +62,16 @@ NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
+  else if ([identifier isEqualToString:@"Active"]) {
+    url          = @"http://news.ycombinator.com/active";
+    notification = HNConnectionControllerDidLoadStoriesNotification;
+    method       = @"GET";
+  }
+  else if ([identifier isEqualToString:@"Noob Stories"]) {
+    url          = @"http://news.ycombinator.com/noobstories";
+    notification = HNConnectionControllerDidLoadStoriesNotification;
+    method       = @"GET";
+  }
   else if ([identifier isEqualToString:@"Favorites"]) {
     notification = HNConnectionControllerDidLoadFavoritesNotification;
   }

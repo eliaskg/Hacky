@@ -419,7 +419,7 @@
     cell = [[HNPostCell alloc] initWithReusableIdentifier:LISTVIEW_CELL_IDENTIFIER];
   }
   
-  if ([category isEqualToString:@"Top"])
+  if ([category isEqualToString:@"Top"] || [category isEqualToString:@"Best"] || [category isEqualToString:@"Active"])
     [cell setNumber:row + 1.0];
   else
     [cell setNumber:nil];

@@ -67,6 +67,18 @@
     [bestMenu setTarget:self];
     [menu addItem:bestMenu];
     
+    NSMenuItem *activeMenu = [[NSMenuItem alloc] init];
+    [activeMenu setTitle:@"Active"];
+    [activeMenu setAction:@selector(didClickMenuButton:)];
+    [activeMenu setTarget:self];
+    [menu addItem:activeMenu];
+    
+    NSMenuItem *noobStoriesMenu = [[NSMenuItem alloc] init];
+    [noobStoriesMenu setTitle:@"Noob Stories"];
+    [noobStoriesMenu setAction:@selector(didClickMenuButton:)];
+    [noobStoriesMenu setTarget:self];
+    [menu addItem:noobStoriesMenu];
+    
     NSMenuItem *favoritesMenu = [[NSMenuItem alloc] init];
     [favoritesMenu setTitle:@"Favorites"];
     [favoritesMenu setAction:@selector(didClickMenuButton:)];
