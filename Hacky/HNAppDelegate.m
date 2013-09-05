@@ -7,6 +7,7 @@
 //
 
 #import "HNAppDelegate.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation HNAppDelegate
 
@@ -91,6 +92,8 @@
   [self shouldSetTitleBadge:nil];
   
   [self observeReachability];
+  
+  [Crashlytics startWithAPIKey:HN_CRASHLYTICS_ID];
 }
 
 - (void)checkDefaults
