@@ -737,6 +737,11 @@
 				CLASSPREFIX = HN;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Elias Klughammer";
+				TargetAttributes = {
+					7E9A42FD1656B90B001AA5C9 = {
+						DevelopmentTeam = SJU3GT2888;
+					};
+				};
 			};
 			buildConfigurationList = 7E9A42F81656B90B001AA5C9 /* Build configuration list for PBXProject "Hacky" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1025,7 +1030,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Elias Klughammer (57FJEXS65S)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1039,7 +1045,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = Hacky;
-				PROVISIONING_PROFILE = "0682ED90-98FA-4F95-A27A-3AA6085AFAC2";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1048,7 +1054,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hacky/Hacky.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Elias Klughammer (57FJEXS65S)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1061,7 +1068,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = Hacky;
-				PROVISIONING_PROFILE = "0682ED90-98FA-4F95-A27A-3AA6085AFAC2";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
