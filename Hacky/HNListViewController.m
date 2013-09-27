@@ -380,6 +380,9 @@
   
   selectedIndex = listView.selectedRow;
   
+  if ((selectedIndex + 1) > [stories count])
+    return;
+  
   HNStory* story = [stories objectAtIndex:selectedIndex];
   
   id appDelegate = [[NSApplication sharedApplication] delegate];
