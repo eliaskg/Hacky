@@ -81,6 +81,36 @@ a, a:active, a:visited {
   color: #007ec8;
 }
 
+.poll .barContainer {
+  width: 100%;
+  height: 0.6em;
+  border-radius: 3px;
+  background: #fff;
+  margin-bottom: 0.5em;
+}
+
+.poll .bar {
+  height: 0.6em;
+  background: #01a5ff;
+  border-radius: 3px;
+}
+
+.poll .title, .poll .points {
+  font-size: 0.9em;
+}
+
+.poll .text {
+  margin-bottom: 1.5em;
+}
+
+.poll .points {
+  padding: 0.25em 0.5em;
+  background: #a9a9a9;
+  border-radius: 3px;
+  color: #fff;
+  margin-right: 0.5em;
+}
+
 .noComments {
   text-align: center;
   font-size: 12px;
