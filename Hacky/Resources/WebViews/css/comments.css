@@ -4,13 +4,6 @@ body {
   font-size: 12px;
 }
 
-#pullToRefresh {
-  position: absolute;
-  background: gray;
-  height: 34px;
-  top: -34px;
-}
-
 .commentContainer {
   width: 100%;
   overflow: hidden;
