@@ -229,7 +229,7 @@
     // To add a flexible space between General and Advanced preference panes insert [NSNull null]:
     //     NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, [NSNull null], advancedViewController, nil];
     
-    NSString *title = @"Preferences";
+    NSString *title = @"General";
     
     _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
   }
