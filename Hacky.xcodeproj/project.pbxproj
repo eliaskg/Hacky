@@ -116,6 +116,7 @@
 		7ED170691809DCD5007DF666 /* preferencesDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170671809DCD5007DF666 /* preferencesDivider.png */; };
 		7ED1706A1809DCD5007DF666 /* preferencesDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */; };
 		7ED1706C1809F1D0007DF666 /* HNCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED1706B1809F1D0007DF666 /* HNCommentsViewController.xib */; };
+		7ED170711809F55F007DF666 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED1706F1809F55F007DF666 /* Localizable.strings */; };
 		7EE9054A16CE90870010FD71 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9054916CE90870010FD71 /* HNCommentsViewController.m */; };
 		7EE9054C16CFF3300010FD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE9054B16CFF3300010FD71 /* WebKit.framework */; };
 		7EE9055816D00DB40010FD71 /* WebViews in Resources */ = {isa = PBXBuildFile; fileRef = 7EE9055716D00DB40010FD71 /* WebViews */; };
@@ -302,6 +303,7 @@
 		7ED170671809DCD5007DF666 /* preferencesDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preferencesDivider.png; path = Resources/preferencesDivider.png; sourceTree = "<group>"; };
 		7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferencesDivider@2x.png"; path = "Resources/preferencesDivider@2x.png"; sourceTree = "<group>"; };
 		7ED1706B1809F1D0007DF666 /* HNCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNCommentsViewController.xib; sourceTree = "<group>"; };
+		7ED170701809F55F007DF666 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Hacky/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7EE9054816CE90870010FD71 /* HNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewController.h; sourceTree = "<group>"; };
 		7EE9054916CE90870010FD71 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		7EE9054B16CFF3300010FD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -596,6 +598,7 @@
 		7E9A43091656B90C001AA5C9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7ED170721809F56F007DF666 /* Translations */,
 				7E1E92AC166FD4DC0026319B /* Hacky.entitlements */,
 				7E9A430A1656B90C001AA5C9 /* Hacky-Info.plist */,
 				7E9A430B1656B90C001AA5C9 /* InfoPlist.strings */,
@@ -723,6 +726,22 @@
 				7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		7ED170721809F56F007DF666 /* Translations */ = {
+			isa = PBXGroup;
+			children = (
+				7ED170731809F57B007DF666 /* English */,
+			);
+			name = Translations;
+			sourceTree = "<group>";
+		};
+		7ED170731809F57B007DF666 /* English */ = {
+			isa = PBXGroup;
+			children = (
+				7ED1706F1809F55F007DF666 /* Localizable.strings */,
+			);
+			name = English;
 			sourceTree = "<group>";
 		};
 		7EF1D88A16C6DFE1009ECC16 /* HTMLParser */ = {
@@ -858,6 +877,7 @@
 				7E590C5F16CD2398009783A9 /* refreshBar11.png in Resources */,
 				7E590C6016CD2398009783A9 /* refreshBar11@2x.png in Resources */,
 				7E590C6116CD2398009783A9 /* refreshBar12.png in Resources */,
+				7ED170711809F55F007DF666 /* Localizable.strings in Resources */,
 				7E590C6216CD2398009783A9 /* refreshBar12@2x.png in Resources */,
 				7E590C6316CD2398009783A9 /* refreshBar13.png in Resources */,
 				7E590C6416CD2398009783A9 /* refreshBar13@2x.png in Resources */,
@@ -1027,6 +1047,15 @@
 				7E9A43291656B90C001AA5C9 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7ED1706F1809F55F007DF666 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7ED170701809F55F007DF666 /* en */,
+			);
+			name = Localizable.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

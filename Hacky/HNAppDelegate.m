@@ -46,6 +46,8 @@
   [_window setMinSize:NSMakeSize(2 * HN_MIN_MENU_WIDTH, HN_MIN_WINDOW_HEIGHT)];
   
   NSView *titleBarView = _window.titleBarView;
+  
+  markAllAsReadButton.title = NSLocalizedString(@"MARK_ALL_AS_READ", nil);
 
   categorySelector = [[HNCategorySelector alloc] init];
   [titleBarView addSubview:categorySelector];
