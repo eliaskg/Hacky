@@ -26,6 +26,12 @@
                             <menuItem isSeparatorItem="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
+                            <menuItem title="Preferences..." keyEquivalent="," id="BdS-gA-2b0">
+                                <connections>
+                                    <action selector="didClickPreferencesButton:" target="494" id="ba3-FX-HrO"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="pmk-LB-Umf"/>
                             <menuItem title="Hide Hacky" keyEquivalent="h" id="134">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
