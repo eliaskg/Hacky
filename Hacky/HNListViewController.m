@@ -56,6 +56,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:HNConnectionControllerDidLoadFavoritesNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReloadData) name:@"shouldReloadData" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCommentsMenuButton) name:@"didClickCommentsMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton:) name:@"didClickCopyMenuButton" object:nil];
@@ -201,9 +202,12 @@
   NSURL* url = [NSURL URLWithString:story.url];
   [[NSWorkspace sharedWorkspace] openURL:url];
   
-  story.isRead = YES;
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   
-  [story setIsReadInDB];
+  if ([[defaults valueForKey:@"markAsReadIf"] isEqualToString:@"link"]) {
+    story.isRead = YES;
+    [story setIsReadInDB];
+  }
   
   [self shouldReloadData];
   [listView setSelectedRow:selectedIndex];

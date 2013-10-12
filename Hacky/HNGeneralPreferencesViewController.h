@@ -13,12 +13,15 @@
 {
   IBOutlet NSButton* unreadCountButton;
   IBOutlet NSPopUpButton* loadingIntervalPopUp;
+  IBOutlet NSMatrix* markAsReadMatrix;
 }
 
 @property (nonatomic, retain) IBOutlet NSButton* unreadCountButton;
 @property (nonatomic, retain) IBOutlet NSPopUpButton* loadingIntervalPopUp;
+@property (nonatomic, retain) IBOutlet NSMatrix* markAsReadMatrix;
 
 - (IBAction)didClickUnreadCountButton:(id)sender;
 - (IBAction)didChangeLoadingIntervalPopUp:(id)sender;
+- (IBAction)didChangeMarkAsReadMatrix:(id)sender;
 
 @end

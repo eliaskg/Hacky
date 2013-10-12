@@ -120,6 +120,15 @@
 //    NSLog(@"%@", jsFunction);
 
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([[defaults valueForKey:@"markAsReadIf"] isEqualToString:@"comments"]) {
+      story.isRead = YES;
+      [story setIsReadInDB];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldReloadData" object:nil];
+    }
   }
   
   loadingView.isLoading = NO;

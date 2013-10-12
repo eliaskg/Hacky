@@ -16,6 +16,7 @@
 
 @synthesize unreadCountButton;
 @synthesize loadingIntervalPopUp;
+@synthesize markAsReadMatrix;
 
 - (id)init
 {
@@ -34,6 +35,7 @@
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   NSInteger loadingInterval = [defaults integerForKey:@"loadingInterval"];
   BOOL shouldShowUnreadCountInIcon = [defaults boolForKey:@"shouldShowUnreadCountInIcon"];
+  NSString* markAsReadIf = [defaults valueForKey:@"markAsReadIf"];
   
   if (loadingInterval == 5 * 60)
     [loadingIntervalPopUp selectItemAtIndex:0];
@@ -47,6 +49,11 @@
     [loadingIntervalPopUp selectItemAtIndex:4];
   
   unreadCountButton.state = shouldShowUnreadCountInIcon ? NSOnState : NSOffState;
+  
+  if ([markAsReadIf isEqualToString:@"link"])
+    [markAsReadMatrix selectCellAtRow:0 column:0];
+  else
+    [markAsReadMatrix selectCellAtRow:1 column:0];
 }
 
 - (IBAction)didChangeLoadingIntervalPopUp:(id)sender
@@ -85,6 +92,18 @@
   [defaults synchronize];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldUpdateBadge" object:nil];
+}
+
+- (IBAction)didChangeMarkAsReadMatrix:(id)sender
+{
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  
+  if ([markAsReadMatrix selectedTag] == 1)
+    [defaults setValue:@"link" forKey:@"markAsReadIf"];
+  else
+    [defaults setValue:@"comments" forKey:@"markAsReadIf"];
+  
+  [defaults synchronize];
 }
 
 #pragma mark -

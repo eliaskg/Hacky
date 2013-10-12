@@ -108,6 +108,9 @@
   if (![defaults valueForKey:@"loadingInterval"])
     [defaults setInteger:5*60 forKey:@"loadingInterval"];
   
+  if (![defaults valueForKey:@"markAsReadIf"])
+    [defaults setValue:@"link" forKey:@"markAsReadIf"];
+  
   [defaults synchronize];
 }
 
