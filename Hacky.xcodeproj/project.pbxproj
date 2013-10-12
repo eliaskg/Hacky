@@ -115,6 +115,7 @@
 		7ED170661809D8C6007DF666 /* HNGeneralPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */; };
 		7ED170691809DCD5007DF666 /* preferencesDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170671809DCD5007DF666 /* preferencesDivider.png */; };
 		7ED1706A1809DCD5007DF666 /* preferencesDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */; };
+		7ED1706C1809F1D0007DF666 /* HNCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED1706B1809F1D0007DF666 /* HNCommentsViewController.xib */; };
 		7EE9054A16CE90870010FD71 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9054916CE90870010FD71 /* HNCommentsViewController.m */; };
 		7EE9054C16CFF3300010FD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE9054B16CFF3300010FD71 /* WebKit.framework */; };
 		7EE9055816D00DB40010FD71 /* WebViews in Resources */ = {isa = PBXBuildFile; fileRef = 7EE9055716D00DB40010FD71 /* WebViews */; };
@@ -300,6 +301,7 @@
 		7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNGeneralPreferencesViewController.xib; sourceTree = "<group>"; };
 		7ED170671809DCD5007DF666 /* preferencesDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preferencesDivider.png; path = Resources/preferencesDivider.png; sourceTree = "<group>"; };
 		7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferencesDivider@2x.png"; path = "Resources/preferencesDivider@2x.png"; sourceTree = "<group>"; };
+		7ED1706B1809F1D0007DF666 /* HNCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNCommentsViewController.xib; sourceTree = "<group>"; };
 		7EE9054816CE90870010FD71 /* HNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewController.h; sourceTree = "<group>"; };
 		7EE9054916CE90870010FD71 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		7EE9054B16CFF3300010FD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -398,6 +400,7 @@
 			children = (
 				7EE9054816CE90870010FD71 /* HNCommentsViewController.h */,
 				7EE9054916CE90870010FD71 /* HNCommentsViewController.m */,
+				7ED1706B1809F1D0007DF666 /* HNCommentsViewController.xib */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -814,6 +817,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED1706C1809F1D0007DF666 /* HNCommentsViewController.xib in Resources */,
 				7E42BD951809D07A0078BE7D /* .gitignore in Resources */,
 				7EC5AB5C16E4926D00D44056 /* Models.xcdatamodeld in Resources */,
 				7E9A430D1656B90C001AA5C9 /* InfoPlist.strings in Resources */,

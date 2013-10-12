@@ -17,7 +17,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-  self = [super initWithNibName:nil bundle:nil];
+  self = [super initWithNibName:@"HNCommentsViewController" bundle:nibBundleOrNil];
   if (self) {
     self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     
