@@ -67,6 +67,7 @@
                                     <action selector="didClickReloadMenuItem:" target="494" id="596"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="LjU-ch-DyP"/>
                             <menuItem title="Close" keyEquivalent="w" id="73">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="193"/>
