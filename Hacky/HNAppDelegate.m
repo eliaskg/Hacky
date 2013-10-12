@@ -7,7 +7,6 @@
 //
 
 #import "HNAppDelegate.h"
-#import <Crashlytics/Crashlytics.h>
 
 @implementation HNAppDelegate
 
@@ -30,6 +29,7 @@
 @synthesize managedObjectContext;
 @synthesize persistentStoreCoordinator;
 @synthesize managedObjectModel;
+@synthesize _preferencesWindowController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -217,6 +217,11 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickDeleteFavoriteMenuButton" object:nil];
 }
 
+- (IBAction)didClickPreferencesButton:(id)sender
+{
+  [self.preferencesWindowController showWindow:nil];
+}
+
 - (IBAction)didClickFullScreenButton:(id)sender
 {
   [_window toggleFullScreen:self];
@@ -227,6 +232,24 @@
     menuItem.title = @"Exit Full Screen";
   else
     menuItem.title = @"Enter Full Screen";
+}
+
+- (NSWindowController *)preferencesWindowController
+{
+  if (_preferencesWindowController == nil)
+  {
+    NSViewController *generalViewController = [[HNGeneralPreferencesViewController alloc] init];
+    NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
+    
+    // To add a flexible space between General and Advanced preference panes insert [NSNull null]:
+    //     NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, [NSNull null], advancedViewController, nil];
+    
+    NSString *title = @"testing123";
+    
+    _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+  }
+  
+  return _preferencesWindowController;
 }
 
 - (void)workspaceDidWake:(NSNotification*)aNotification
@@ -519,5 +542,7 @@
 + (HNAppDelegate*)sharedAppDelegate {
   return (HNAppDelegate*)[[NSApplication sharedApplication] delegate];
 }
+
+#pragma mark -
 
 @end

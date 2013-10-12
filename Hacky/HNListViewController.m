@@ -24,6 +24,11 @@
 @synthesize loadingView;
 @synthesize failureView;
 
+- (id)init
+{
+  return [super initWithNibName:@"HNListViewController" bundle:nil];
+}
+
 - (void)awakeFromNib
 {
   selectedIndex = 0;
