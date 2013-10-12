@@ -446,7 +446,7 @@
 				6D113A4B17A5812D00A967C2 /* List */,
 				6D113A4C17A5813200A967C2 /* Comments */,
 				6D113A4D17A5814300A967C2 /* Controls */,
-				7ED1705F1809D298007DF666 /* Settings */,
+				7ED1705F1809D298007DF666 /* Preferences */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -718,14 +718,14 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		7ED1705F1809D298007DF666 /* Settings */ = {
+		7ED1705F1809D298007DF666 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
 				7ED170601809D306007DF666 /* HNGeneralPreferencesViewController.h */,
 				7ED170611809D306007DF666 /* HNGeneralPreferencesViewController.m */,
 				7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */,
 			);
-			name = Settings;
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		7ED170721809F56F007DF666 /* Translations */ = {
