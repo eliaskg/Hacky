@@ -113,6 +113,8 @@
 		7EC5AB5C16E4926D00D44056 /* Models.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5AB5816E3DBC500D44056 /* Models.xcdatamodeld */; };
 		7ED170631809D306007DF666 /* HNGeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED170611809D306007DF666 /* HNGeneralPreferencesViewController.m */; };
 		7ED170661809D8C6007DF666 /* HNGeneralPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */; };
+		7ED170691809DCD5007DF666 /* preferencesDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170671809DCD5007DF666 /* preferencesDivider.png */; };
+		7ED1706A1809DCD5007DF666 /* preferencesDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */; };
 		7EE9054A16CE90870010FD71 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9054916CE90870010FD71 /* HNCommentsViewController.m */; };
 		7EE9054C16CFF3300010FD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE9054B16CFF3300010FD71 /* WebKit.framework */; };
 		7EE9055816D00DB40010FD71 /* WebViews in Resources */ = {isa = PBXBuildFile; fileRef = 7EE9055716D00DB40010FD71 /* WebViews */; };
@@ -296,6 +298,8 @@
 		7ED170601809D306007DF666 /* HNGeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNGeneralPreferencesViewController.h; sourceTree = "<group>"; };
 		7ED170611809D306007DF666 /* HNGeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNGeneralPreferencesViewController.m; sourceTree = "<group>"; };
 		7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNGeneralPreferencesViewController.xib; sourceTree = "<group>"; };
+		7ED170671809DCD5007DF666 /* preferencesDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preferencesDivider.png; path = Resources/preferencesDivider.png; sourceTree = "<group>"; };
+		7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferencesDivider@2x.png"; path = "Resources/preferencesDivider@2x.png"; sourceTree = "<group>"; };
 		7EE9054816CE90870010FD71 /* HNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewController.h; sourceTree = "<group>"; };
 		7EE9054916CE90870010FD71 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		7EE9054B16CFF3300010FD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -649,6 +653,8 @@
 				7EF5C7FA16611B74006DC677 /* reload@2x.png */,
 				7EF5C80716626FB7006DC677 /* gear.png */,
 				7EF5C80816626FB7006DC677 /* gear@2x.png */,
+				7ED170671809DCD5007DF666 /* preferencesDivider.png */,
+				7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */,
 				7E590C2316CD2397009783A9 /* refreshBar1.png */,
 				7E590C2416CD2397009783A9 /* refreshBar1@2x.png */,
 				7E590C2516CD2397009783A9 /* refreshBar2.png */,
@@ -834,6 +840,7 @@
 				7E590C5216CD2398009783A9 /* refreshBar4@2x.png in Resources */,
 				7E590C5316CD2398009783A9 /* refreshBar5.png in Resources */,
 				7E590C5416CD2398009783A9 /* refreshBar5@2x.png in Resources */,
+				7ED170691809DCD5007DF666 /* preferencesDivider.png in Resources */,
 				7E590C5516CD2398009783A9 /* refreshBar6.png in Resources */,
 				7E590C5616CD2398009783A9 /* refreshBar6@2x.png in Resources */,
 				7E590C5716CD2398009783A9 /* refreshBar7.png in Resources */,
@@ -856,6 +863,7 @@
 				7E590C6716CD2398009783A9 /* refreshBar15.png in Resources */,
 				7ED170661809D8C6007DF666 /* HNGeneralPreferencesViewController.xib in Resources */,
 				7E590C6816CD2398009783A9 /* refreshBar15@2x.png in Resources */,
+				7ED1706A1809DCD5007DF666 /* preferencesDivider@2x.png in Resources */,
 				7E590C6916CD2398009783A9 /* refreshBarLeft.png in Resources */,
 				7E590C6A16CD2398009783A9 /* refreshBarLeft@2x.png in Resources */,
 				7E590C6B16CD2398009783A9 /* refreshBarMiddle.png in Resources */,

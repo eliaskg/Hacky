@@ -10,5 +10,15 @@
 #import "MASPreferencesViewController.h"
 
 @interface HNGeneralPreferencesViewController : NSViewController <MASPreferencesViewController>
+{
+  IBOutlet NSButton* unreadCountButton;
+  IBOutlet NSPopUpButton* loadingIntervalPopUp;
+}
+
+@property (nonatomic, retain) IBOutlet NSButton* unreadCountButton;
+@property (nonatomic, retain) IBOutlet NSPopUpButton* loadingIntervalPopUp;
+
+- (IBAction)didClickUnreadCountButton:(id)sender;
+- (IBAction)didChangeLoadingIntervalPopUp:(id)sender;
 
 @end
