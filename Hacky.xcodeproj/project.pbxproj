@@ -23,6 +23,10 @@
 		7E1E929D166DF6D10026319B /* HNUnreadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E929C166DF6D10026319B /* HNUnreadButton.m */; };
 		7E1E92A0166E0E5C0026319B /* unreadSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929E166E0E5C0026319B /* unreadSelected.png */; };
 		7E1E92A1166E0E5C0026319B /* unreadSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */; };
+		7E42BD951809D07A0078BE7D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7E42BD8F1809D07A0078BE7D /* .gitignore */; };
+		7E42BD961809D07A0078BE7D /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E42BD911809D07A0078BE7D /* MASPreferencesWindow.xib */; };
+		7E42BD971809D07A0078BE7D /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E42BD931809D07A0078BE7D /* MASPreferencesWindowController.m */; };
+		7E42BD981809D07A0078BE7D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E42BD941809D07A0078BE7D /* README.md */; };
 		7E4FF4A6174EFF7900D9FD68 /* HNFailureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4FF4A5174EFF7900D9FD68 /* HNFailureView.m */; };
 		7E52826B16C1B152000BA274 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E52826A16C1B152000BA274 /* libxml2.2.dylib */; };
 		7E590C1816CCF587009783A9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E590C1716CCF587009783A9 /* CoreServices.framework */; };
@@ -107,6 +111,10 @@
 		7EC5AB5A16E3DBC500D44056 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5AB5816E3DBC500D44056 /* Models.xcdatamodeld */; };
 		7EC5AB5B16E48EFD00D44056 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9A43061656B90C001AA5C9 /* CoreData.framework */; };
 		7EC5AB5C16E4926D00D44056 /* Models.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5AB5816E3DBC500D44056 /* Models.xcdatamodeld */; };
+		7ED170631809D306007DF666 /* HNGeneralPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED170611809D306007DF666 /* HNGeneralPreferencesViewController.m */; };
+		7ED170661809D8C6007DF666 /* HNGeneralPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */; };
+		7ED170691809DCD5007DF666 /* preferencesDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170671809DCD5007DF666 /* preferencesDivider.png */; };
+		7ED1706A1809DCD5007DF666 /* preferencesDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */; };
 		7EE9054A16CE90870010FD71 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9054916CE90870010FD71 /* HNCommentsViewController.m */; };
 		7EE9054C16CFF3300010FD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE9054B16CFF3300010FD71 /* WebKit.framework */; };
 		7EE9055816D00DB40010FD71 /* WebViews in Resources */ = {isa = PBXBuildFile; fileRef = 7EE9055716D00DB40010FD71 /* WebViews */; };
@@ -167,6 +175,12 @@
 		7E1E929E166E0E5C0026319B /* unreadSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unreadSelected.png; path = Resources/unreadSelected.png; sourceTree = "<group>"; };
 		7E1E929F166E0E5C0026319B /* unreadSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unreadSelected@2x.png"; path = "Resources/unreadSelected@2x.png"; sourceTree = "<group>"; };
 		7E1E92AC166FD4DC0026319B /* Hacky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hacky.entitlements; sourceTree = "<group>"; };
+		7E42BD8F1809D07A0078BE7D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7E42BD901809D07A0078BE7D /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
+		7E42BD911809D07A0078BE7D /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
+		7E42BD921809D07A0078BE7D /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
+		7E42BD931809D07A0078BE7D /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
+		7E42BD941809D07A0078BE7D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7E4FF4A4174EFF7900D9FD68 /* HNFailureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFailureView.h; sourceTree = "<group>"; };
 		7E4FF4A5174EFF7900D9FD68 /* HNFailureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFailureView.m; sourceTree = "<group>"; };
 		7E52826A16C1B152000BA274 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
@@ -281,6 +295,11 @@
 		7EC5AB4716DFB5E300D44056 /* NSWindow+FullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+FullScreen.m"; path = "Categories/NSWindow+FullScreen.m"; sourceTree = "<group>"; };
 		7EC5AB4916DFBF0800D44056 /* HNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNConstants.h; sourceTree = "<group>"; };
 		7EC5AB5916E3DBC500D44056 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		7ED170601809D306007DF666 /* HNGeneralPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNGeneralPreferencesViewController.h; sourceTree = "<group>"; };
+		7ED170611809D306007DF666 /* HNGeneralPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNGeneralPreferencesViewController.m; sourceTree = "<group>"; };
+		7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNGeneralPreferencesViewController.xib; sourceTree = "<group>"; };
+		7ED170671809DCD5007DF666 /* preferencesDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preferencesDivider.png; path = Resources/preferencesDivider.png; sourceTree = "<group>"; };
+		7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferencesDivider@2x.png"; path = "Resources/preferencesDivider@2x.png"; sourceTree = "<group>"; };
 		7EE9054816CE90870010FD71 /* HNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewController.h; sourceTree = "<group>"; };
 		7EE9054916CE90870010FD71 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		7EE9054B16CFF3300010FD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -337,6 +356,7 @@
 		6D113A4917A580C500A967C2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				7E42BD8E1809D07A0078BE7D /* MASPreferences */,
 				7E590C1916CD2364009783A9 /* PullToRefresh */,
 				7EF1D88A16C6DFE1009ECC16 /* HTMLParser */,
 				7EA2E1EE16AEA63800418696 /* Reachability */,
@@ -421,6 +441,7 @@
 				6D113A4B17A5812D00A967C2 /* List */,
 				6D113A4C17A5813200A967C2 /* Comments */,
 				6D113A4D17A5814300A967C2 /* Controls */,
+				7ED1705F1809D298007DF666 /* Settings */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -461,6 +482,20 @@
 			);
 			name = INAppStoreWindow;
 			path = Hacky/INAppStoreWindow;
+			sourceTree = "<group>";
+		};
+		7E42BD8E1809D07A0078BE7D /* MASPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				7E42BD8F1809D07A0078BE7D /* .gitignore */,
+				7E42BD901809D07A0078BE7D /* MASPreferencesViewController.h */,
+				7E42BD911809D07A0078BE7D /* MASPreferencesWindow.xib */,
+				7E42BD921809D07A0078BE7D /* MASPreferencesWindowController.h */,
+				7E42BD931809D07A0078BE7D /* MASPreferencesWindowController.m */,
+				7E42BD941809D07A0078BE7D /* README.md */,
+			);
+			name = MASPreferences;
+			path = Hacky/MASPreferences;
 			sourceTree = "<group>";
 		};
 		7E590C1916CD2364009783A9 /* PullToRefresh */ = {
@@ -618,6 +653,8 @@
 				7EF5C7FA16611B74006DC677 /* reload@2x.png */,
 				7EF5C80716626FB7006DC677 /* gear.png */,
 				7EF5C80816626FB7006DC677 /* gear@2x.png */,
+				7ED170671809DCD5007DF666 /* preferencesDivider.png */,
+				7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */,
 				7E590C2316CD2397009783A9 /* refreshBar1.png */,
 				7E590C2416CD2397009783A9 /* refreshBar1@2x.png */,
 				7E590C2516CD2397009783A9 /* refreshBar2.png */,
@@ -673,6 +710,16 @@
 				7EC5AB4716DFB5E300D44056 /* NSWindow+FullScreen.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		7ED1705F1809D298007DF666 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7ED170601809D306007DF666 /* HNGeneralPreferencesViewController.h */,
+				7ED170611809D306007DF666 /* HNGeneralPreferencesViewController.m */,
+				7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		7EF1D88A16C6DFE1009ECC16 /* HTMLParser */ = {
@@ -767,12 +814,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E42BD951809D07A0078BE7D /* .gitignore in Resources */,
 				7EC5AB5C16E4926D00D44056 /* Models.xcdatamodeld in Resources */,
 				7E9A430D1656B90C001AA5C9 /* InfoPlist.strings in Resources */,
 				7E9A43131656B90C001AA5C9 /* Credits.rtf in Resources */,
 				7E9A43191656B90C001AA5C9 /* MainMenu.xib in Resources */,
 				7E7A3C68165A448D008B538F /* HNListViewController.xib in Resources */,
 				7E147346165AB56500515E6D /* unread.png in Resources */,
+				7E42BD961809D07A0078BE7D /* MASPreferencesWindow.xib in Resources */,
 				7E147347165AB56500515E6D /* unread@2x.png in Resources */,
 				7EF5C7FB16611B74006DC677 /* reload.png in Resources */,
 				7EF5C7FC16611B74006DC677 /* reload@2x.png in Resources */,
@@ -791,6 +840,7 @@
 				7E590C5216CD2398009783A9 /* refreshBar4@2x.png in Resources */,
 				7E590C5316CD2398009783A9 /* refreshBar5.png in Resources */,
 				7E590C5416CD2398009783A9 /* refreshBar5@2x.png in Resources */,
+				7ED170691809DCD5007DF666 /* preferencesDivider.png in Resources */,
 				7E590C5516CD2398009783A9 /* refreshBar6.png in Resources */,
 				7E590C5616CD2398009783A9 /* refreshBar6@2x.png in Resources */,
 				7E590C5716CD2398009783A9 /* refreshBar7.png in Resources */,
@@ -807,10 +857,13 @@
 				7E590C6216CD2398009783A9 /* refreshBar12@2x.png in Resources */,
 				7E590C6316CD2398009783A9 /* refreshBar13.png in Resources */,
 				7E590C6416CD2398009783A9 /* refreshBar13@2x.png in Resources */,
+				7E42BD981809D07A0078BE7D /* README.md in Resources */,
 				7E590C6516CD2398009783A9 /* refreshBar14.png in Resources */,
 				7E590C6616CD2398009783A9 /* refreshBar14@2x.png in Resources */,
 				7E590C6716CD2398009783A9 /* refreshBar15.png in Resources */,
+				7ED170661809D8C6007DF666 /* HNGeneralPreferencesViewController.xib in Resources */,
 				7E590C6816CD2398009783A9 /* refreshBar15@2x.png in Resources */,
+				7ED1706A1809DCD5007DF666 /* preferencesDivider@2x.png in Resources */,
 				7E590C6916CD2398009783A9 /* refreshBarLeft.png in Resources */,
 				7E590C6A16CD2398009783A9 /* refreshBarLeft@2x.png in Resources */,
 				7E590C6B16CD2398009783A9 /* refreshBarMiddle.png in Resources */,
@@ -883,6 +936,7 @@
 				7E9A430F1656B90C001AA5C9 /* main.m in Sources */,
 				7E9A43161656B90C001AA5C9 /* HNAppDelegate.m in Sources */,
 				7E7A3C281658FE11008B538F /* HNConnectionController.m in Sources */,
+				7ED170631809D306007DF666 /* HNGeneralPreferencesViewController.m in Sources */,
 				7E7A3C2E165A35EC008B538F /* HNPostCell.m in Sources */,
 				7E7A3C54165A37A1008B538F /* PXListDocumentView.m in Sources */,
 				7E7A3C55165A37A1008B538F /* PXListView+UserInteraction.m in Sources */,
@@ -909,6 +963,7 @@
 				7EC5AB4416DCE07700D44056 /* HNSplitView.m in Sources */,
 				7EC5AB4816DFB5E300D44056 /* NSWindow+FullScreen.m in Sources */,
 				7EC5AB5A16E3DBC500D44056 /* Models.xcdatamodeld in Sources */,
+				7E42BD971809D07A0078BE7D /* MASPreferencesWindowController.m in Sources */,
 				7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */,
 				7E81AAB916E7A914007DA99D /* NSArray+Reverse.m in Sources */,
 				7E81AAC716E8CDDB007DA99D /* HNLoadingView.m in Sources */,

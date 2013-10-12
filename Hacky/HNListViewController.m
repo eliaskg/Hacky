@@ -24,6 +24,11 @@
 @synthesize loadingView;
 @synthesize failureView;
 
+- (id)init
+{
+  return [super initWithNibName:@"HNListViewController" bundle:nil];
+}
+
 - (void)awakeFromNib
 {
   selectedIndex = 0;
@@ -61,6 +66,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMakeFavoriteMenuButton) name:@"didClickMakeFavoriteMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickDeleteFavoriteMenuButton) name:@"didClickDeleteFavoriteMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBadge) name:@"shouldUpdateBadge" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRaiseConnectionFailure:) name:HNConnectionControllerDidRaiseConnectionFailureNotification object:nil];
 }
 
@@ -340,16 +346,15 @@
   
   NSString* badgeString;
   
-  if (unreadStories == 0)
+  NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+  
+  if (![userDefaults boolForKey:@"shouldShowUnreadCountInIcon"] || unreadStories == 0)
     badgeString = @"";
   else
     badgeString = [NSString stringWithFormat:@"%d", unreadStories];
   
   NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
   [tile setBadgeLabel:badgeString];
-  
-  NSNumber* badgeNumber = [NSNumber numberWithInt:unreadStories];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSetTitleBadge" object:badgeNumber];
 }
 
 - (void)didRaiseConnectionFailure:(NSNotification *)notification

@@ -17,7 +17,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  self = [super initWithNibName:nil bundle:nil];
   if (self) {
     self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     

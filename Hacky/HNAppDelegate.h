@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Crashlytics/Crashlytics.h>
 #import "HNConstants.h"
 #import "HNConfig.h"
 #import "HNStory.h"
@@ -18,6 +19,8 @@
 #import "HNCommentsViewController.h"
 #import "HNConnectionController.h"
 #import "NSWindow+FullScreen.h"
+#import "MASPreferencesWindowController.h"
+#import "HNGeneralPreferencesViewController.h"
 
 @class HNListViewController;
 @class HNCommentsViewController;
@@ -40,6 +43,7 @@
   NSSplitView* splitView;
   HNCommentsViewController* commentsViewController;
   BOOL didLoadStories;
+  NSWindowController* _preferencesWindowController;
   
   NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;
@@ -62,6 +66,7 @@
 @property (nonatomic, retain) NSSplitView* splitView;
 @property (nonatomic, retain) HNCommentsViewController* commentsViewController;
 @property (nonatomic, assign) BOOL didLoadStories;
+@property (nonatomic, readonly) NSWindowController* _preferencesWindowController;
 
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -78,6 +83,7 @@
 - (IBAction)didClickMarkAsReadButton:(id)sender;
 - (IBAction)didClickMarkAsUnreadButton:(id)sender;
 - (IBAction)didClickFullScreenButton:(id)sender;
+- (IBAction)didClickPreferencesButton:(id)sender;
 
 + (HNAppDelegate*)sharedAppDelegate;
 
