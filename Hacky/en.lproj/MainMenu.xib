@@ -106,9 +106,9 @@ DQ
                                     <action selector="didClickCopyURLButton:" target="494" id="604"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Send to Instapaper" keyEquivalent="i" id="601">
+                            <menuItem title="Read Later" keyEquivalent="R" id="601">
                                 <connections>
-                                    <action selector="didClickInstapaperButton:" target="494" id="605"/>
+                                    <action selector="didClickReadLaterButton:" target="494" id="Egh-FE-m0S"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Tweet" keyEquivalent="t" id="614">
@@ -229,6 +229,7 @@ DQ
                 <outlet property="markAllAsReadButton" destination="536" id="662"/>
                 <outlet property="markAsReadMenuItem" destination="607" id="609"/>
                 <outlet property="markAsUnreadMenuItem" destination="608" id="610"/>
+                <outlet property="readLaterMenuItem" destination="601" id="N1D-MF-YgB"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>

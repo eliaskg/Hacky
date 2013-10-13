@@ -22,11 +22,12 @@
 #import "MASPreferencesWindowController.h"
 #import "HNGeneralPreferencesViewController.h"
 #import "HNReadLaterPreferencesViewController.h"
+#import "PocketAPI.h"
 
 @class HNListViewController;
 @class HNCommentsViewController;
 
-@interface HNAppDelegate : NSObject <NSApplicationDelegate, NSSplitViewDelegate>
+@interface HNAppDelegate : NSObject <NSApplicationDelegate, NSSplitViewDelegate, NSUserNotificationCenterDelegate>
 {
   IBOutlet INAppStoreWindow* window;
   NSString* category;
@@ -40,11 +41,12 @@
   IBOutlet NSMenuItem* addFavoritesMenuItem;
   IBOutlet NSMenuItem* deleteFavoritesMenuItem;
   IBOutlet NSMenuItem* fullScreenMenuItem;
+  IBOutlet NSMenuItem* readLaterMenuItem;
   HNConnectionController* connectionController;
   NSSplitView* splitView;
   HNCommentsViewController* commentsViewController;
   BOOL didLoadStories;
-  NSWindowController* _preferencesWindowController;
+  MASPreferencesWindowController* _preferencesWindowController;
   
   NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;
@@ -63,11 +65,12 @@
 @property (nonatomic, retain) IBOutlet NSMenuItem* addFavoritesMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* deleteFavoritesMenuItem;
 @property (nonatomic, retain) IBOutlet NSMenuItem* fullScreenMenuItem;
+@property (nonatomic, retain) IBOutlet NSMenuItem* readLaterMenuItem;
 @property (nonatomic, retain) HNConnectionController* connectionController;
 @property (nonatomic, retain) NSSplitView* splitView;
 @property (nonatomic, retain) HNCommentsViewController* commentsViewController;
 @property (nonatomic, assign) BOOL didLoadStories;
-@property (nonatomic, readonly) NSWindowController* _preferencesWindowController;
+@property (nonatomic, readonly) MASPreferencesWindowController* _preferencesWindowController;
 
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -79,7 +82,7 @@
 - (IBAction)didClickViewCommentsButton:(id)sender;
 - (IBAction)didClickCopyButton:(id)sender;
 - (IBAction)didClickCopyURLButton:(id)sender;
-- (IBAction)didClickInstapaperButton:(id)sender;
+- (IBAction)didClickReadLaterButton:(id)sender;
 - (IBAction)didClickTweetButton:(id)sender;
 - (IBAction)didClickMarkAsReadButton:(id)sender;
 - (IBAction)didClickMarkAsUnreadButton:(id)sender;
