@@ -21,6 +21,7 @@
 #import "NSWindow+FullScreen.h"
 #import "MASPreferencesWindowController.h"
 #import "HNGeneralPreferencesViewController.h"
+#import "HNReadLaterPreferencesViewController.h"
 
 @class HNListViewController;
 @class HNCommentsViewController;

@@ -227,7 +227,8 @@
   if (_preferencesWindowController == nil)
   {
     NSViewController *generalViewController = [[HNGeneralPreferencesViewController alloc] init];
-    NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
+    NSViewController *readLaterViewController = [[HNReadLaterPreferencesViewController alloc] init];
+    NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, readLaterViewController, nil];
     
     // To add a flexible space between General and Advanced preference panes insert [NSNull null]:
     //     NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, [NSNull null], advancedViewController, nil];
