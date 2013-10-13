@@ -40,5 +40,6 @@
 @property (nonatomic, retain) HNFailureView* failureView;
 
 - (void)markAllAsRead;
+- (void)showReadLaterSuccessNotificationWithService:(NSString*)service URL:(NSString*)url;
 
 @end

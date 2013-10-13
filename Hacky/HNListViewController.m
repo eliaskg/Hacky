@@ -61,7 +61,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCommentsMenuButton) name:@"didClickCommentsMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton:) name:@"didClickCopyMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyURLMenuButton) name:@"didClickCopyURLMenuButton" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickInstapaperMenuButton) name:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickReadLaterMenuButton) name:@"didClickReadLaterMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
@@ -242,16 +242,60 @@
   [self writeToPasteBoard:story.url];
 }
 
-- (void)didClickInstapaperMenuButton
+- (void)didClickReadLaterMenuButton
 {
-  HNStory* story = [stories objectAtIndex:selectedIndex];
-  NSString* baseURL = @"http://www.instapaper.com/hello2?url=";
-  NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, storyURL, title];
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   
-  NSURL* url = [NSURL URLWithString:ipURL];
-  [[NSWorkspace sharedWorkspace] openURL:url];
+  NSString* readLaterService = [defaults valueForKey:@"readLaterService"];
+  
+  if (!readLaterService) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldOpenPreferences" object:@"ReadLaterPreferences"];
+    
+    return;
+  }
+  
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  NSURL* url = [NSURL URLWithString:story.url];
+  
+  if ([readLaterService isEqualToString:@"Pocket"]) {
+    [[PocketAPI sharedAPI] saveURL:url handler: ^(PocketAPI *API, NSURL *URL, NSError *error) {
+      if(error) {
+        // there was an issue connecting to Pocket
+        // present some UI to notify if necessary
+        NSLog(@"%@", error);
+      } else {
+        // the URL was saved successfully
+        [self showReadLaterSuccessNotificationWithService:@"Pocket" URL:story.url];
+      }
+    }];
+  }
+  else if ([readLaterService isEqualToString:@"Instapaper"]) {
+    NSString* baseURL = @"http://www.instapaper.com/hello2?url=";
+    NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, storyURL, title];
+    
+    NSURL* url = [NSURL URLWithString:ipURL];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+  }
+  else if ([readLaterService isEqualToString:@"Reading List"]) {
+    NSString* appleScript = [NSString stringWithFormat:@"tell application \"Safari\" to add reading list item \"%@\"", story.url];
+    
+    NSAppleScript* script = [[NSAppleScript alloc] initWithSource:appleScript];
+    NSDictionary* error;
+    [script executeAndReturnError:&error];
+    
+    [self showReadLaterSuccessNotificationWithService:@"Reading List" URL:story.url];
+  }
+}
+
+- (void)showReadLaterSuccessNotificationWithService:(NSString*)service URL:(NSString*)url
+{
+  NSUserNotification *notification = [[NSUserNotification alloc] init];
+  notification.title = [NSString stringWithFormat:@"Story saved to %@", service];
+  notification.informativeText = url;
+  notification.soundName = NSUserNotificationDefaultSoundName;
+  [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 - (void)didClickTweetMenuButton

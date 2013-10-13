@@ -22,6 +22,7 @@
 @synthesize addFavoritesMenuItem;
 @synthesize deleteFavoritesMenuItem;
 @synthesize fullScreenMenuItem;
+@synthesize readLaterMenuItem;
 @synthesize connectionController;
 @synthesize splitView;
 @synthesize commentsViewController;
@@ -85,6 +86,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetLoadingInterval) name:@"shouldResetLoadingInterval" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldOpenPreferences:) name:@"shouldOpenPreferences" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:HNConnectionControllerDidLoadStoriesNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:_window];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:_window];
@@ -93,6 +95,10 @@
   [self observeReachability];
   
   [Crashlytics startWithAPIKey:HN_CRASHLYTICS_ID];
+  
+  [[PocketAPI sharedAPI] setConsumerKey:POCKET_CONSUMER_KEY];
+  
+  [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 }
 
 - (void)checkDefaults
@@ -175,9 +181,9 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickCopyURLMenuButton" object:nil];
 }
 
-- (IBAction)didClickInstapaperButton:(id)sender
+- (IBAction)didClickReadLaterButton:(id)sender
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickReadLaterMenuButton" object:nil];
 }
 
 - (IBAction)didClickTweetButton:(id)sender
@@ -210,6 +216,22 @@
   [self.preferencesWindowController showWindow:nil];
 }
 
+- (void)shouldOpenPreferences:(NSNotification*)notification
+{
+  NSString* preferenceCategory = [notification object];
+  
+  NSInteger preferenceIndex;
+  
+  if ([preferenceCategory isEqualToString:@"ReadLaterPreferences"])
+    preferenceIndex = 1;
+  else {
+    return;
+  }
+  
+  [self.preferencesWindowController showWindow:nil];
+  [self.preferencesWindowController selectControllerAtIndex:preferenceIndex];
+}
+
 - (IBAction)didClickFullScreenButton:(id)sender
 {
   [_window toggleFullScreen:self];
@@ -222,17 +244,18 @@
     menuItem.title = @"Enter Full Screen";
 }
 
-- (NSWindowController *)preferencesWindowController
+- (MASPreferencesWindowController *)preferencesWindowController
 {
   if (_preferencesWindowController == nil)
   {
     NSViewController *generalViewController = [[HNGeneralPreferencesViewController alloc] init];
-    NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, nil];
+    NSViewController *readLaterViewController = [[HNReadLaterPreferencesViewController alloc] init];
+    NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, readLaterViewController, nil];
     
     // To add a flexible space between General and Advanced preference panes insert [NSNull null]:
     //     NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, [NSNull null], advancedViewController, nil];
     
-    NSString *title = @"General";
+    NSString *title = @"Preferences";
     
     _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
   }
@@ -548,5 +571,21 @@
 }
 
 #pragma mark -
+
+- (BOOL)application:(NSApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation {
+  if ([[PocketAPI sharedAPI] handleOpenURL:url]) {
+    return YES;
+  }
+  else {
+    // if you handle your own custom url-schemes, do it here
+    return NO;
+  }
+  
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+  return YES;
+}
 
 @end

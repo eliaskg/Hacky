@@ -117,6 +117,14 @@
 		7ED1706A1809DCD5007DF666 /* preferencesDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */; };
 		7ED1706C1809F1D0007DF666 /* HNCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED1706B1809F1D0007DF666 /* HNCommentsViewController.xib */; };
 		7ED170711809F55F007DF666 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED1706F1809F55F007DF666 /* Localizable.strings */; };
+		7ED17077180AB974007DF666 /* HNReadLaterPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED17075180AB974007DF666 /* HNReadLaterPreferencesViewController.m */; };
+		7ED17078180AB974007DF666 /* HNReadLaterPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ED17076180AB974007DF666 /* HNReadLaterPreferencesViewController.xib */; };
+		7ED1707B180ABDE3007DF666 /* preferencesReadLater.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED17079180ABDE3007DF666 /* preferencesReadLater.png */; };
+		7ED1707C180ABDE3007DF666 /* preferencesReadLater@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED1707A180ABDE3007DF666 /* preferencesReadLater@2x.png */; };
+		7ED17097180AC533007DF666 /* PocketAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED1708F180AC533007DF666 /* PocketAPI.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7ED17098180AC533007DF666 /* PocketAPILogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED17091180AC533007DF666 /* PocketAPILogin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7ED17099180AC533007DF666 /* PocketAPIOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED17093180AC533007DF666 /* PocketAPIOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7ED1709A180AC533007DF666 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED17096180AC533007DF666 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7EE9054A16CE90870010FD71 /* HNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9054916CE90870010FD71 /* HNCommentsViewController.m */; };
 		7EE9054C16CFF3300010FD71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE9054B16CFF3300010FD71 /* WebKit.framework */; };
 		7EE9055816D00DB40010FD71 /* WebViews in Resources */ = {isa = PBXBuildFile; fileRef = 7EE9055716D00DB40010FD71 /* WebViews */; };
@@ -304,6 +312,21 @@
 		7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferencesDivider@2x.png"; path = "Resources/preferencesDivider@2x.png"; sourceTree = "<group>"; };
 		7ED1706B1809F1D0007DF666 /* HNCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNCommentsViewController.xib; sourceTree = "<group>"; };
 		7ED170701809F55F007DF666 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Hacky/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7ED17074180AB974007DF666 /* HNReadLaterPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNReadLaterPreferencesViewController.h; sourceTree = "<group>"; };
+		7ED17075180AB974007DF666 /* HNReadLaterPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNReadLaterPreferencesViewController.m; sourceTree = "<group>"; };
+		7ED17076180AB974007DF666 /* HNReadLaterPreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNReadLaterPreferencesViewController.xib; sourceTree = "<group>"; };
+		7ED17079180ABDE3007DF666 /* preferencesReadLater.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preferencesReadLater.png; path = Resources/preferencesReadLater.png; sourceTree = "<group>"; };
+		7ED1707A180ABDE3007DF666 /* preferencesReadLater@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferencesReadLater@2x.png"; path = "Resources/preferencesReadLater@2x.png"; sourceTree = "<group>"; };
+		7ED1708D180AC533007DF666 /* PocketAPI+NSOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PocketAPI+NSOperation.h"; sourceTree = "<group>"; };
+		7ED1708E180AC533007DF666 /* PocketAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketAPI.h; sourceTree = "<group>"; };
+		7ED1708F180AC533007DF666 /* PocketAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketAPI.m; sourceTree = "<group>"; };
+		7ED17090180AC533007DF666 /* PocketAPILogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketAPILogin.h; sourceTree = "<group>"; };
+		7ED17091180AC533007DF666 /* PocketAPILogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketAPILogin.m; sourceTree = "<group>"; };
+		7ED17092180AC533007DF666 /* PocketAPIOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketAPIOperation.h; sourceTree = "<group>"; };
+		7ED17093180AC533007DF666 /* PocketAPIOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketAPIOperation.m; sourceTree = "<group>"; };
+		7ED17094180AC533007DF666 /* PocketAPITypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketAPITypes.h; sourceTree = "<group>"; };
+		7ED17095180AC533007DF666 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		7ED17096180AC533007DF666 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		7EE9054816CE90870010FD71 /* HNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentsViewController.h; sourceTree = "<group>"; };
 		7EE9054916CE90870010FD71 /* HNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentsViewController.m; sourceTree = "<group>"; };
 		7EE9054B16CFF3300010FD71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -360,6 +383,7 @@
 		6D113A4917A580C500A967C2 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				7ED1708C180AC533007DF666 /* PocketSDK */,
 				7E42BD8E1809D07A0078BE7D /* MASPreferences */,
 				7E590C1916CD2364009783A9 /* PullToRefresh */,
 				7EF1D88A16C6DFE1009ECC16 /* HTMLParser */,
@@ -661,6 +685,8 @@
 				7EF5C80816626FB7006DC677 /* gear@2x.png */,
 				7ED170671809DCD5007DF666 /* preferencesDivider.png */,
 				7ED170681809DCD5007DF666 /* preferencesDivider@2x.png */,
+				7ED17079180ABDE3007DF666 /* preferencesReadLater.png */,
+				7ED1707A180ABDE3007DF666 /* preferencesReadLater@2x.png */,
 				7E590C2316CD2397009783A9 /* refreshBar1.png */,
 				7E590C2416CD2397009783A9 /* refreshBar1@2x.png */,
 				7E590C2516CD2397009783A9 /* refreshBar2.png */,
@@ -724,6 +750,9 @@
 				7ED170601809D306007DF666 /* HNGeneralPreferencesViewController.h */,
 				7ED170611809D306007DF666 /* HNGeneralPreferencesViewController.m */,
 				7ED170651809D8C6007DF666 /* HNGeneralPreferencesViewController.xib */,
+				7ED17074180AB974007DF666 /* HNReadLaterPreferencesViewController.h */,
+				7ED17075180AB974007DF666 /* HNReadLaterPreferencesViewController.m */,
+				7ED17076180AB974007DF666 /* HNReadLaterPreferencesViewController.xib */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -742,6 +771,23 @@
 				7ED1706F1809F55F007DF666 /* Localizable.strings */,
 			);
 			name = English;
+			sourceTree = "<group>";
+		};
+		7ED1708C180AC533007DF666 /* PocketSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7ED1708D180AC533007DF666 /* PocketAPI+NSOperation.h */,
+				7ED1708E180AC533007DF666 /* PocketAPI.h */,
+				7ED1708F180AC533007DF666 /* PocketAPI.m */,
+				7ED17090180AC533007DF666 /* PocketAPILogin.h */,
+				7ED17091180AC533007DF666 /* PocketAPILogin.m */,
+				7ED17092180AC533007DF666 /* PocketAPIOperation.h */,
+				7ED17093180AC533007DF666 /* PocketAPIOperation.m */,
+				7ED17094180AC533007DF666 /* PocketAPITypes.h */,
+				7ED17095180AC533007DF666 /* SFHFKeychainUtils.h */,
+				7ED17096180AC533007DF666 /* SFHFKeychainUtils.m */,
+			);
+			path = PocketSDK;
 			sourceTree = "<group>";
 		};
 		7EF1D88A16C6DFE1009ECC16 /* HTMLParser */ = {
@@ -864,6 +910,7 @@
 				7E590C5316CD2398009783A9 /* refreshBar5.png in Resources */,
 				7E590C5416CD2398009783A9 /* refreshBar5@2x.png in Resources */,
 				7ED170691809DCD5007DF666 /* preferencesDivider.png in Resources */,
+				7ED17078180AB974007DF666 /* HNReadLaterPreferencesViewController.xib in Resources */,
 				7E590C5516CD2398009783A9 /* refreshBar6.png in Resources */,
 				7E590C5616CD2398009783A9 /* refreshBar6@2x.png in Resources */,
 				7E590C5716CD2398009783A9 /* refreshBar7.png in Resources */,
@@ -876,6 +923,7 @@
 				7E590C5E16CD2398009783A9 /* refreshBar10@2x.png in Resources */,
 				7E590C5F16CD2398009783A9 /* refreshBar11.png in Resources */,
 				7E590C6016CD2398009783A9 /* refreshBar11@2x.png in Resources */,
+				7ED1707B180ABDE3007DF666 /* preferencesReadLater.png in Resources */,
 				7E590C6116CD2398009783A9 /* refreshBar12.png in Resources */,
 				7ED170711809F55F007DF666 /* Localizable.strings in Resources */,
 				7E590C6216CD2398009783A9 /* refreshBar12@2x.png in Resources */,
@@ -898,6 +946,7 @@
 				7E590C7016CD2398009783A9 /* refreshBg@2x.png in Resources */,
 				7E590C7116CD2398009783A9 /* refreshContainer.png in Resources */,
 				7E590C7216CD2398009783A9 /* refreshContainer@2x.png in Resources */,
+				7ED1707C180ABDE3007DF666 /* preferencesReadLater@2x.png in Resources */,
 				7EE9055816D00DB40010FD71 /* WebViews in Resources */,
 				7EF25C8B16E525DA00F494F6 /* categorySelectorActive.png in Resources */,
 				7EF25C8C16E525DA00F494F6 /* categorySelectorActive@2x.png in Resources */,
@@ -958,6 +1007,7 @@
 				7EF25C8F16E525FF00F494F6 /* HNCategorySelector.m in Sources */,
 				7E590C7516CD253B009783A9 /* HNPullToRefreshHeader.m in Sources */,
 				7E9A430F1656B90C001AA5C9 /* main.m in Sources */,
+				7ED17099180AC533007DF666 /* PocketAPIOperation.m in Sources */,
 				7E9A43161656B90C001AA5C9 /* HNAppDelegate.m in Sources */,
 				7E7A3C281658FE11008B538F /* HNConnectionController.m in Sources */,
 				7ED170631809D306007DF666 /* HNGeneralPreferencesViewController.m in Sources */,
@@ -976,8 +1026,11 @@
 				7E0A4246169CB2CF00F8DA49 /* AFPropertyListRequestOperation.m in Sources */,
 				7E0A4247169CB2CF00F8DA49 /* AFURLConnectionOperation.m in Sources */,
 				7E0A4248169CB2CF00F8DA49 /* AFXMLRequestOperation.m in Sources */,
+				7ED17098180AC533007DF666 /* PocketAPILogin.m in Sources */,
+				7ED17097180AC533007DF666 /* PocketAPI.m in Sources */,
 				7E0A4249169CB2CF00F8DA49 /* UIImageView+AFNetworking.m in Sources */,
 				7EA2E1F416AEA63800418696 /* Reachability.m in Sources */,
+				7ED17077180AB974007DF666 /* HNReadLaterPreferencesViewController.m in Sources */,
 				7E68947D16C2FAB100427C5E /* HNParser.m in Sources */,
 				7EF1D89016C6DFE1009ECC16 /* HTMLNode.m in Sources */,
 				7EF1D89116C6DFE1009ECC16 /* HTMLParser.m in Sources */,
@@ -989,6 +1042,7 @@
 				7EC5AB5A16E3DBC500D44056 /* Models.xcdatamodeld in Sources */,
 				7E42BD971809D07A0078BE7D /* MASPreferencesWindowController.m in Sources */,
 				7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */,
+				7ED1709A180AC533007DF666 /* SFHFKeychainUtils.m in Sources */,
 				7E81AAB916E7A914007DA99D /* NSArray+Reverse.m in Sources */,
 				7E81AAC716E8CDDB007DA99D /* HNLoadingView.m in Sources */,
 				7E4FF4A6174EFF7900D9FD68 /* HNFailureView.m in Sources */,

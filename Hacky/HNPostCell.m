@@ -116,11 +116,11 @@
     [copyURL setTarget:self];
     [contextMenu addItem:copyURL];
     
-    NSMenuItem *instapaper = [[NSMenuItem alloc] init];
-    [instapaper setTitle:@"Send to Instapaper"];
-    [instapaper setAction:@selector(didClickInstapaperButton:)];
-    [instapaper setTarget:self];
-    [contextMenu addItem:instapaper];
+    NSMenuItem *readLater = [[NSMenuItem alloc] init];
+    [readLater setTitle:@"Read Later"];
+    [readLater setAction:@selector(didClickReadLaterButton:)];
+    [readLater setTarget:self];
+    [contextMenu addItem:readLater];
     
     NSMenuItem *tweet = [[NSMenuItem alloc] init];
     [tweet setTitle:@"Tweet"];
@@ -252,9 +252,9 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickCopyURLMenuButton" object:nil];
 }
 
-- (void)didClickInstapaperButton:(id)sender
+- (void)didClickReadLaterButton:(id)sender
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickReadLaterMenuButton" object:nil];
 }
 
 - (void)didClickTweetButton:(id)sender
