@@ -36,7 +36,7 @@
                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Irq-Ly-aHB">
                     <rect key="frame" x="73" y="68" width="136" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Pocket" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="8nc-Np-MTT" id="9QE-lX-qnn">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="9QE-lX-qnn">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                         <menu key="menu" title="OtherViews" id="LHV-zz-iM6">
@@ -44,6 +44,9 @@
                                 <menuItem title="None" id="VVD-EL-ucV"/>
                                 <menuItem title="Instapaper" state="on" id="0m2-mf-mgl"/>
                                 <menuItem title="Pocket" state="on" id="8nc-Np-MTT">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                                <menuItem title="Reading List" id="sVT-rN-vsp">
                                     <modifierMask key="keyEquivalentModifierMask"/>
                                 </menuItem>
                             </items>

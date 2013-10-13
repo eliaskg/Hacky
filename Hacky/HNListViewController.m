@@ -278,6 +278,15 @@
     NSURL* url = [NSURL URLWithString:ipURL];
     [[NSWorkspace sharedWorkspace] openURL:url];
   }
+  else if ([readLaterService isEqualToString:@"Reading List"]) {
+    NSString* appleScript = [NSString stringWithFormat:@"tell application \"Safari\" to add reading list item \"%@\"", story.url];
+    
+    NSAppleScript* script = [[NSAppleScript alloc] initWithSource:appleScript];
+    NSDictionary* error;
+    [script executeAndReturnError:&error];
+    
+    [self showReadLaterSuccessNotificationWithService:@"Reading List" URL:story.url];
+  }
 }
 
 - (void)showReadLaterSuccessNotificationWithService:(NSString*)service URL:(NSString*)url
