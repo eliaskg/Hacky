@@ -44,7 +44,7 @@
     [readLaterServicePopUp selectItemAtIndex:2];
     [logoutButton setHidden:NO];
   }
-  else if ([readLaterService isEqualToString:@"Readability"])
+  else if ([readLaterService isEqualToString:@"Reading List"])
     [readLaterServicePopUp selectItemAtIndex:3];
   else
     [readLaterServicePopUp selectItemAtIndex:0];
