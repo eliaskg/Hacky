@@ -16,7 +16,6 @@
 		7E0A4248169CB2CF00F8DA49 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A423E169CB2CF00F8DA49 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		7E0A4249169CB2CF00F8DA49 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A4240169CB2CF00F8DA49 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		7E0A424C169CB97800F8DA49 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A424B169CB97800F8DA49 /* AFHTTPClient.m */; };
-		7E147343165A550E00515E6D /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E147341165A550E00515E6D /* INAppStoreWindow.m */; };
 		7E147346165AB56500515E6D /* unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E147344165AB56500515E6D /* unread.png */; };
 		7E147347165AB56500515E6D /* unread@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E147345165AB56500515E6D /* unread@2x.png */; };
 		7E1D97D017D8BADB0027E328 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1D97CF17D8BADB0027E328 /* Crashlytics.framework */; };
@@ -123,6 +122,8 @@
 		7EF5C7FC16611B74006DC677 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C7FA16611B74006DC677 /* reload@2x.png */; };
 		7EF5C80916626FB7006DC677 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80716626FB7006DC677 /* gear.png */; };
 		7EF5C80A16626FB7006DC677 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF5C80816626FB7006DC677 /* gear@2x.png */; };
+		881124B8180BA51400FBB560 /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 881124B5180BA51400FBB560 /* INAppStoreWindow.m */; };
+		881124B9180BA51400FBB560 /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 881124B7180BA51400FBB560 /* INWindowButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,8 +157,6 @@
 		7E0A424A169CB97800F8DA49 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		7E0A424B169CB97800F8DA49 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		7E14733F165A550E00515E6D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7E147340165A550E00515E6D /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
-		7E147341165A550E00515E6D /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
 		7E147344165AB56500515E6D /* unread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unread.png; path = Resources/unread.png; sourceTree = "<group>"; };
 		7E147345165AB56500515E6D /* unread@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unread@2x.png"; path = "Resources/unread@2x.png"; sourceTree = "<group>"; };
 		7E1D97CF17D8BADB0027E328 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -302,6 +301,10 @@
 		7EF5C7FA16611B74006DC677 /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reload@2x.png"; path = "Resources/reload@2x.png"; sourceTree = "<group>"; };
 		7EF5C80716626FB7006DC677 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Resources/gear.png; sourceTree = "<group>"; };
 		7EF5C80816626FB7006DC677 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gear@2x.png"; path = "Resources/gear@2x.png"; sourceTree = "<group>"; };
+		881124B4180BA51400FBB560 /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
+		881124B5180BA51400FBB560 /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
+		881124B6180BA51400FBB560 /* INWindowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INWindowButton.h; sourceTree = "<group>"; };
+		881124B7180BA51400FBB560 /* INWindowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INWindowButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,9 +458,11 @@
 		7E14733E165A550E00515E6D /* INAppStoreWindow */ = {
 			isa = PBXGroup;
 			children = (
+				881124B4180BA51400FBB560 /* INAppStoreWindow.h */,
+				881124B5180BA51400FBB560 /* INAppStoreWindow.m */,
+				881124B6180BA51400FBB560 /* INWindowButton.h */,
+				881124B7180BA51400FBB560 /* INWindowButton.m */,
 				7E14733F165A550E00515E6D /* .gitignore */,
-				7E147340165A550E00515E6D /* INAppStoreWindow.h */,
-				7E147341165A550E00515E6D /* INAppStoreWindow.m */,
 			);
 			name = INAppStoreWindow;
 			path = Hacky/INAppStoreWindow;
@@ -884,12 +889,12 @@
 				7E7A3C56165A37A1008B538F /* PXListView.m in Sources */,
 				7E7A3C57165A37A1008B538F /* PXListViewCell.m in Sources */,
 				7E7A3C67165A448D008B538F /* HNListViewController.m in Sources */,
-				7E147343165A550E00515E6D /* INAppStoreWindow.m in Sources */,
 				7E1E929D166DF6D10026319B /* HNUnreadButton.m in Sources */,
 				7E0A4242169CB2CF00F8DA49 /* AFHTTPRequestOperation.m in Sources */,
 				7E0A4243169CB2CF00F8DA49 /* AFImageRequestOperation.m in Sources */,
 				7E0A4244169CB2CF00F8DA49 /* AFJSONRequestOperation.m in Sources */,
 				7E0A4245169CB2CF00F8DA49 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				881124B9180BA51400FBB560 /* INWindowButton.m in Sources */,
 				7E0A4246169CB2CF00F8DA49 /* AFPropertyListRequestOperation.m in Sources */,
 				7E0A4247169CB2CF00F8DA49 /* AFURLConnectionOperation.m in Sources */,
 				7E0A4248169CB2CF00F8DA49 /* AFXMLRequestOperation.m in Sources */,
@@ -903,6 +908,7 @@
 				7EE9054A16CE90870010FD71 /* HNCommentsViewController.m in Sources */,
 				7EC5AB4416DCE07700D44056 /* HNSplitView.m in Sources */,
 				7EC5AB4816DFB5E300D44056 /* NSWindow+FullScreen.m in Sources */,
+				881124B8180BA51400FBB560 /* INAppStoreWindow.m in Sources */,
 				7EC5AB5A16E3DBC500D44056 /* Models.xcdatamodeld in Sources */,
 				7EF25C9216E76EC400F494F6 /* HNStory.m in Sources */,
 				7E81AAB916E7A914007DA99D /* NSArray+Reverse.m in Sources */,
