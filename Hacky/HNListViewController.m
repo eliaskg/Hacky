@@ -24,6 +24,11 @@
 @synthesize loadingView;
 @synthesize failureView;
 
+- (id)init
+{
+  return [super initWithNibName:@"HNListViewController" bundle:nil];
+}
+
 - (void)awakeFromNib
 {
   selectedIndex = 0;
@@ -51,16 +56,18 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadFavorites:) name:HNConnectionControllerDidLoadFavoritesNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSelectRow:) name:@"shouldSelectRow" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUseRightClick:) name:@"didUseRightClick" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReloadData) name:@"shouldReloadData" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickOpenURLMenuButton) name:@"didClickOpenURLMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCommentsMenuButton) name:@"didClickCommentsMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyMenuButton:) name:@"didClickCopyMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickCopyURLMenuButton) name:@"didClickCopyURLMenuButton" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickInstapaperMenuButton) name:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickReadLaterMenuButton) name:@"didClickReadLaterMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickTweetMenuButton) name:@"didClickTweetMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsReadMenuButton) name:@"didClickMarkAsReadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMarkAsUnreadMenuButton) name:@"didClickMarkAsUnreadMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickMakeFavoriteMenuButton) name:@"didClickMakeFavoriteMenuButton" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didClickDeleteFavoriteMenuButton) name:@"didClickDeleteFavoriteMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBadge) name:@"shouldUpdateBadge" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRaiseConnectionFailure:) name:HNConnectionControllerDidRaiseConnectionFailureNotification object:nil];
 }
 
@@ -195,9 +202,12 @@
   NSURL* url = [NSURL URLWithString:story.url];
   [[NSWorkspace sharedWorkspace] openURL:url];
   
-  story.isRead = YES;
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   
-  [story setIsReadInDB];
+  if ([[defaults valueForKey:@"markAsReadIf"] isEqualToString:@"link"]) {
+    story.isRead = YES;
+    [story setIsReadInDB];
+  }
   
   [self shouldReloadData];
   [listView setSelectedRow:selectedIndex];
@@ -232,16 +242,60 @@
   [self writeToPasteBoard:story.url];
 }
 
-- (void)didClickInstapaperMenuButton
+- (void)didClickReadLaterMenuButton
 {
-  HNStory* story = [stories objectAtIndex:selectedIndex];
-  NSString* baseURL = @"http://www.instapaper.com/hello2?url=";
-  NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, storyURL, title];
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
   
-  NSURL* url = [NSURL URLWithString:ipURL];
-  [[NSWorkspace sharedWorkspace] openURL:url];
+  NSString* readLaterService = [defaults valueForKey:@"readLaterService"];
+  
+  if (!readLaterService) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldOpenPreferences" object:@"ReadLaterPreferences"];
+    
+    return;
+  }
+  
+  HNStory* story = [stories objectAtIndex:selectedIndex];
+  NSURL* url = [NSURL URLWithString:story.url];
+  
+  if ([readLaterService isEqualToString:@"Pocket"]) {
+    [[PocketAPI sharedAPI] saveURL:url handler: ^(PocketAPI *API, NSURL *URL, NSError *error) {
+      if(error) {
+        // there was an issue connecting to Pocket
+        // present some UI to notify if necessary
+        NSLog(@"%@", error);
+      } else {
+        // the URL was saved successfully
+        [self showReadLaterSuccessNotificationWithService:@"Pocket" URL:story.url];
+      }
+    }];
+  }
+  else if ([readLaterService isEqualToString:@"Instapaper"]) {
+    NSString* baseURL = @"http://www.instapaper.com/hello2?url=";
+    NSString* storyURL = [story.url stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* title = [story.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* ipURL = [NSString stringWithFormat:@"%@%@&title=%@", baseURL, storyURL, title];
+    
+    NSURL* url = [NSURL URLWithString:ipURL];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+  }
+  else if ([readLaterService isEqualToString:@"Reading List"]) {
+    NSString* appleScript = [NSString stringWithFormat:@"tell application \"Safari\" to add reading list item \"%@\"", story.url];
+    
+    NSAppleScript* script = [[NSAppleScript alloc] initWithSource:appleScript];
+    NSDictionary* error;
+    [script executeAndReturnError:&error];
+    
+    [self showReadLaterSuccessNotificationWithService:@"Reading List" URL:story.url];
+  }
+}
+
+- (void)showReadLaterSuccessNotificationWithService:(NSString*)service URL:(NSString*)url
+{
+  NSUserNotification *notification = [[NSUserNotification alloc] init];
+  notification.title = [NSString stringWithFormat:@"Story saved to %@", service];
+  notification.informativeText = url;
+  notification.soundName = NSUserNotificationDefaultSoundName;
+  [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 - (void)didClickTweetMenuButton
@@ -340,16 +394,15 @@
   
   NSString* badgeString;
   
-  if (unreadStories == 0)
+  NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+  
+  if (![userDefaults boolForKey:@"shouldShowUnreadCountInIcon"] || unreadStories == 0)
     badgeString = @"";
   else
     badgeString = [NSString stringWithFormat:@"%d", unreadStories];
   
   NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
   [tile setBadgeLabel:badgeString];
-  
-  NSNumber* badgeNumber = [NSNumber numberWithInt:unreadStories];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSetTitleBadge" object:badgeNumber];
 }
 
 - (void)didRaiseConnectionFailure:(NSNotification *)notification

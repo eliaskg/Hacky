@@ -162,6 +162,44 @@
 
     [postComment setValue:post forKey:@"content"];
     
+    // --- Check if the post is a poll
+    if ([[postTable rawContents] rangeOfString:@"comhead\"><span id=\"score_"].location != NSNotFound) {
+      HTMLNode* pollTr = postTrs[5];
+      NSArray* pollTds = [pollTr findChildTags:@"td"];
+      HTMLNode* pollTable = [pollTds[1] findChildTag:@"table"];
+      NSArray* pollTrs = [pollTable findChildTags:@"tr"];
+      
+      NSMutableArray* polls = [NSMutableArray array];
+      
+      for (int i = 0; i < [pollTrs count]; i++) {
+        HTMLNode* pollTr = pollTrs[i];
+        
+        if (i % 3 == 0) {
+          HTMLNode* pollEntryTd = [pollTr findChildOfClass:@"comment"];
+          HTMLNode* pollEntryDiv = [pollEntryTd findChildTag:@"div"];
+          HTMLNode* pollEntryFont = [pollEntryDiv findChildTag:@"font"];
+          NSString* title = [pollEntryFont contents];
+          
+          NSMutableDictionary* poll = [NSMutableDictionary dictionary];
+          [poll setValue:title forKey:@"title"];
+          
+          [polls addObject:poll];
+        }
+        else if (i % 3 == 1) {
+          HTMLNode* pollEntryTd = [pollTr findChildOfClass:@"default"];
+          HTMLNode* pollEntrySpan1 = [pollEntryTd findChildTag:@"span"];
+          HTMLNode* pollEntrySpan2 = [pollEntrySpan1 findChildTag:@"span"];
+          NSArray* pointParts = [[pollEntrySpan2 contents] componentsSeparatedByString:@" points"];
+          NSString* points = [pointParts objectAtIndex:0];
+          
+          NSMutableDictionary* poll = [polls lastObject];
+          [poll setValue:points forKey:@"points"];
+        }
+      }
+      
+      [postComment setValue:polls forKey:@"poll"];
+    }
+    
     [postComment setValue:@"true" forKey:@"isPost"];
     
     [postComment setValue:@"0" forKey:@"margin"];

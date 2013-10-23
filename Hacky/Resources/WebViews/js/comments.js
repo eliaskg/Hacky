@@ -25,6 +25,7 @@ function parseComments(jsonString) {
     content = content.replace(/&#012;/g, "\n");
     
     var postClass = comment.isPost ? 'post' : '';
+    
     var element = $('<div class="commentContainer margin-' + comment.margin + ' ' + postClass + '">' +
                       '<div class="meta">' +
                         '<span class="username">' +
@@ -41,6 +42,35 @@ function parseComments(jsonString) {
                     '</div>');
     
     container.append(element);
+    
+    if (comment.poll) {
+      var polls = comment.poll;
+      var sortedPolls = polls.sort(byPoints);
+      var highestPoints = sortedPolls[0].points;
+      var allPoints = 0;
+      
+      for (var i = 0; i < polls.length; i++) {
+        allPoints += parseInt(polls[i].points);
+      }
+      
+      for (var i = 0; i < polls.length; i++) {
+        var poll  = polls[i];
+        var width = poll.points / allPoints * 100;
+        var percent = width.toFixed(2);
+        
+        var pollElement = $('<div class="poll">' +
+                              '<div class="barContainer">' +
+                                '<div class="bar" style="width:' + width + '%"></div>' +
+                              '</div>' +
+                              '<div class="text">' +
+                                '<span class="points">' + percent + '%</span>' +
+                                '<span class="title">' + poll.title + '</span>' +
+                              '</div>' +
+                            '</div>');
+        
+        element.append(pollElement);
+      }
+    }
   }
   
   $('.minimizer').click(didClickMinimizer);
@@ -106,4 +136,16 @@ function maximizeNextComments(startComment, initialMargin) {
     nextComment.show();
     maximizeNextComments(nextComment, initialMargin);
   }
+}
+
+function byPoints(a, b) {
+  var a = +a.points;
+  var b = +b.points;
+  
+  if (a > b)
+    return -1;
+  if (a < b)
+    return 1;
+  
+  return 0;
 }

@@ -17,7 +17,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  self = [super initWithNibName:@"HNCommentsViewController" bundle:nibBundleOrNil];
   if (self) {
     self.view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     
@@ -120,6 +120,15 @@
 //    NSLog(@"%@", jsFunction);
 
     [webView stringByEvaluatingJavaScriptFromString:jsFunction];
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([[defaults valueForKey:@"markAsReadIf"] isEqualToString:@"comments"]) {
+      story.isRead = YES;
+      [story setIsReadInDB];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldReloadData" object:nil];
+    }
   }
   
   loadingView.isLoading = NO;

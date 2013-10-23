@@ -7,7 +7,6 @@
 //
 
 #import "HNAppDelegate.h"
-#import <Crashlytics/Crashlytics.h>
 
 @implementation HNAppDelegate
 
@@ -23,6 +22,7 @@
 @synthesize addFavoritesMenuItem;
 @synthesize deleteFavoritesMenuItem;
 @synthesize fullScreenMenuItem;
+@synthesize readLaterMenuItem;
 @synthesize connectionController;
 @synthesize splitView;
 @synthesize commentsViewController;
@@ -30,6 +30,7 @@
 @synthesize managedObjectContext;
 @synthesize persistentStoreCoordinator;
 @synthesize managedObjectModel;
+@synthesize _preferencesWindowController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -46,6 +47,8 @@
   [_window setMinSize:NSMakeSize(2 * HN_MIN_MENU_WIDTH, HN_MIN_WINDOW_HEIGHT)];
   
   NSView *titleBarView = _window.titleBarView;
+  
+  markAllAsReadButton.title = NSLocalizedString(@"MARK_ALL_AS_READ", nil);
 
   categorySelector = [[HNCategorySelector alloc] init];
   [titleBarView addSubview:categorySelector];
@@ -82,18 +85,20 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudDidUpdate) name:@"iCloudDidUpdate" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectCategory:) name:@"didSelectCategory" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadStories:) name:@"shouldLoadStories" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetLoadingInterval) name:@"shouldResetLoadingInterval" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldOpenPreferences:) name:@"shouldOpenPreferences" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadStories:) name:HNConnectionControllerDidLoadStoriesNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldSetTitleBadge:) name:@"shouldSetTitleBadge" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:_window];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:_window];
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
   
-  
-  [self shouldSetTitleBadge:nil];
-  
   [self observeReachability];
   
   [Crashlytics startWithAPIKey:HN_CRASHLYTICS_ID];
+  
+  [[PocketAPI sharedAPI] setConsumerKey:POCKET_CONSUMER_KEY];
+  
+  [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 }
 
 - (void)checkDefaults
@@ -105,6 +110,12 @@
   
   if (![defaults valueForKey:@"selectedCategory"])
     [defaults setValue:@"Top" forKey:@"selectedCategory"];
+  
+  if (![defaults valueForKey:@"loadingInterval"])
+    [defaults setInteger:5*60 forKey:@"loadingInterval"];
+  
+  if (![defaults valueForKey:@"markAsReadIf"])
+    [defaults setValue:@"link" forKey:@"markAsReadIf"];
   
   [defaults synchronize];
 }
@@ -136,23 +147,6 @@
 - (IBAction)didClickReloadMenuItem:(id)sender;
 {
   [self load];
-}
-
-- (void)shouldSetTitleBadge:(NSNotification*)aNotification
-{
-  NSNumber *number;
-  
-  if (aNotification)
-    number = [aNotification object];
-  else
-    number = [NSNumber numberWithInt:0];
-  
-  NSString* titleString;
-  
-  if ([number isEqualTo:[NSNumber numberWithInt:0]])
-    titleString = @"Hacky";
-  else
-    titleString = [NSString stringWithFormat:@"Hacky (%@)", number];
 }
 
 - (void)iCloudStatusDidChange:(NSNotification*)aNotification
@@ -187,9 +181,9 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickCopyURLMenuButton" object:nil];
 }
 
-- (IBAction)didClickInstapaperButton:(id)sender
+- (IBAction)didClickReadLaterButton:(id)sender
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickInstapaperMenuButton" object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickReadLaterMenuButton" object:nil];
 }
 
 - (IBAction)didClickTweetButton:(id)sender
@@ -217,6 +211,27 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"didClickDeleteFavoriteMenuButton" object:nil];
 }
 
+- (IBAction)didClickPreferencesButton:(id)sender
+{
+  [self.preferencesWindowController showWindow:nil];
+}
+
+- (void)shouldOpenPreferences:(NSNotification*)notification
+{
+  NSString* preferenceCategory = [notification object];
+  
+  NSInteger preferenceIndex;
+  
+  if ([preferenceCategory isEqualToString:@"ReadLaterPreferences"])
+    preferenceIndex = 1;
+  else {
+    return;
+  }
+  
+  [self.preferencesWindowController showWindow:nil];
+  [self.preferencesWindowController selectControllerAtIndex:preferenceIndex];
+}
+
 - (IBAction)didClickFullScreenButton:(id)sender
 {
   [_window toggleFullScreen:self];
@@ -227,6 +242,25 @@
     menuItem.title = @"Exit Full Screen";
   else
     menuItem.title = @"Enter Full Screen";
+}
+
+- (MASPreferencesWindowController *)preferencesWindowController
+{
+  if (_preferencesWindowController == nil)
+  {
+    NSViewController *generalViewController = [[HNGeneralPreferencesViewController alloc] init];
+    NSViewController *readLaterViewController = [[HNReadLaterPreferencesViewController alloc] init];
+    NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, readLaterViewController, nil];
+    
+    // To add a flexible space between General and Advanced preference panes insert [NSNull null]:
+    //     NSArray *controllers = [[NSArray alloc] initWithObjects:generalViewController, [NSNull null], advancedViewController, nil];
+    
+    NSString *title = @"Preferences";
+    
+    _preferencesWindowController = [[MASPreferencesWindowController alloc] initWithViewControllers:controllers title:title];
+  }
+  
+  return _preferencesWindowController;
 }
 
 - (void)workspaceDidWake:(NSNotification*)aNotification
@@ -245,10 +279,26 @@
     connectionController = [HNConnectionController connectionWithIdentifier:category];
 }
 
+- (void)resetLoadingInterval
+{
+  [self setLoadTimerIsActive:NO];
+  [self setLoadTimerIsActive:YES];
+}
+
 - (void)setLoadTimerIsActive:(BOOL)isActive
 {
+  NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+  NSInteger loadingInterval = [defaults integerForKey:@"loadingInterval"];
+  
+  if (loadingInterval == -1) {
+    if (loadTimer)
+      [loadTimer invalidate];
+    
+    return;
+  }
+  
   if (isActive) {
-    loadTimer = [NSTimer timerWithTimeInterval:5 * 60 target:self selector:@selector(load) userInfo:nil repeats:YES];
+    loadTimer = [NSTimer timerWithTimeInterval:loadingInterval target:self selector:@selector(load) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:loadTimer forMode:NSRunLoopCommonModes];
   }
   else if (!isActive && loadTimer) {
@@ -518,6 +568,24 @@
 #pragma mark access to app delegate etc.
 + (HNAppDelegate*)sharedAppDelegate {
   return (HNAppDelegate*)[[NSApplication sharedApplication] delegate];
+}
+
+#pragma mark -
+
+- (BOOL)application:(NSApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation {
+  if ([[PocketAPI sharedAPI] handleOpenURL:url]) {
+    return YES;
+  }
+  else {
+    // if you handle your own custom url-schemes, do it here
+    return NO;
+  }
+  
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+  return YES;
 }
 
 @end
