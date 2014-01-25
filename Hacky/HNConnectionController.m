@@ -111,7 +111,6 @@ NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
   __block HNConnectionController* myself = self;
   
   [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSLog(@"%@", operation.responseString);
     [[NSNotificationCenter defaultCenter] postNotificationName:myself.notification object:operation.responseString];
   } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
 	  NSDictionary *userInfo = @{
