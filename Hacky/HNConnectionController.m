@@ -38,37 +38,37 @@ NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
 - (void)setRoute
 {
   if ([identifier isEqualToString:@"Top"]) {
-    url          = @"http://news.ycombinator.com/";
+    url          = @"https://news.ycombinator.com/?";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"comments"]) {
-    url          = @"http://news.ycombinator.com/item";
+    url          = @"https://news.ycombinator.com/item";
     notification = HNConnectionControllerDidLoadCommentsNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"New"]) {
-    url          = @"http://news.ycombinator.com/newest";
+    url          = @"https://news.ycombinator.com/newest";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"Ask"]) {
-    url          = @"http://news.ycombinator.com/ask";
+    url          = @"https://news.ycombinator.com/ask";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"Best"]) {
-    url          = @"http://news.ycombinator.com/best";
+    url          = @"https://news.ycombinator.com/best";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"Active"]) {
-    url          = @"http://news.ycombinator.com/active";
+    url          = @"https://news.ycombinator.com/active";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
   else if ([identifier isEqualToString:@"Noob Stories"]) {
-    url          = @"http://news.ycombinator.com/noobstories";
+    url          = @"https://news.ycombinator.com/noobstories";
     notification = HNConnectionControllerDidLoadStoriesNotification;
     method       = @"GET";
   }
@@ -111,10 +111,11 @@ NSString * const HNConnectionControllerDidLoadResultsKey = @"didLoadResults";
   __block HNConnectionController* myself = self;
   
   [networkOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSLog(@"%@", operation.responseString);
     [[NSNotificationCenter defaultCenter] postNotificationName:myself.notification object:operation.responseString];
   } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
 	  NSDictionary *userInfo = @{
-		HNConnectionControllerDidRaiseConnectionFailureErrorKey : error,
+      HNConnectionControllerDidRaiseConnectionFailureErrorKey : error,
 	  };
 	  [[NSNotificationCenter defaultCenter] postNotificationName:HNConnectionControllerDidRaiseConnectionFailureNotification object:myself userInfo:userInfo];
   }];
