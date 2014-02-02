@@ -51,8 +51,8 @@
       [story setValue:title forKey:@"title"];
       NSMutableString* url = [[titleA getAttributeNamed:@"href"] mutableCopy];
       
-      if (![url hasPrefix:@"https"]) {
-        [url insertString:@"https://news.ycombinator.com/" atIndex:0];
+      if (![url hasPrefix:@"http"]) {
+        [url insertString:@"http://news.ycombinator.com/" atIndex:0];
       }
       
       [story setValue:url forKey:@"url"];
