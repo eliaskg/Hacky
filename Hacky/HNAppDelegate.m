@@ -44,6 +44,7 @@
   _window.trafficLightButtonsLeftMargin = HN_LEFT_MARGIN;
   _window.fullScreenButtonRightMargin = HN_LEFT_MARGIN;
   _window.centerFullScreenButton = YES;
+  [_window setMovableByWindowBackground:YES];
   [_window setMinSize:NSMakeSize(2 * HN_MIN_MENU_WIDTH, HN_MIN_WINDOW_HEIGHT)];
   
   NSView *titleBarView = _window.titleBarView;
